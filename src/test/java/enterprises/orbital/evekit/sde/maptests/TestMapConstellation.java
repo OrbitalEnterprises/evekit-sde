@@ -15,11 +15,10 @@ public class TestMapConstellation extends TestSetup {
     int maxresults = 1000;
     int contid = 0;
     AttributeSelector all = new AttributeSelector("{any:true}");
-    List<MapConstellation> next = MapConstellation.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all,
-                                                          all);
+    List<MapConstellation> next = MapConstellation.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all);
     while (!next.isEmpty()) {
       contid += next.size();
-      next = MapConstellation.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all);
+      next = MapConstellation.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all);
     }
     Assert.assertEquals(1120, contid);
   }
@@ -28,7 +27,7 @@ public class TestMapConstellation extends TestSetup {
   public void testRandomElement() {
     AttributeSelector all = new AttributeSelector("{any:true}");
     List<MapConstellation> next = MapConstellation.access(0, 1000, new AttributeSelector("{values:[20000016]}"), all, all, all, all, all, all, all, all, all,
-                                                          all, all, all, all, all, all, all);
+                                                          all, all, all, all);
     Assert.assertEquals(1, next.size());
     MapConstellation random = next.get(0);
     Assert.assertNotNull(random);

@@ -114,7 +114,6 @@ public class InvBlueprintType {
   public static List<InvBlueprintType> access(
                                               final int contid,
                                               final int maxresults,
-
                                               final AttributeSelector blueprintTypeID,
                                               final AttributeSelector duplicatingTime,
                                               final AttributeSelector inventionTime,

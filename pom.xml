@@ -8,34 +8,94 @@
   <groupId>enterprises.orbital.evekit</groupId>
   <artifactId>sde-yc-118-3</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
   <name>EveKit SDE for release yc-118-3</name>
   <description>SDE adapater for yc-118-3</description>
+  
+  <scm>
+  	<url>https://github.com/OrbitalEnterprises/evekit-sde-yc-118-3</url>
+  	<connection>scm:git:https://github.com/OrbitalEnterprises/evekit-sde-yc-118-3.git</connection>
+  	<developerConnection>scm:git:git@github.com:OrbitalEnterprises/evekit-sde-yc-118-3.git</developerConnection>
+  </scm>
+  
+  <properties>
+    <enterprises.orbital.evekit.sde.ws.appname>evekit-sde</enterprises.orbital.evekit.sde.ws.appname>
+  </properties>
+
+  <build>
+    <finalName>evekit-${project.artifactId}-${project.version}</finalName>    
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <!-- Make sure we sub in our web configuration -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <webResources>
+            <resource>
+              <filtering>true</filtering>
+              <directory>src/main/webapp</directory>
+              <includes>
+                <include>**/web.xml</include>
+              </includes>
+            </resource>
+          </webResources>
+          <warSourceDirectory>src/main/webapp</warSourceDirectory>
+          <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+        </configuration>
+      </plugin>
+      <!-- This allows you to deploy to a Tomcat server -->
+      <!-- Use a profile to create appropriate settings (see README.md) -->  
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <url>${enterprises.orbital.evekit.sde.ws.tomcat.url}</url>
+          <server>${enterprises.orbital.evekit.sde.ws.tomcat.server}</server>
+          <path>${enterprises.orbital.evekit.sde.ws.tomcat.path}</path>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
   <dependencies>
     <dependency>
       <groupId>enterprises.orbital</groupId>
       <artifactId>db-manager</artifactId>
       <version>1.0.0</version>
     </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>1.5.7</version>
+    </dependency> 
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-jersey2-jaxrs</artifactId>
+      <version>1.5.7</version>
+    </dependency>
   	<dependency>
   		<groupId>com.google.code.gson</groupId>
   		<artifactId>gson</artifactId>
   		<version>2.3</version>
-  	</dependency>    
-<!--     <dependency> -->
-<!--       <groupId>io.swagger</groupId> -->
-<!--       <artifactId>swagger-annotations</artifactId> -->
-<!--       <version>1.5.7</version> -->
-<!--     </dependency>  -->
-<!--     <dependency> -->
-<!--       <groupId>com.fasterxml.jackson.core</groupId> -->
-<!--       <artifactId>jackson-annotations</artifactId> -->
-<!--       <version>2.4.5</version> -->
-<!--     </dependency>     -->
-<!--     <dependency> -->
-<!--       <groupId>com.fasterxml.jackson.core</groupId> -->
-<!--       <artifactId>jackson-databind</artifactId> -->
-<!--       <version>2.4.5</version> -->
-<!--     </dependency>     -->
+  	</dependency>
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -47,14 +107,4 @@
       <version>1.2.17</version>
     </dependency>    
   </dependencies>
-  <build>
-    <finalName>evekit-${project.artifactId}-${project.version}</finalName>    
-    <testResources>
-      <testResource>
-        <!-- Filter in test DB settings -->
-        <directory>src/test/resources</directory>
-        <filtering>true</filtering>
-      </testResource>
-    </testResources>
-  </build>
 </project>

@@ -105,7 +105,6 @@ public class MapConstellation {
   public static List<MapConstellation> access(
                                               final int contid,
                                               final int maxresults,
-
                                               final AttributeSelector constellationID,
                                               final AttributeSelector constellationName,
                                               final AttributeSelector factionID,
@@ -119,11 +118,7 @@ public class MapConstellation {
                                               final AttributeSelector yMin,
                                               final AttributeSelector z,
                                               final AttributeSelector zMax,
-                                              final AttributeSelector zMin,
-
-                                              final AttributeSelector itemID,
-                                              final AttributeSelector groupID,
-                                              final AttributeSelector itemName) {
+                                              final AttributeSelector zMin) {
     try {
       return SDE.getFactory().runTransaction(new RunInTransaction<List<MapConstellation>>() {
         @Override
