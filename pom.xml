@@ -6,16 +6,16 @@
     <version>1.0.0</version>
   </parent>
   <groupId>enterprises.orbital.evekit</groupId>
-  <artifactId>sde-yc-118-3</artifactId>
+  <artifactId>sde</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>EveKit SDE for release yc-118-3</name>
-  <description>SDE adapater for yc-118-3</description>
+  <name>EveKit SDE Web Service</name>
+  <description>Web service which exposes EVE Online SDE export</description>
   
   <scm>
-  	<url>https://github.com/OrbitalEnterprises/evekit-sde-yc-118-3</url>
-  	<connection>scm:git:https://github.com/OrbitalEnterprises/evekit-sde-yc-118-3.git</connection>
-  	<developerConnection>scm:git:git@github.com:OrbitalEnterprises/evekit-sde-yc-118-3.git</developerConnection>
+  	<url>https://github.com/OrbitalEnterprises/evekit-sde</url>
+  	<connection>scm:git:https://github.com/OrbitalEnterprises/evekit-sde.git</connection>
+  	<developerConnection>scm:git:git@github.com:OrbitalEnterprises/evekit-sde.git</developerConnection>
   </scm>
   
   <properties>
