@@ -7,7 +7,7 @@
   </parent>
   <groupId>enterprises.orbital.evekit</groupId>
   <artifactId>sde</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>war</packaging>
   <name>EveKit SDE Web Service</name>
   <description>Web service which exposes EVE Online SDE export</description>
@@ -16,10 +16,12 @@
   	<url>https://github.com/OrbitalEnterprises/evekit-sde</url>
   	<connection>scm:git:https://github.com/OrbitalEnterprises/evekit-sde.git</connection>
   	<developerConnection>scm:git:git@github.com:OrbitalEnterprises/evekit-sde.git</developerConnection>
+  	<tag>yc_118_3</tag>
   </scm>
   
   <properties>
     <enterprises.orbital.evekit.sde.ws.appname>evekit-sde</enterprises.orbital.evekit.sde.ws.appname>
+    <enterprises.orbital.evekit.sde.release>yc-118-3</enterprises.orbital.evekit.sde.release>
   </properties>
 
   <build>
@@ -49,6 +51,7 @@
               <directory>src/main/webapp</directory>
               <includes>
                 <include>**/web.xml</include>
+                <include>**/index.html</include>
               </includes>
             </resource>
           </webResources>
