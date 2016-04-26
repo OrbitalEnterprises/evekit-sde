@@ -2,7 +2,7 @@
 
 This module provides a servlet which exposes a conversion of the EVE Online Static Data Export (SDE).  The current SDE is a mix of a SQLite dump, a Microsoft SQLServer dump, and YAML files.  We use [Desmont McCallock's conversion tool](https://bitbucket.org/Desmont_McCallock/evesdetosql/overview) to convert the SDE to MySQL and provide a web service which exposes query methods for each of the tables.  The web service we expose is a REST API with [Swagger](http://swagger.io) annotations, which in turn makes it trivial to generate documentation and experiment with the API, as well as generate client libraries in various languages.
 
-We maintain a [public instance](https://evekit-sde.orbital.enterprises/) of the web service which exposes the last two SDE releases.  To track changes between releases, we create a named release branch of this module corresponding to each SDE release.  The master branch of this module normally corresponds to the latest SDE release.
+We maintain a [public instance](https://evekit-sde.orbital.enterprises/) of the web service which usually exposes the last two SDE releases.  To track changes between releases, we create a named release branch of this module corresponding to each SDE release.  The master branch of this module normally corresponds to the latest SDE release.
 
 The rest of this guide describes how to configure, build and deploy your own instance of this service.
 
