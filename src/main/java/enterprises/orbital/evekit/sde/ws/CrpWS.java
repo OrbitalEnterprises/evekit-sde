@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(
     tags = {
         "Corporation"
-},
+    },
     produces = "application/json",
     consumes = "application/json")
 public class CrpWS {
@@ -60,37 +60,37 @@ public class CrpWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
-  public Response getActivities(
-                                @Context HttpServletRequest request,
-                                @QueryParam("contid") @DefaultValue("-1") @ApiParam(
-                                    name = "contid",
-                                    required = false,
-                                    defaultValue = "-1",
-                                    value = "Continuation ID for paged results") int contid,
-                                @QueryParam("maxresults") @DefaultValue("1000") @ApiParam(
-                                    name = "maxresults",
-                                    required = false,
-                                    defaultValue = "1000",
-                                    value = "Maximum number of results to retrieve") int maxresults,
-                                @QueryParam("activityID") @DefaultValue(
-                                    value = "{ any: true }") @ApiParam(
-                                        name = "activityID",
+      })
+  public Response getCorpActivities(
+                                    @Context HttpServletRequest request,
+                                    @QueryParam("contid") @DefaultValue("-1") @ApiParam(
+                                        name = "contid",
                                         required = false,
-                                        defaultValue = "{ any: true }",
-                                        value = "Activity ID selector") AttributeSelector activityID,
-                                @QueryParam("activityName") @DefaultValue(
-                                    value = "{ any: true }") @ApiParam(
-                                        name = "activityName",
+                                        defaultValue = "-1",
+                                        value = "Continuation ID for paged results") int contid,
+                                    @QueryParam("maxresults") @DefaultValue("1000") @ApiParam(
+                                        name = "maxresults",
                                         required = false,
-                                        defaultValue = "{ any: true }",
-                                        value = "Activity name selector") AttributeSelector activityName,
-                                @QueryParam("description") @DefaultValue(
-                                    value = "{ any: true }") @ApiParam(
-                                        name = "description",
-                                        required = false,
-                                        defaultValue = "{ any: true }",
-                                        value = "Description text selector") AttributeSelector description) {
+                                        defaultValue = "1000",
+                                        value = "Maximum number of results to retrieve") int maxresults,
+                                    @QueryParam("activityID") @DefaultValue(
+                                        value = "{ any: true }") @ApiParam(
+                                            name = "activityID",
+                                            required = false,
+                                            defaultValue = "{ any: true }",
+                                            value = "Activity ID selector") AttributeSelector activityID,
+                                    @QueryParam("activityName") @DefaultValue(
+                                        value = "{ any: true }") @ApiParam(
+                                            name = "activityName",
+                                            required = false,
+                                            defaultValue = "{ any: true }",
+                                            value = "Activity name selector") AttributeSelector activityName,
+                                    @QueryParam("description") @DefaultValue(
+                                        value = "{ any: true }") @ApiParam(
+                                            name = "description",
+                                            required = false,
+                                            defaultValue = "{ any: true }",
+                                            value = "Description text selector") AttributeSelector description) {
     ServiceUtil.sanitizeAttributeSelector(activityID, activityName, description);
     maxresults = Math.min(1000, maxresults);
     try {
@@ -121,7 +121,7 @@ public class CrpWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getNpcCorporations(
                                      @Context HttpServletRequest request,
                                      @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -338,7 +338,7 @@ public class CrpWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getNpcCorporationDivisions(
                                              @Context HttpServletRequest request,
                                              @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -399,7 +399,7 @@ public class CrpWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getNpcCorporationResearchFields(
                                                   @Context HttpServletRequest request,
                                                   @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -454,7 +454,7 @@ public class CrpWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getNpcCorporationTrades(
                                           @Context HttpServletRequest request,
                                           @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -509,7 +509,7 @@ public class CrpWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getNpcDivisions(
                                   @Context HttpServletRequest request,
                                   @QueryParam("contid") @DefaultValue("-1") @ApiParam(

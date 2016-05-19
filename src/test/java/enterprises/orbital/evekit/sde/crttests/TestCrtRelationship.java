@@ -21,7 +21,7 @@ public class TestCrtRelationship extends TestSetup {
       contid += next.size();
       next = CrtRelationship.access(contid, maxresults, all, all, all, all, all, all);
     }
-    Assert.assertEquals(3960, contid);
+    Assert.assertEquals(4050, contid);
   }
 
   @Test

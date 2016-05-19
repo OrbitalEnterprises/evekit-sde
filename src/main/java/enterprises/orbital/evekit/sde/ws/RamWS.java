@@ -37,7 +37,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(
     tags = {
         "RAM"
-},
+    },
     produces = "application/json",
     consumes = "application/json")
 public class RamWS {
@@ -61,49 +61,49 @@ public class RamWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
-  public Response getActivities(
-                                @Context HttpServletRequest request,
-                                @QueryParam("contid") @DefaultValue("-1") @ApiParam(
-                                    name = "contid",
-                                    required = false,
-                                    defaultValue = "-1",
-                                    value = "Continuation ID for paged results") int contid,
-                                @QueryParam("maxresults") @DefaultValue("1000") @ApiParam(
-                                    name = "maxresults",
-                                    required = false,
-                                    defaultValue = "1000",
-                                    value = "Maximum number of results to retrieve") int maxresults,
-                                @QueryParam("activityID") @DefaultValue(
-                                    value = "{ any: true }") @ApiParam(
-                                        name = "activityID",
-                                        required = false,
-                                        defaultValue = "{ any: true }",
-                                        value = "Activity ID selector") AttributeSelector activityID,
-                                @QueryParam("activityName") @DefaultValue(
-                                    value = "{ any: true }") @ApiParam(
-                                        name = "activityName",
-                                        required = false,
-                                        defaultValue = "{ any: true }",
-                                        value = "Activity name selector") AttributeSelector activityName,
-                                @QueryParam("description") @DefaultValue(
-                                    value = "{ any: true }") @ApiParam(
-                                        name = "description",
-                                        required = false,
-                                        defaultValue = "{ any: true }",
-                                        value = "Description text selector") AttributeSelector description,
-                                @QueryParam("iconNo") @DefaultValue(
-                                    value = "{ any: true }") @ApiParam(
-                                        name = "iconNo",
-                                        required = false,
-                                        defaultValue = "{ any: true }",
-                                        value = "Icon number selector") AttributeSelector iconNo,
-                                @QueryParam("published") @DefaultValue(
-                                    value = "{ any: true }") @ApiParam(
-                                        name = "published",
-                                        required = false,
-                                        defaultValue = "{ any: true }",
-                                        value = "Published flag selector") AttributeSelector published) {
+      })
+  public Response getRAMActivities(
+                                   @Context HttpServletRequest request,
+                                   @QueryParam("contid") @DefaultValue("-1") @ApiParam(
+                                       name = "contid",
+                                       required = false,
+                                       defaultValue = "-1",
+                                       value = "Continuation ID for paged results") int contid,
+                                   @QueryParam("maxresults") @DefaultValue("1000") @ApiParam(
+                                       name = "maxresults",
+                                       required = false,
+                                       defaultValue = "1000",
+                                       value = "Maximum number of results to retrieve") int maxresults,
+                                   @QueryParam("activityID") @DefaultValue(
+                                       value = "{ any: true }") @ApiParam(
+                                           name = "activityID",
+                                           required = false,
+                                           defaultValue = "{ any: true }",
+                                           value = "Activity ID selector") AttributeSelector activityID,
+                                   @QueryParam("activityName") @DefaultValue(
+                                       value = "{ any: true }") @ApiParam(
+                                           name = "activityName",
+                                           required = false,
+                                           defaultValue = "{ any: true }",
+                                           value = "Activity name selector") AttributeSelector activityName,
+                                   @QueryParam("description") @DefaultValue(
+                                       value = "{ any: true }") @ApiParam(
+                                           name = "description",
+                                           required = false,
+                                           defaultValue = "{ any: true }",
+                                           value = "Description text selector") AttributeSelector description,
+                                   @QueryParam("iconNo") @DefaultValue(
+                                       value = "{ any: true }") @ApiParam(
+                                           name = "iconNo",
+                                           required = false,
+                                           defaultValue = "{ any: true }",
+                                           value = "Icon number selector") AttributeSelector iconNo,
+                                   @QueryParam("published") @DefaultValue(
+                                       value = "{ any: true }") @ApiParam(
+                                           name = "published",
+                                           required = false,
+                                           defaultValue = "{ any: true }",
+                                           value = "Published flag selector") AttributeSelector published) {
     ServiceUtil.sanitizeAttributeSelector(activityID, activityName, description, iconNo, published);
     maxresults = Math.min(1000, maxresults);
     try {
@@ -134,7 +134,7 @@ public class RamWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getAssemblyLineStations(
                                           @Context HttpServletRequest request,
                                           @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -220,7 +220,7 @@ public class RamWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getAssemblyLineTypes(
                                        @Context HttpServletRequest request,
                                        @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -320,7 +320,7 @@ public class RamWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getAssemblyLineTypeDetailsPerCategory(
                                                         @Context HttpServletRequest request,
                                                         @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -394,7 +394,7 @@ public class RamWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getAssemblyLineTypeDetailsPerGroup(
                                                      @Context HttpServletRequest request,
                                                      @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -468,7 +468,7 @@ public class RamWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getInstallationTypeContents(
                                               @Context HttpServletRequest request,
                                               @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -529,7 +529,7 @@ public class RamWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getTypeRequirements(
                                       @Context HttpServletRequest request,
                                       @QueryParam("contid") @DefaultValue("-1") @ApiParam(

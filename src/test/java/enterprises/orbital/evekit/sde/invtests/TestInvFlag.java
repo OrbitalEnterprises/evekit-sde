@@ -21,7 +21,7 @@ public class TestInvFlag extends TestSetup {
       contid += next.size();
       next = InvFlag.access(contid, maxresults, all, all, all, all);
     }
-    Assert.assertEquals(150, contid);
+    Assert.assertEquals(152, contid);
   }
 
   @Test

@@ -21,7 +21,7 @@ public class TestRamAssemblyLineTypeDetailPerCategory extends TestSetup {
       contid += next.size();
       next = RamAssemblyLineTypeDetailPerCategory.access(contid, maxresults, all, all, all, all, all);
     }
-    Assert.assertEquals(715, contid);
+    Assert.assertEquals(891, contid);
   }
 
   @Test

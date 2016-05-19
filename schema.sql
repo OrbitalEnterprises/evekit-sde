@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
--- Host: evekit-sde.orbital.enterprises    Database: evedb_yc_118_3
+-- Host: localhost    Database: evedb_20160429
 -- ------------------------------------------------------
--- Server version	5.5.47-0ubuntu0.14.04.1
+-- Server version	5.6.27-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -393,7 +393,7 @@ CREATE TABLE `dgmattributetypes` (
   `iconID` int(10) unsigned DEFAULT NULL,
   `defaultValue` double DEFAULT NULL,
   `published` tinyint(1) DEFAULT NULL,
-  `displayName` varchar(100) DEFAULT NULL,
+  `displayName` varchar(150) DEFAULT NULL,
   `unitID` tinyint(3) unsigned DEFAULT NULL,
   `stackable` tinyint(1) DEFAULT NULL,
   `highIsGood` tinyint(1) DEFAULT NULL,
@@ -1517,7 +1517,7 @@ DROP TABLE IF EXISTS `stastations`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `stastations` (
   `stationID` int(10) unsigned NOT NULL,
-  `security` smallint(6) DEFAULT NULL,
+  `security` double DEFAULT NULL,
   `dockingCostPerVolume` double DEFAULT NULL,
   `maxShipVolumeDockable` double DEFAULT NULL,
   `officeRentalCost` int(10) DEFAULT NULL,
@@ -1672,4 +1672,4 @@ CREATE TABLE `warcombatzonesystems` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-25  8:09:13
+-- Dump completed on 2016-05-18 22:39:34
