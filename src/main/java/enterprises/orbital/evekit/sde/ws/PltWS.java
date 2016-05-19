@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/ws/v118-3/plt")
+@Path("/ws/v20160429/plt")
 @Consumes({
     "application/json"
 })
@@ -33,7 +33,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(
     tags = {
         "Planet"
-},
+    },
     produces = "application/json",
     consumes = "application/json")
 public class PltWS {
@@ -57,7 +57,7 @@ public class PltWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getSchematics(
                                 @Context HttpServletRequest request,
                                 @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -118,7 +118,7 @@ public class PltWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getSchematicPinMaps(
                                       @Context HttpServletRequest request,
                                       @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -173,7 +173,7 @@ public class PltWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getSchematicTypeMaps(
                                        @Context HttpServletRequest request,
                                        @QueryParam("contid") @DefaultValue("-1") @ApiParam(

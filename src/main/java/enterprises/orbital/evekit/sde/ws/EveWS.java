@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/ws/v118-3/eve")
+@Path("/ws/v20160429/eve")
 @Consumes({
     "application/json"
 })
@@ -33,7 +33,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(
     tags = {
         "EVE"
-},
+    },
     produces = "application/json",
     consumes = "application/json")
 public class EveWS {
@@ -57,7 +57,7 @@ public class EveWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getGraphics(
                               @Context HttpServletRequest request,
                               @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -168,7 +168,7 @@ public class EveWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getIcons(
                            @Context HttpServletRequest request,
                            @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -229,7 +229,7 @@ public class EveWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getUnits(
                            @Context HttpServletRequest request,
                            @QueryParam("contid") @DefaultValue("-1") @ApiParam(

@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/ws/v118-3/inv")
+@Path("/ws/v20160429/inv")
 @Consumes({
     "application/json"
 })
@@ -46,7 +46,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(
     tags = {
         "Inventory"
-},
+    },
     produces = "application/json",
     consumes = "application/json")
 public class InvWS {
@@ -70,7 +70,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getBlueprintTypes(
                                     @Context HttpServletRequest request,
                                     @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -214,7 +214,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getCategories(
                                 @Context HttpServletRequest request,
                                 @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -287,7 +287,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getContrabandTypes(
                                      @Context HttpServletRequest request,
                                      @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -367,7 +367,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getControlTowerResources(
                                            @Context HttpServletRequest request,
                                            @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -447,7 +447,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getControlTowerResourcePurposes(
                                                   @Context HttpServletRequest request,
                                                   @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -502,7 +502,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getFlags(
                            @Context HttpServletRequest request,
                            @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -569,7 +569,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getGroups(
                             @Context HttpServletRequest request,
                             @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -686,7 +686,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getItems(
                            @Context HttpServletRequest request,
                            @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -765,7 +765,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getMetaGroups(
                                 @Context HttpServletRequest request,
                                 @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -832,7 +832,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getMetaTypes(
                                @Context HttpServletRequest request,
                                @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -893,7 +893,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getNames(
                            @Context HttpServletRequest request,
                            @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -948,7 +948,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getPositions(
                                @Context HttpServletRequest request,
                                @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -1033,7 +1033,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getTypes(
                            @Context HttpServletRequest request,
                            @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -1186,7 +1186,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getTypeMaterials(
                                    @Context HttpServletRequest request,
                                    @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -1247,7 +1247,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getTypeReactions(
                                    @Context HttpServletRequest request,
                                    @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -1314,7 +1314,7 @@ public class InvWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getUniqueNames(
                                  @Context HttpServletRequest request,
                                  @QueryParam("contid") @DefaultValue("-1") @ApiParam(

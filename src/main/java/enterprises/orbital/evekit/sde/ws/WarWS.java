@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/ws/v118-3/war")
+@Path("/ws/v20160429/war")
 @Consumes({
     "application/json"
 })
@@ -32,7 +32,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(
     tags = {
         "War"
-},
+    },
     produces = "application/json",
     consumes = "application/json")
 public class WarWS {
@@ -56,7 +56,7 @@ public class WarWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getCombatZones(
                                  @Context HttpServletRequest request,
                                  @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -129,7 +129,7 @@ public class WarWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getCombatZoneSystems(
                                        @Context HttpServletRequest request,
                                        @QueryParam("contid") @DefaultValue("-1") @ApiParam(

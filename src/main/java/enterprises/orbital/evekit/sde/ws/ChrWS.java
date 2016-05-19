@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/ws/v118-3/chr")
+@Path("/ws/v20160429/chr")
 @Consumes({
     "application/json"
 })
@@ -35,7 +35,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(
     tags = {
         "Character"
-},
+    },
     produces = "application/json",
     consumes = "application/json")
 public class ChrWS {
@@ -59,7 +59,7 @@ public class ChrWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getAncestries(
                                 @Context HttpServletRequest request,
                                 @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -170,7 +170,7 @@ public class ChrWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getAttributes(
                                 @Context HttpServletRequest request,
                                 @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -249,7 +249,7 @@ public class ChrWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getBloodlines(
                                 @Context HttpServletRequest request,
                                 @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -398,7 +398,7 @@ public class ChrWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getFactions(
                               @Context HttpServletRequest request,
                               @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -509,7 +509,7 @@ public class ChrWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getRaces(
                            @Context HttpServletRequest request,
                            @QueryParam("contid") @DefaultValue("-1") @ApiParam(

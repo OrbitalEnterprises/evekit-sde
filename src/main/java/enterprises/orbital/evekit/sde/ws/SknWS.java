@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/ws/v118-3/skn")
+@Path("/ws/v20160429/skn")
 @Consumes({
     "application/json"
 })
@@ -33,7 +33,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(
     tags = {
         "Skin"
-},
+    },
     produces = "application/json",
     consumes = "application/json")
 public class SknWS {
@@ -57,7 +57,7 @@ public class SknWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getLicenses(
                               @Context HttpServletRequest request,
                               @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -118,7 +118,7 @@ public class SknWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getMaterials(
                                @Context HttpServletRequest request,
                                @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -210,7 +210,7 @@ public class SknWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getSkins(
                            @Context HttpServletRequest request,
                            @QueryParam("contid") @DefaultValue("-1") @ApiParam(

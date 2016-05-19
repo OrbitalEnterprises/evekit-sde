@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/ws/v118-3/dgm")
+@Path("/ws/v20160429/dgm")
 @Consumes({
     "application/json"
 })
@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(
     tags = {
         "Dogma"
-},
+    },
     produces = "application/json",
     consumes = "application/json")
 public class DgmWS {
@@ -64,7 +64,7 @@ public class DgmWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getAttributeCategories(
                                          @Context HttpServletRequest request,
                                          @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -125,7 +125,7 @@ public class DgmWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getAttributeTypes(
                                     @Context HttpServletRequest request,
                                     @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -236,7 +236,7 @@ public class DgmWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getEffects(
                              @Context HttpServletRequest request,
                              @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -455,7 +455,7 @@ public class DgmWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getExpressions(
                                  @Context HttpServletRequest request,
                                  @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -560,7 +560,7 @@ public class DgmWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getMasteries(
                                @Context HttpServletRequest request,
                                @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -621,7 +621,7 @@ public class DgmWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getTraits(
                             @Context HttpServletRequest request,
                             @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -682,7 +682,7 @@ public class DgmWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getTypeAttributes(
                                     @Context HttpServletRequest request,
                                     @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -749,7 +749,7 @@ public class DgmWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getTypeEffects(
                                  @Context HttpServletRequest request,
                                  @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -810,7 +810,7 @@ public class DgmWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getTypeMasteries(
                                    @Context HttpServletRequest request,
                                    @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -865,7 +865,7 @@ public class DgmWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getTypeTraits(
                                 @Context HttpServletRequest request,
                                 @QueryParam("contid") @DefaultValue("-1") @ApiParam(

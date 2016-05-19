@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/ws/v118-3/sta")
+@Path("/ws/v20160429/sta")
 @Consumes({
     "application/json"
 })
@@ -35,7 +35,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(
     tags = {
         "Station"
-},
+    },
     produces = "application/json",
     consumes = "application/json")
 public class StaWS {
@@ -59,7 +59,7 @@ public class StaWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getOperations(
                                 @Context HttpServletRequest request,
                                 @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -189,7 +189,7 @@ public class StaWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getOperationServices(
                                        @Context HttpServletRequest request,
                                        @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -244,7 +244,7 @@ public class StaWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getServices(
                               @Context HttpServletRequest request,
                               @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -305,7 +305,7 @@ public class StaWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getStations(
                               @Context HttpServletRequest request,
                               @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -460,7 +460,7 @@ public class StaWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getStationTypes(
                                   @Context HttpServletRequest request,
                                   @QueryParam("contid") @DefaultValue("-1") @ApiParam(

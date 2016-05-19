@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/ws/v118-3/agt")
+@Path("/ws/v20160429/agt")
 @Consumes({
     "application/json"
 })
@@ -33,7 +33,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(
     tags = {
         "Agent"
-},
+    },
     produces = "application/json",
     consumes = "application/json")
 public class AgtWS {
@@ -57,7 +57,7 @@ public class AgtWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getAgents(
                             @Context HttpServletRequest request,
                             @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -148,7 +148,7 @@ public class AgtWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getAgentTypes(
                                 @Context HttpServletRequest request,
                                 @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -203,7 +203,7 @@ public class AgtWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getResearchAgents(
                                     @Context HttpServletRequest request,
                                     @QueryParam("contid") @DefaultValue("-1") @ApiParam(

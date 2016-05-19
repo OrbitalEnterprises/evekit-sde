@@ -33,7 +33,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/ws/v118-3/map")
+@Path("/ws/v20160429/map")
 @Consumes({
     "application/json"
 })
@@ -43,7 +43,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(
     tags = {
         "Map"
-},
+    },
     produces = "application/json",
     consumes = "application/json")
 public class MapWS {
@@ -67,7 +67,7 @@ public class MapWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getCelestialStatistics(
                                          @Context HttpServletRequest request,
                                          @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -233,7 +233,7 @@ public class MapWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getConstellations(
                                     @Context HttpServletRequest request,
                                     @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -361,7 +361,7 @@ public class MapWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getConstellationJumps(
                                         @Context HttpServletRequest request,
                                         @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -428,7 +428,7 @@ public class MapWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getDenormalization(
                                      @Context HttpServletRequest request,
                                      @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -563,7 +563,7 @@ public class MapWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getJumps(
                            @Context HttpServletRequest request,
                            @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -618,7 +618,7 @@ public class MapWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getLandmarks(
                                @Context HttpServletRequest request,
                                @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -721,7 +721,7 @@ public class MapWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getLocationScenes(
                                     @Context HttpServletRequest request,
                                     @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -776,7 +776,7 @@ public class MapWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getLocationWormholeClasses(
                                              @Context HttpServletRequest request,
                                              @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -831,7 +831,7 @@ public class MapWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getRegions(
                              @Context HttpServletRequest request,
                              @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -952,7 +952,7 @@ public class MapWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getRegionJumps(
                                  @Context HttpServletRequest request,
                                  @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -1007,7 +1007,7 @@ public class MapWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getSolarSystems(
                                   @Context HttpServletRequest request,
                                   @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -1210,7 +1210,7 @@ public class MapWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getSolarSystemJumps(
                                       @Context HttpServletRequest request,
                                       @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -1290,7 +1290,7 @@ public class MapWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getUniverses(
                                @Context HttpServletRequest request,
                                @QueryParam("contid") @DefaultValue("-1") @ApiParam(

@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/ws/v118-3/crt")
+@Path("/ws/v20160429/crt")
 @Consumes({
     "application/json"
 })
@@ -34,7 +34,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(
     tags = {
         "Certificates"
-},
+    },
     produces = "application/json",
     consumes = "application/json")
 public class CrtWS {
@@ -58,7 +58,7 @@ public class CrtWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getCertificates(
                                   @Context HttpServletRequest request,
                                   @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -143,7 +143,7 @@ public class CrtWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getCertificateClasses(
                                         @Context HttpServletRequest request,
                                         @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -204,7 +204,7 @@ public class CrtWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getCertificateRecommendations(
                                                 @Context HttpServletRequest request,
                                                 @QueryParam("contid") @DefaultValue("-1") @ApiParam(
@@ -271,7 +271,7 @@ public class CrtWS {
               code = 500,
               message = "internal service error",
               response = ServiceError.class),
-  })
+      })
   public Response getCertificateRelationships(
                                               @Context HttpServletRequest request,
                                               @QueryParam("contid") @DefaultValue("-1") @ApiParam(
