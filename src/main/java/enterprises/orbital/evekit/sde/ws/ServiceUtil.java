@@ -1,5 +1,6 @@
 package enterprises.orbital.evekit.sde.ws;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -18,11 +19,17 @@ import enterprises.orbital.base.OrbitalProperties;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 
 public class ServiceUtil {
-  private static final Logger           log                     = Logger.getLogger(ServiceUtil.class.getName());
-  private static final SimpleDateFormat dateFormat              = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
-  private static final String           sdeString               = OrbitalProperties.getGlobalProperty("enterprises.orbital.evekit.sde.version", "DEBUG");
+  private static final Logger                    log                     = Logger.getLogger(ServiceUtil.class.getName());
+  private static final String                    sdeString               = OrbitalProperties.getGlobalProperty("enterprises.orbital.evekit.sde.version",
+                                                                                                               "DEBUG");
+  public static final long                       DEFAULT_EXPIRY_INTERVAL = TimeUnit.MILLISECONDS.convert(24, TimeUnit.HOURS);
+  protected static final ThreadLocal<DateFormat> dateFormat              = OrbitalProperties.dateFormatFactory(new OrbitalProperties.DateFormatGenerator() {
 
-  public static final long              DEFAULT_EXPIRY_INTERVAL = TimeUnit.MILLISECONDS.convert(24, TimeUnit.HOURS);
+                                                                           @Override
+                                                                           public DateFormat generate() {
+                                                                             return new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
+                                                                           }
+                                                                         });
 
   public static Response finish(
                                 Object result,
@@ -54,7 +61,7 @@ public class ServiceUtil {
 
   protected static String getServerTime(
                                         long tm) {
-    return dateFormat.format(new Date(tm));
+    return dateFormat.get().format(new Date(tm));
   }
 
   public static ResponseBuilder stamp(
