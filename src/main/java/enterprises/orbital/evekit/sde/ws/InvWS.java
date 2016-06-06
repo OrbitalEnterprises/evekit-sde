@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/ws/v20160429/inv")
+@Path("/inv")
 @Consumes({
     "application/json"
 })

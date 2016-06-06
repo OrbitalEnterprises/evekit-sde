@@ -11,7 +11,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>jersey</servlet-name>
-    <url-pattern>/api/*</url-pattern>
+    <url-pattern>/api/ws/v${enterprises.orbital.evekit.sde.release}/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>Jersey2Config</servlet-name>
@@ -26,7 +26,7 @@
     </init-param>
     <init-param>
       <param-name>swagger.api.basepath</param-name>
-      <param-value>${enterprises.orbital.evekit.sde.ws.basepath}/${enterprises.orbital.evekit.sde.ws.appname}/api</param-value>
+      <param-value>${enterprises.orbital.evekit.sde.ws.basepath}/${enterprises.orbital.evekit.sde.ws.appname}/api/ws/v${enterprises.orbital.evekit.sde.release}</param-value>
     </init-param>
     <load-on-startup>2</load-on-startup>
   </servlet>

@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/ws/v20160429/ram")
+@Path("/ram")
 @Consumes({
     "application/json"
 })
