@@ -20,7 +20,7 @@ public class TestEveIcon extends TestSetup {
       contid += next.size();
       next = EveIcon.access(contid, maxresults, all, all, all);
     }
-    Assert.assertEquals(2302, contid);
+    Assert.assertEquals(2249, contid);
   }
 
   @Test
@@ -30,7 +30,7 @@ public class TestEveIcon extends TestSetup {
     Assert.assertEquals(1, next.size());
     EveIcon random = next.get(0);
     Assert.assertEquals(2207, random.getIconID());
-    Assert.assertEquals("39_15", random.getIconFile());
+    Assert.assertEquals("res:/ui/texture/icons/39_64_15.png", random.getIconFile());
     Assert.assertEquals("Kador Banner of Royality - Unknown", random.getDescription());
     Assert.assertNotNull(random.toString());
   }

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
--- Host: localhost    Database: evedb_20160429
+-- Host: localhost    Database: evedb_20160531
 -- ------------------------------------------------------
 -- Server version	5.6.27-log
 
@@ -1672,4 +1672,4 @@ CREATE TABLE `warcombatzonesystems` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-18 22:39:34
+-- Dump completed on 2016-06-05 22:46:32

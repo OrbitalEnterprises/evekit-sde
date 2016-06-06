@@ -21,7 +21,7 @@ public class TestRamTypeRequirement extends TestSetup {
       contid += next.size();
       next = RamTypeRequirement.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all);
     }
-    Assert.assertEquals(48110, contid);
+    Assert.assertEquals(48113, contid);
   }
 
   @Test

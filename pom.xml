@@ -7,7 +7,7 @@
   </parent>
   <groupId>enterprises.orbital.evekit</groupId>
   <artifactId>sde</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
   <packaging>war</packaging>
   <name>EveKit SDE Web Service</name>
   <description>Web service which exposes EVE Online SDE export</description>
@@ -16,12 +16,12 @@
   	<url>https://github.com/OrbitalEnterprises/evekit-sde</url>
   	<connection>scm:git:https://github.com/OrbitalEnterprises/evekit-sde.git</connection>
   	<developerConnection>scm:git:git@github.com:OrbitalEnterprises/evekit-sde.git</developerConnection>
-  	<tag>20160429</tag>
+  	<tag>20160531</tag>
   </scm>
   
   <properties>
     <enterprises.orbital.evekit.sde.ws.appname>evekit-sde</enterprises.orbital.evekit.sde.ws.appname>
-    <enterprises.orbital.evekit.sde.release>20160429</enterprises.orbital.evekit.sde.release>
+    <enterprises.orbital.evekit.sde.release>20160531</enterprises.orbital.evekit.sde.release>
   </properties>
 
   <build>
