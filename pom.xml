@@ -3,7 +3,7 @@
   <parent>
     <groupId>enterprises.orbital</groupId>
     <artifactId>license</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
   </parent>
   <groupId>enterprises.orbital.evekit</groupId>
   <artifactId>sde</artifactId>
@@ -22,6 +22,13 @@
   <properties>
     <enterprises.orbital.evekit.sde.ws.appname>evekit-sde</enterprises.orbital.evekit.sde.ws.appname>
     <enterprises.orbital.evekit.sde.release>20160531</enterprises.orbital.evekit.sde.release>
+    <evekit.version>2.0.0</evekit.version>
+    <servlet.version>3.1.0</servlet.version>
+    <swagger.version>1.5.7</swagger.version>
+    <gson.version>2.3</gson.version>
+    <mysql.connector.version>5.1.38</mysql.connector.version>
+    <hibernate.version>5.0.6.Final</hibernate.version>
+    <log4j.version>1.2.17</log4j.version>
   </properties>
 
   <build>
@@ -77,42 +84,42 @@
     <dependency>
       <groupId>enterprises.orbital</groupId>
       <artifactId>db-manager</artifactId>
-      <version>1.0.2</version>
+      <version>${evekit.version}</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
+      <version>${servlet.version}</version>
     </dependency>
     <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-annotations</artifactId>
-      <version>1.5.7</version>
+      <version>${swagger.version}</version>
     </dependency> 
     <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-jersey2-jaxrs</artifactId>
-      <version>1.5.7</version>
+      <version>${swagger.version}</version>
     </dependency>
   	<dependency>
   		<groupId>com.google.code.gson</groupId>
   		<artifactId>gson</artifactId>
-  		<version>2.3</version>
+  		<version>${gson.version}</version>
   	</dependency>
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.38</version>
+      <version>${mysql.connector.version}</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-c3p0</artifactId>
-      <version>5.0.6.Final</version>
+      <version>${hibernate.version}</version>
     </dependency>    
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
+      <version>${log4j.version}</version>
     </dependency>    
   </dependencies>
 </project>
