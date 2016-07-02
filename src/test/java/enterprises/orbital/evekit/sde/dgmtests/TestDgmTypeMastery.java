@@ -20,7 +20,7 @@ public class TestDgmTypeMastery extends TestSetup {
       contid += next.size();
       next = DgmTypeMastery.access(contid, maxresults, all, all);
     }
-    Assert.assertEquals(13745, contid);
+    Assert.assertEquals(13969, contid);
   }
 
   @Test

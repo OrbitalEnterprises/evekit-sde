@@ -21,7 +21,7 @@ public class TestTrnTranslationTable extends TestSetup {
       contid += next.size();
       next = TrnTranslationTable.access(contid, maxresults, all, all, all, all, all);
     }
-    Assert.assertEquals(33, contid);
+    Assert.assertEquals(32, contid);
   }
 
   @Test

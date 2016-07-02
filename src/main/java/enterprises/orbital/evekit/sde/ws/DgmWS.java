@@ -19,11 +19,9 @@ import enterprises.orbital.evekit.sde.dgm.DgmAttributeType;
 import enterprises.orbital.evekit.sde.dgm.DgmEffect;
 import enterprises.orbital.evekit.sde.dgm.DgmExpression;
 import enterprises.orbital.evekit.sde.dgm.DgmMastery;
-import enterprises.orbital.evekit.sde.dgm.DgmTrait;
 import enterprises.orbital.evekit.sde.dgm.DgmTypeAttribute;
 import enterprises.orbital.evekit.sde.dgm.DgmTypeEffect;
 import enterprises.orbital.evekit.sde.dgm.DgmTypeMastery;
-import enterprises.orbital.evekit.sde.dgm.DgmTypeTrait;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -602,67 +600,6 @@ public class DgmWS {
     }
   }
 
-  @Path("/trait")
-  @GET
-  @ApiOperation(
-      value = "Get traits")
-  @ApiResponses(
-      value = {
-          @ApiResponse(
-              code = 200,
-              message = "list of requested traits",
-              response = DgmTrait.class,
-              responseContainer = "array"),
-          @ApiResponse(
-              code = 400,
-              message = "invalid attribute selector",
-              response = ServiceError.class),
-          @ApiResponse(
-              code = 500,
-              message = "internal service error",
-              response = ServiceError.class),
-      })
-  public Response getTraits(
-                            @Context HttpServletRequest request,
-                            @QueryParam("contid") @DefaultValue("-1") @ApiParam(
-                                name = "contid",
-                                required = false,
-                                defaultValue = "-1",
-                                value = "Continuation ID for paged results") int contid,
-                            @QueryParam("maxresults") @DefaultValue("1000") @ApiParam(
-                                name = "maxresults",
-                                required = false,
-                                defaultValue = "1000",
-                                value = "Maximum number of results to retrieve") int maxresults,
-                            @QueryParam("traitID") @DefaultValue(
-                                value = "{ any: true }") @ApiParam(
-                                    name = "traitID",
-                                    required = false,
-                                    defaultValue = "{ any: true }",
-                                    value = "Trait ID selector") AttributeSelector traitID,
-                            @QueryParam("bonusText") @DefaultValue(
-                                value = "{ any: true }") @ApiParam(
-                                    name = "bonusText",
-                                    required = false,
-                                    defaultValue = "{ any: true }",
-                                    value = "Bonus text selector") AttributeSelector bonusText,
-                            @QueryParam("unitID") @DefaultValue(
-                                value = "{ any: true }") @ApiParam(
-                                    name = "unitID",
-                                    required = false,
-                                    defaultValue = "{ any: true }",
-                                    value = "Unit ID selector") AttributeSelector unitID) {
-    ServiceUtil.sanitizeAttributeSelector(traitID, bonusText, unitID);
-    maxresults = Math.min(1000, maxresults);
-    try {
-      List<DgmTrait> result = DgmTrait.access(contid, maxresults, traitID, bonusText, unitID);
-      return ServiceUtil.finish(result, request);
-    } catch (NumberFormatException e) {
-      ServiceError errMsg = new ServiceError(Status.BAD_REQUEST.getStatusCode(), "An attribute selector contained an illegal value");
-      return Response.status(Status.BAD_REQUEST).entity(errMsg).build();
-    }
-  }
-
   @Path("/type_attribute")
   @GET
   @ApiOperation(
@@ -839,73 +776,6 @@ public class DgmWS {
     maxresults = Math.min(1000, maxresults);
     try {
       List<DgmTypeMastery> result = DgmTypeMastery.access(contid, maxresults, typeID, masteryID);
-      return ServiceUtil.finish(result, request);
-    } catch (NumberFormatException e) {
-      ServiceError errMsg = new ServiceError(Status.BAD_REQUEST.getStatusCode(), "An attribute selector contained an illegal value");
-      return Response.status(Status.BAD_REQUEST).entity(errMsg).build();
-    }
-  }
-
-  @Path("/type_trait")
-  @GET
-  @ApiOperation(
-      value = "Get type traits")
-  @ApiResponses(
-      value = {
-          @ApiResponse(
-              code = 200,
-              message = "list of requested type traits",
-              response = DgmTypeTrait.class,
-              responseContainer = "array"),
-          @ApiResponse(
-              code = 400,
-              message = "invalid attribute selector",
-              response = ServiceError.class),
-          @ApiResponse(
-              code = 500,
-              message = "internal service error",
-              response = ServiceError.class),
-      })
-  public Response getTypeTraits(
-                                @Context HttpServletRequest request,
-                                @QueryParam("contid") @DefaultValue("-1") @ApiParam(
-                                    name = "contid",
-                                    required = false,
-                                    defaultValue = "-1",
-                                    value = "Continuation ID for paged results") int contid,
-                                @QueryParam("maxresults") @DefaultValue("1000") @ApiParam(
-                                    name = "maxresults",
-                                    required = false,
-                                    defaultValue = "1000",
-                                    value = "Maximum number of results to retrieve") int maxresults,
-                                @QueryParam("typeID") @DefaultValue(
-                                    value = "{ any: true }") @ApiParam(
-                                        name = "typeID",
-                                        required = false,
-                                        defaultValue = "{ any: true }",
-                                        value = "Type ID selector") AttributeSelector typeID,
-                                @QueryParam("parentTypeID") @DefaultValue(
-                                    value = "{ any: true }") @ApiParam(
-                                        name = "parentTypeID",
-                                        required = false,
-                                        defaultValue = "{ any: true }",
-                                        value = "Parent type ID selector") AttributeSelector parentTypeID,
-                                @QueryParam("traitID") @DefaultValue(
-                                    value = "{ any: true }") @ApiParam(
-                                        name = "traitID",
-                                        required = false,
-                                        defaultValue = "{ any: true }",
-                                        value = "Trait ID selector") AttributeSelector traitID,
-                                @QueryParam("bonus") @DefaultValue(
-                                    value = "{ any: true }") @ApiParam(
-                                        name = "bonus",
-                                        required = false,
-                                        defaultValue = "{ any: true }",
-                                        value = "Bonus selector") AttributeSelector bonus) {
-    ServiceUtil.sanitizeAttributeSelector(typeID, parentTypeID, traitID, bonus);
-    maxresults = Math.min(1000, maxresults);
-    try {
-      List<DgmTypeTrait> result = DgmTypeTrait.access(contid, maxresults, typeID, parentTypeID, traitID, bonus);
       return ServiceUtil.finish(result, request);
     } catch (NumberFormatException e) {
       ServiceError errMsg = new ServiceError(Status.BAD_REQUEST.getStatusCode(), "An attribute selector contained an illegal value");

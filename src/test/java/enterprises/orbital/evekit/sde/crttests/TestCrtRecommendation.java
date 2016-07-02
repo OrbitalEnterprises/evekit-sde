@@ -21,7 +21,7 @@ public class TestCrtRecommendation extends TestSetup {
       contid += next.size();
       next = CrtRecommendation.access(contid, maxresults, all, all, all, all);
     }
-    Assert.assertEquals(3176, contid);
+    Assert.assertEquals(3240, contid);
   }
 
   @Test

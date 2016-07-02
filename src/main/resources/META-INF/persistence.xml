@@ -32,15 +32,12 @@
 		<class>enterprises.orbital.evekit.sde.dgm.DgmEffect</class>
 		<class>enterprises.orbital.evekit.sde.dgm.DgmExpression</class>
 		<class>enterprises.orbital.evekit.sde.dgm.DgmMastery</class>
-		<class>enterprises.orbital.evekit.sde.dgm.DgmTrait</class>
 		<class>enterprises.orbital.evekit.sde.dgm.DgmTypeAttribute</class>
 		<class>enterprises.orbital.evekit.sde.dgm.DgmTypeAttributePK</class>
 		<class>enterprises.orbital.evekit.sde.dgm.DgmTypeEffect</class>
 		<class>enterprises.orbital.evekit.sde.dgm.DgmTypeEffectPK</class>
 		<class>enterprises.orbital.evekit.sde.dgm.DgmTypeMastery</class>
 		<class>enterprises.orbital.evekit.sde.dgm.DgmTypeMasteryPK</class>
-		<class>enterprises.orbital.evekit.sde.dgm.DgmTypeTrait</class>
-		<class>enterprises.orbital.evekit.sde.dgm.DgmTypeTraitPK</class>
 		<class>enterprises.orbital.evekit.sde.eve.EveGraphic</class>
 		<class>enterprises.orbital.evekit.sde.eve.EveIcon</class>
 		<class>enterprises.orbital.evekit.sde.eve.EveUnit</class>

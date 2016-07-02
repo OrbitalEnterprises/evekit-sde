@@ -21,22 +21,22 @@ public class TestInvContrabandType extends TestSetup {
       contid += next.size();
       next = InvContrabandType.access(contid, maxresults, all, all, all, all, all, all);
     }
-    Assert.assertEquals(426, contid);
+    Assert.assertEquals(50, contid);
   }
 
   @Test
   public void testRandomElement() {
     AttributeSelector all = new AttributeSelector("{any:true}");
-    List<InvContrabandType> next = InvContrabandType.access(0, 1000, new AttributeSelector("{values:[500001]}"), new AttributeSelector("{values:[3771]}"), all,
+    List<InvContrabandType> next = InvContrabandType.access(0, 1000, new AttributeSelector("{values:[500001]}"), new AttributeSelector("{values:[3721]}"), all,
                                                             all, all, all);
     Assert.assertEquals(1, next.size());
     InvContrabandType random = next.get(0);
     Assert.assertNotNull(random);
     Assert.assertEquals(500001, random.getId().getFactionID());
-    Assert.assertEquals(3771, random.getId().getTypeID());
-    Assert.assertEquals(0.1, random.getStandingLoss(), 0.0001);
-    Assert.assertEquals(0.5, random.getConfiscateMinSec(), 0.0001);
-    Assert.assertEquals(1.5, random.getFineByValue(), 0.0001);
+    Assert.assertEquals(3721, random.getId().getTypeID());
+    Assert.assertEquals(0.2, random.getStandingLoss(), 0.0001);
+    Assert.assertEquals(-1, random.getConfiscateMinSec(), 0.0001);
+    Assert.assertEquals(5, random.getFineByValue(), 0.0001);
     Assert.assertEquals(1.1, random.getAttackMinSec(), 0.0001);
     Assert.assertNotNull(random.toString());
   }

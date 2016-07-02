@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
--- Host: localhost    Database: evedb_20160531
+-- Host: localhost    Database: evedb_20160628
 -- ------------------------------------------------------
 -- Server version	5.6.27-log
 
@@ -482,21 +482,6 @@ CREATE TABLE `dgmmasteries` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `dgmtraits`
---
-
-DROP TABLE IF EXISTS `dgmtraits`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `dgmtraits` (
-  `traitID` int(10) unsigned NOT NULL,
-  `bonusText` varchar(500) NOT NULL,
-  `unitID` tinyint(3) unsigned DEFAULT NULL,
-  PRIMARY KEY (`traitID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `dgmtypeattributes`
 --
 
@@ -538,22 +523,6 @@ CREATE TABLE `dgmtypemasteries` (
   `typeID` int(10) unsigned NOT NULL,
   `masteryID` smallint(6) unsigned NOT NULL,
   PRIMARY KEY (`typeID`,`masteryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `dgmtypetraits`
---
-
-DROP TABLE IF EXISTS `dgmtypetraits`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `dgmtypetraits` (
-  `typeID` int(10) unsigned NOT NULL,
-  `parentTypeID` int(10) NOT NULL,
-  `traitID` int(10) unsigned NOT NULL,
-  `bonus` double DEFAULT NULL,
-  PRIMARY KEY (`typeID`,`parentTypeID`,`traitID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1672,4 +1641,4 @@ CREATE TABLE `warcombatzonesystems` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-05 22:46:32
+-- Dump completed on 2016-07-01 19:56:41
