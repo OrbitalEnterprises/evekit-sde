@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "trntranslationcolumns")
-@Immutable
 public class TrnTranslationColumn {
   private static final Logger log = Logger.getLogger(TrnTranslationColumn.class.getName());
 
@@ -36,6 +33,15 @@ public class TrnTranslationColumn {
   private int                 tcGroupID;
 
   public TrnTranslationColumn() {}
+
+  public TrnTranslationColumn(int tcID, String columnName, String masterID, String tableName, int tcGroupID) {
+    super();
+    this.tcID = tcID;
+    this.columnName = columnName;
+    this.masterID = masterID;
+    this.tableName = tableName;
+    this.tcGroupID = tcGroupID;
+  }
 
   public int getTcID() {
     return this.tcID;

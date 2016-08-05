@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "invmetagroups")
-@Immutable
 public class InvMetaGroup {
   private static final Logger log = Logger.getLogger(InvMetaGroup.class.getName());
 
@@ -35,6 +32,14 @@ public class InvMetaGroup {
   private String              metaGroupName;
 
   public InvMetaGroup() {}
+
+  public InvMetaGroup(int metaGroupID, String description, Integer iconID, String metaGroupName) {
+    super();
+    this.metaGroupID = metaGroupID;
+    this.description = description;
+    this.iconID = iconID;
+    this.metaGroupName = metaGroupName;
+  }
 
   public int getMetaGroupID() {
     return this.metaGroupID;

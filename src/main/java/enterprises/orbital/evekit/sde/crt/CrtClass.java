@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "crtclasses")
-@Immutable
 public class CrtClass {
   private static final Logger log = Logger.getLogger(CrtClass.class.getName());
 
@@ -34,6 +31,13 @@ public class CrtClass {
   private String              description;
 
   public CrtClass() {}
+
+  public CrtClass(int classID, String className, String description) {
+    super();
+    this.classID = classID;
+    this.className = className;
+    this.description = description;
+  }
 
   public int getClassID() {
     return this.classID;

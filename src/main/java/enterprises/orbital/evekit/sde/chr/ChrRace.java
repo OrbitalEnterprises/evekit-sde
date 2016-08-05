@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.annotations.Immutable;
 
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
@@ -24,18 +24,29 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "chrraces")
-@Immutable
 public class ChrRace {
   public static final Logger log = Logger.getLogger(ChrRace.class.getName());
 
   @Id
   private int                raceID;
+  @Lob
+  @Column(
+      length = 102400)
   private String             description;
   private Integer            iconID;
   private String             raceName;
   private String             shortDescription;
 
   public ChrRace() {}
+
+  public ChrRace(int raceID, String description, Integer iconID, String raceName, String shortDescription) {
+    super();
+    this.raceID = raceID;
+    this.description = description;
+    this.iconID = iconID;
+    this.raceName = raceName;
+    this.shortDescription = shortDescription;
+  }
 
   public int getRaceID() {
     return this.raceID;

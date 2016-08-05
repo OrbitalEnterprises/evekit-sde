@@ -18,6 +18,12 @@ public class TrnTranslationTablePK implements Serializable {
 
   public TrnTranslationTablePK() {}
 
+  public TrnTranslationTablePK(String sourceTable, String translatedKey) {
+    super();
+    this.sourceTable = sourceTable;
+    this.translatedKey = translatedKey;
+  }
+
   public String getSourceTable() {
     return this.sourceTable;
   }

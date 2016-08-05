@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.annotations.Immutable;
 
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
@@ -24,7 +24,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "crtcertificates")
-@Immutable
 public class CrtCertificate {
   private static final Logger log = Logger.getLogger(CrtCertificate.class.getName());
 
@@ -32,12 +31,26 @@ public class CrtCertificate {
   private int                 certificateID;
   private int                 classID;
   private Integer             corpID;
+  @Lob
+  @Column(
+      length = 102400)
   private String              description;
   private Byte                grade;
   private int                 groupID;
   private Integer             iconID;
 
   public CrtCertificate() {}
+
+  public CrtCertificate(int certificateID, int classID, Integer corpID, String description, Byte grade, int groupID, Integer iconID) {
+    super();
+    this.certificateID = certificateID;
+    this.classID = classID;
+    this.corpID = corpID;
+    this.description = description;
+    this.grade = grade;
+    this.groupID = groupID;
+    this.iconID = iconID;
+  }
 
   public int getCertificateID() {
     return this.certificateID;

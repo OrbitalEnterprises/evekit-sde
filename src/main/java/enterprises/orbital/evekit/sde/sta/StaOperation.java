@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.annotations.Immutable;
 
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
@@ -24,7 +24,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "staoperations")
-@Immutable
 public class StaOperation {
   private static final Logger log = Logger.getLogger(StaOperation.class.getName());
 
@@ -35,6 +34,9 @@ public class StaOperation {
   private byte                border;
   private Integer             caldariStationTypeID;
   private byte                corridor;
+  @Lob
+  @Column(
+      length = 102400)
   private String              description;
   private byte                fringe;
   private Integer             gallenteStationTypeID;
@@ -45,6 +47,26 @@ public class StaOperation {
   private byte                ratio;
 
   public StaOperation() {}
+
+  public StaOperation(byte operationID, byte activityID, Integer amarrStationTypeID, byte border, Integer caldariStationTypeID, byte corridor,
+                      String description, byte fringe, Integer gallenteStationTypeID, byte hub, Integer joveStationTypeID, Integer minmatarStationTypeID,
+                      String operationName, byte ratio) {
+    super();
+    this.operationID = operationID;
+    this.activityID = activityID;
+    this.amarrStationTypeID = amarrStationTypeID;
+    this.border = border;
+    this.caldariStationTypeID = caldariStationTypeID;
+    this.corridor = corridor;
+    this.description = description;
+    this.fringe = fringe;
+    this.gallenteStationTypeID = gallenteStationTypeID;
+    this.hub = hub;
+    this.joveStationTypeID = joveStationTypeID;
+    this.minmatarStationTypeID = minmatarStationTypeID;
+    this.operationName = operationName;
+    this.ratio = ratio;
+  }
 
   public byte getOperationID() {
     return this.operationID;

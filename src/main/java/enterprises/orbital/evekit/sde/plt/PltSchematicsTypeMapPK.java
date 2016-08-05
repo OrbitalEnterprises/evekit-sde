@@ -18,6 +18,12 @@ public class PltSchematicsTypeMapPK implements Serializable {
 
   public PltSchematicsTypeMapPK() {}
 
+  public PltSchematicsTypeMapPK(int schematicID, int typeID) {
+    super();
+    this.schematicID = schematicID;
+    this.typeID = typeID;
+  }
+
   public int getSchematicID() {
     return this.schematicID;
   }

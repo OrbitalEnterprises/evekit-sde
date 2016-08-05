@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "dgmattributecategories")
-@Immutable
 public class DgmAttributeCategory {
   private static final Logger log = Logger.getLogger(DgmAttributeCategory.class.getName());
 
@@ -34,6 +31,13 @@ public class DgmAttributeCategory {
   private String              categoryName;
 
   public DgmAttributeCategory() {}
+
+  public DgmAttributeCategory(byte categoryID, String categoryDescription, String categoryName) {
+    super();
+    this.categoryID = categoryID;
+    this.categoryDescription = categoryDescription;
+    this.categoryName = categoryName;
+  }
 
   public byte getCategoryID() {
     return this.categoryID;

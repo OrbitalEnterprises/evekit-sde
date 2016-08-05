@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "mapsolarsystems")
-@Immutable
 public class MapSolarSystem {
   private static final Logger log = Logger.getLogger(MapSolarSystem.class.getName());
 
@@ -57,6 +54,39 @@ public class MapSolarSystem {
   private double              zMin;
 
   public MapSolarSystem() {}
+
+  public MapSolarSystem(int solarSystemID, byte border, byte constellation, int constellationID, byte corridor, Integer factionID, byte fringe, byte hub,
+                        byte international, double luminosity, double radius, byte regional, int regionID, double security, String securityClass,
+                        String solarSystemName, int sunTypeID, double x, double xMax, double xMin, double y, double yMax, double yMin, double z, double zMax,
+                        double zMin) {
+    super();
+    this.solarSystemID = solarSystemID;
+    this.border = border;
+    this.constellation = constellation;
+    this.constellationID = constellationID;
+    this.corridor = corridor;
+    this.factionID = factionID;
+    this.fringe = fringe;
+    this.hub = hub;
+    this.international = international;
+    this.luminosity = luminosity;
+    this.radius = radius;
+    this.regional = regional;
+    this.regionID = regionID;
+    this.security = security;
+    this.securityClass = securityClass;
+    this.solarSystemName = solarSystemName;
+    this.sunTypeID = sunTypeID;
+    this.x = x;
+    this.xMax = xMax;
+    this.xMin = xMin;
+    this.y = y;
+    this.yMax = yMax;
+    this.yMin = yMin;
+    this.z = z;
+    this.zMax = zMax;
+    this.zMin = zMin;
+  }
 
   public int getSolarSystemID() {
     return this.solarSystemID;

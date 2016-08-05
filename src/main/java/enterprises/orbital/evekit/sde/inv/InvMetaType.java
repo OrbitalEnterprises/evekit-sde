@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "invmetatypes")
-@Immutable
 public class InvMetaType {
   private static final Logger log = Logger.getLogger(InvMetaType.class.getName());
 
@@ -34,6 +31,13 @@ public class InvMetaType {
   private int                 parentTypeID;
 
   public InvMetaType() {}
+
+  public InvMetaType(int typeID, int metaGroupID, int parentTypeID) {
+    super();
+    this.typeID = typeID;
+    this.metaGroupID = metaGroupID;
+    this.parentTypeID = parentTypeID;
+  }
 
   public int getTypeID() {
     return this.typeID;

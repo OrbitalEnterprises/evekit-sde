@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "ramassemblylinetypes")
-@Immutable
 public class RamAssemblyLineType {
   private static final Logger log = Logger.getLogger(RamAssemblyLineType.class.getName());
 
@@ -40,6 +37,20 @@ public class RamAssemblyLineType {
   private double              volume;
 
   public RamAssemblyLineType() {}
+
+  public RamAssemblyLineType(int assemblyLineTypeID, byte activityID, String assemblyLineTypeName, double baseCostMultiplier, double baseMaterialMultiplier,
+                             double baseTimeMultiplier, String description, Double minCostPerHour, double volume) {
+    super();
+    this.assemblyLineTypeID = assemblyLineTypeID;
+    this.activityID = activityID;
+    this.assemblyLineTypeName = assemblyLineTypeName;
+    this.baseCostMultiplier = baseCostMultiplier;
+    this.baseMaterialMultiplier = baseMaterialMultiplier;
+    this.baseTimeMultiplier = baseTimeMultiplier;
+    this.description = description;
+    this.minCostPerHour = minCostPerHour;
+    this.volume = volume;
+  }
 
   public int getAssemblyLineTypeID() {
     return this.assemblyLineTypeID;

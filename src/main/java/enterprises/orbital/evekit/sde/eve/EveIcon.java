@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "eveicons")
-@Immutable
 public class EveIcon {
   private static final Logger log = Logger.getLogger(EveGraphic.class.getName());
 
@@ -34,6 +31,13 @@ public class EveIcon {
   private String              iconFile;
 
   public EveIcon() {}
+
+  public EveIcon(int iconID, String description, String iconFile) {
+    super();
+    this.iconID = iconID;
+    this.description = description;
+    this.iconFile = iconFile;
+  }
 
   public int getIconID() {
     return this.iconID;

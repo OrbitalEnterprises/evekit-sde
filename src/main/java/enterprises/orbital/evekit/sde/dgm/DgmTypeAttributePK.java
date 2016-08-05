@@ -18,6 +18,12 @@ public class DgmTypeAttributePK implements Serializable {
 
   public DgmTypeAttributePK() {}
 
+  public DgmTypeAttributePK(int typeID, int attributeID) {
+    super();
+    this.typeID = typeID;
+    this.attributeID = attributeID;
+  }
+
   public int getTypeID() {
     return this.typeID;
   }

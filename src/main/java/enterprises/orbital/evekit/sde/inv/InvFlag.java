@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "invflags")
-@Immutable
 public class InvFlag {
   private static final Logger log = Logger.getLogger(InvFlag.class.getName());
 
@@ -35,6 +32,14 @@ public class InvFlag {
   private int                 orderID;
 
   public InvFlag() {}
+
+  public InvFlag(int flagID, String flagName, String flagText, int orderID) {
+    super();
+    this.flagID = flagID;
+    this.flagName = flagName;
+    this.flagText = flagText;
+    this.orderID = orderID;
+  }
 
   public int getFlagID() {
     return this.flagID;

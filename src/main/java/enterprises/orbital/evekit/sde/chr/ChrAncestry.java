@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.annotations.Immutable;
 
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
@@ -24,7 +24,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "chrancestries")
-@Immutable
 public class ChrAncestry {
   public static final Logger log = Logger.getLogger(ChrAncestry.class.getName());
 
@@ -33,6 +32,9 @@ public class ChrAncestry {
   private String             ancestryName;
   private byte               bloodlineID;
   private byte               charisma;
+  @Lob
+  @Column(
+      length = 102400)
   private String             description;
   private Integer            iconID;
   private byte               intelligence;
@@ -42,6 +44,22 @@ public class ChrAncestry {
   private byte               willpower;
 
   public ChrAncestry() {}
+
+  public ChrAncestry(byte ancestryID, String ancestryName, byte bloodlineID, byte charisma, String description, Integer iconID, byte intelligence, byte memory,
+                     byte perception, String shortDescription, byte willpower) {
+    super();
+    this.ancestryID = ancestryID;
+    this.ancestryName = ancestryName;
+    this.bloodlineID = bloodlineID;
+    this.charisma = charisma;
+    this.description = description;
+    this.iconID = iconID;
+    this.intelligence = intelligence;
+    this.memory = memory;
+    this.perception = perception;
+    this.shortDescription = shortDescription;
+    this.willpower = willpower;
+  }
 
   public byte getAncestryID() {
     return this.ancestryID;

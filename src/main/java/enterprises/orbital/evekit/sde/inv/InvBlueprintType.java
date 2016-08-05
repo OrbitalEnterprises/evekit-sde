@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "invblueprinttypes")
-@Immutable
 public class InvBlueprintType {
   private static final Logger log = Logger.getLogger(InvBlueprintType.class.getName());
 
@@ -46,6 +43,29 @@ public class InvBlueprintType {
   private Short               wasteFactor;
 
   public InvBlueprintType() {}
+
+  public InvBlueprintType(int blueprintTypeID, Integer duplicatingTime, Integer inventionTime, Short materialModifier, Integer maxProductionLimit,
+                          Integer parentBlueprintTypeID, Integer productionTime, Integer productivityModifier, Integer productTypeID, Integer researchCopyTime,
+                          Integer researchMaterialTime, Integer researchProductivityTime, Integer researchTechTime, Integer reverseEngineeringTime,
+                          Short techLevel, Short wasteFactor) {
+    super();
+    this.blueprintTypeID = blueprintTypeID;
+    this.duplicatingTime = duplicatingTime;
+    this.inventionTime = inventionTime;
+    this.materialModifier = materialModifier;
+    this.maxProductionLimit = maxProductionLimit;
+    this.parentBlueprintTypeID = parentBlueprintTypeID;
+    this.productionTime = productionTime;
+    this.productivityModifier = productivityModifier;
+    this.productTypeID = productTypeID;
+    this.researchCopyTime = researchCopyTime;
+    this.researchMaterialTime = researchMaterialTime;
+    this.researchProductivityTime = researchProductivityTime;
+    this.researchTechTime = researchTechTime;
+    this.reverseEngineeringTime = reverseEngineeringTime;
+    this.techLevel = techLevel;
+    this.wasteFactor = wasteFactor;
+  }
 
   public int getBlueprintTypeID() {
     return this.blueprintTypeID;

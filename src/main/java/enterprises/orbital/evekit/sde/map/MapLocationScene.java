@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "maplocationscenes")
-@Immutable
 public class MapLocationScene {
   private static final Logger log = Logger.getLogger(MapLocationScene.class.getName());
 
@@ -32,6 +29,12 @@ public class MapLocationScene {
   private int                 graphicID;
 
   public MapLocationScene() {}
+
+  public MapLocationScene(int locationID, int graphicID) {
+    super();
+    this.locationID = locationID;
+    this.graphicID = graphicID;
+  }
 
   public int getLocationID() {
     return this.locationID;

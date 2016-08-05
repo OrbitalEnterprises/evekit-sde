@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "translationtables")
-@Immutable
 public class TrnTranslationTable {
   private static final Logger   log = Logger.getLogger(TrnTranslationTable.class.getName());
 
@@ -36,8 +33,24 @@ public class TrnTranslationTable {
 
   public TrnTranslationTable() {}
 
-  public TrnTranslationTablePK getId() {
+  public TrnTranslationTable(String sourceTable, String translatedKey, String destinationTable, int tcGroupID, int tcID) {
+    super();
+    this.id = new TrnTranslationTablePK(sourceTable, translatedKey);
+    this.destinationTable = destinationTable;
+    this.tcGroupID = tcGroupID;
+    this.tcID = tcID;
+  }
+
+  public TrnTranslationTablePK id() {
     return this.id;
+  }
+
+  public String getSourceTable() {
+    return id.getSourceTable();
+  }
+
+  public String getTranslatedKey() {
+    return id.getTranslatedKey();
   }
 
   public String getDestinationTable() {

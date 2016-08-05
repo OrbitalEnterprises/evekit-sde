@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "invtypereactions")
-@Immutable
 public class InvTypeReaction {
   private static final Logger log = Logger.getLogger(InvTypeReaction.class.getName());
 
@@ -34,8 +31,26 @@ public class InvTypeReaction {
 
   public InvTypeReaction() {}
 
-  public InvTypeReactionPK getId() {
+  public InvTypeReaction(int reactionTypeID, byte input, int typeID, short quantity) {
+    super();
+    this.id = new InvTypeReactionPK(reactionTypeID, input, typeID);
+    this.quantity = quantity;
+  }
+
+  public InvTypeReactionPK id() {
     return this.id;
+  }
+
+  public int getReactionTypeID() {
+    return id.getReactionTypeID();
+  }
+
+  public byte getInput() {
+    return id.getInput();
+  }
+
+  public int getTypeID() {
+    return id.getTypeID();
   }
 
   public short getQuantity() {

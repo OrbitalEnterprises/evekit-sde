@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.annotations.Immutable;
 
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
@@ -25,31 +25,57 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "invtypes")
-@Immutable
 public class InvType {
   private static final Logger log = Logger.getLogger(InvType.class.getName());
 
   @Id
   private int                 typeID;
   private BigDecimal          basePrice;
-  private double              capacity;
+  private Double              capacity;
   private double              chanceOfDuplicating;
+  @Lob
+  @Column(
+      length = 102400)
   private String              description;
   private Integer             factionID;
   private Integer             graphicID;
   private int                 groupID;
   private Integer             iconID;
   private Integer             marketGroupID;
-  private double              mass;
+  private Double              mass;
   private int                 portionSize;
   private byte                published;
   private Integer             raceID;
   private Double              radius;
   private Integer             soundID;
   private String              typeName;
-  private double              volume;
+  private Double              volume;
 
   public InvType() {}
+
+  public InvType(int typeID, BigDecimal basePrice, Double capacity, double chanceOfDuplicating, String description, Integer factionID, Integer graphicID,
+                 int groupID, Integer iconID, Integer marketGroupID, Double mass, int portionSize, byte published, Integer raceID, Double radius,
+                 Integer soundID, String typeName, Double volume) {
+    super();
+    this.typeID = typeID;
+    this.basePrice = basePrice;
+    this.capacity = capacity;
+    this.chanceOfDuplicating = chanceOfDuplicating;
+    this.description = description;
+    this.factionID = factionID;
+    this.graphicID = graphicID;
+    this.groupID = groupID;
+    this.iconID = iconID;
+    this.marketGroupID = marketGroupID;
+    this.mass = mass;
+    this.portionSize = portionSize;
+    this.published = published;
+    this.raceID = raceID;
+    this.radius = radius;
+    this.soundID = soundID;
+    this.typeName = typeName;
+    this.volume = volume;
+  }
 
   public int getTypeID() {
     return this.typeID;
@@ -59,7 +85,7 @@ public class InvType {
     return this.basePrice;
   }
 
-  public double getCapacity() {
+  public Double getCapacity() {
     return this.capacity;
   }
 
@@ -91,7 +117,7 @@ public class InvType {
     return this.marketGroupID;
   }
 
-  public double getMass() {
+  public Double getMass() {
     return this.mass;
   }
 
@@ -119,7 +145,7 @@ public class InvType {
     return this.typeName;
   }
 
-  public double getVolume() {
+  public Double getVolume() {
     return this.volume;
   }
 

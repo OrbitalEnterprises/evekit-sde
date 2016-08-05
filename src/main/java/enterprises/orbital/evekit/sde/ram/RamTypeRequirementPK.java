@@ -19,6 +19,13 @@ public class RamTypeRequirementPK implements Serializable {
 
   public RamTypeRequirementPK() {}
 
+  public RamTypeRequirementPK(int typeID, byte activityID, int requiredTypeID) {
+    super();
+    this.typeID = typeID;
+    this.activityID = activityID;
+    this.requiredTypeID = requiredTypeID;
+  }
+
   public int getTypeID() {
     return this.typeID;
   }

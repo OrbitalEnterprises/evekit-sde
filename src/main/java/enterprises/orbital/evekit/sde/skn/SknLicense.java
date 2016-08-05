@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "sknlicenses")
-@Immutable
 public class SknLicense {
   private static final Logger log = Logger.getLogger(SknLicense.class.getName());
 
@@ -33,6 +30,13 @@ public class SknLicense {
   private int                 skinID;
 
   public SknLicense() {}
+
+  public SknLicense(int licenseTypeID, int duration, int skinID) {
+    super();
+    this.licenseTypeID = licenseTypeID;
+    this.duration = duration;
+    this.skinID = skinID;
+  }
 
   public int getLicenseTypeID() {
     return this.licenseTypeID;

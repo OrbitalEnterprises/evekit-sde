@@ -14,15 +14,21 @@ public class RamAssemblyLineStationPK implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private int               stationID;
-  private byte              assemblyLineTypeID;
+  private int               assemblyLineTypeID;
 
   public RamAssemblyLineStationPK() {}
+
+  public RamAssemblyLineStationPK(int stationID, int assemblyLineTypeID) {
+    super();
+    this.stationID = stationID;
+    this.assemblyLineTypeID = assemblyLineTypeID;
+  }
 
   public int getStationID() {
     return this.stationID;
   }
 
-  public byte getAssemblyLineTypeID() {
+  public int getAssemblyLineTypeID() {
     return this.assemblyLineTypeID;
   }
 

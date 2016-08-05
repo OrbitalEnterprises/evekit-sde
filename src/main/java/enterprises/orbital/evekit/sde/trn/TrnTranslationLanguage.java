@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "trntranslationlanguages")
-@Immutable
 public class TrnTranslationLanguage {
   private static final Logger log = Logger.getLogger(TrnTranslationLanguage.class.getName());
 
@@ -34,6 +31,13 @@ public class TrnTranslationLanguage {
   private String              languageName;
 
   public TrnTranslationLanguage() {}
+
+  public TrnTranslationLanguage(int numericLanguageID, String languageID, String languageName) {
+    super();
+    this.numericLanguageID = numericLanguageID;
+    this.languageID = languageID;
+    this.languageName = languageName;
+  }
 
   public int getNumericLanguageID() {
     return this.numericLanguageID;

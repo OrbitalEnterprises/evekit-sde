@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.annotations.Immutable;
 
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
@@ -24,7 +24,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "dgmattributetypes")
-@Immutable
 public class DgmAttributeType {
   private static final Logger log = Logger.getLogger(DgmAttributeType.class.getName());
 
@@ -33,6 +32,9 @@ public class DgmAttributeType {
   private String              attributeName;
   private Byte                categoryID;
   private double              defaultValue;
+  @Lob
+  @Column(
+      length = 102400)
   private String              description;
   private String              displayName;
   private byte                highIsGood;
@@ -42,6 +44,22 @@ public class DgmAttributeType {
   private Integer             unitID;
 
   public DgmAttributeType() {}
+
+  public DgmAttributeType(int attributeID, String attributeName, Byte categoryID, double defaultValue, String description, String displayName, byte highIsGood,
+                          Integer iconID, byte published, byte stackable, Integer unitID) {
+    super();
+    this.attributeID = attributeID;
+    this.attributeName = attributeName;
+    this.categoryID = categoryID;
+    this.defaultValue = defaultValue;
+    this.description = description;
+    this.displayName = displayName;
+    this.highIsGood = highIsGood;
+    this.iconID = iconID;
+    this.published = published;
+    this.stackable = stackable;
+    this.unitID = unitID;
+  }
 
   public int getAttributeID() {
     return this.attributeID;

@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "crtrelationships")
-@Immutable
 public class CrtRelationship {
   private static final Logger log = Logger.getLogger(CrtRelationship.class.getName());
 
@@ -36,6 +33,16 @@ public class CrtRelationship {
   private int                 parentTypeID;
 
   public CrtRelationship() {}
+
+  public CrtRelationship(int relationshipID, int childID, byte grade, Integer parentID, byte parentLevel, int parentTypeID) {
+    super();
+    this.relationshipID = relationshipID;
+    this.childID = childID;
+    this.grade = grade;
+    this.parentID = parentID;
+    this.parentLevel = parentLevel;
+    this.parentTypeID = parentTypeID;
+  }
 
   public int getRelationshipID() {
     return this.relationshipID;

@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "planetschematicstypemap")
-@Immutable
 public class PltSchematicsTypeMap {
   private static final Logger    log = Logger.getLogger(PltSchematicsTypeMap.class.getName());
 
@@ -34,8 +31,23 @@ public class PltSchematicsTypeMap {
 
   public PltSchematicsTypeMap() {}
 
-  public PltSchematicsTypeMapPK getId() {
+  public PltSchematicsTypeMap(int schematicID, int typeID, byte isInput, short quantity) {
+    super();
+    this.id = new PltSchematicsTypeMapPK(schematicID, typeID);
+    this.isInput = isInput;
+    this.quantity = quantity;
+  }
+
+  public PltSchematicsTypeMapPK id() {
     return this.id;
+  }
+
+  public int getSchematicID() {
+    return id.getSchematicID();
+  }
+
+  public int getTypeID() {
+    return id.getTypeID();
   }
 
   public byte getIsInput() {

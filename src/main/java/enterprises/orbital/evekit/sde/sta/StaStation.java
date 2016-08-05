@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "stastations")
-@Immutable
 public class StaStation {
   private static final Logger log = Logger.getLogger(StaStation.class.getName());
 
@@ -40,7 +37,7 @@ public class StaStation {
   private double              reprocessingEfficiency;
   private byte                reprocessingHangarFlag;
   private double              reprocessingStationsTake;
-  private short               security;
+  private double              security;
   private int                 solarSystemID;
   private String              stationName;
   private int                 stationTypeID;
@@ -49,6 +46,30 @@ public class StaStation {
   private double              z;
 
   public StaStation() {}
+
+  public StaStation(int stationID, int constellationID, int corporationID, double dockingCostPerVolume, double maxShipVolumeDockable, int officeRentalCost,
+                    byte operationID, int regionID, double reprocessingEfficiency, byte reprocessingHangarFlag, double reprocessingStationsTake,
+                    double security, int solarSystemID, String stationName, int stationTypeID, double x, double y, double z) {
+    super();
+    this.stationID = stationID;
+    this.constellationID = constellationID;
+    this.corporationID = corporationID;
+    this.dockingCostPerVolume = dockingCostPerVolume;
+    this.maxShipVolumeDockable = maxShipVolumeDockable;
+    this.officeRentalCost = officeRentalCost;
+    this.operationID = operationID;
+    this.regionID = regionID;
+    this.reprocessingEfficiency = reprocessingEfficiency;
+    this.reprocessingHangarFlag = reprocessingHangarFlag;
+    this.reprocessingStationsTake = reprocessingStationsTake;
+    this.security = security;
+    this.solarSystemID = solarSystemID;
+    this.stationName = stationName;
+    this.stationTypeID = stationTypeID;
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
 
   public int getStationID() {
     return this.stationID;
@@ -94,7 +115,7 @@ public class StaStation {
     return this.reprocessingStationsTake;
   }
 
-  public short getSecurity() {
+  public double getSecurity() {
     return this.security;
   }
 

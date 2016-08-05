@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -21,7 +19,6 @@ import enterprises.orbital.evekit.sde.SDE;
  * 
  */
 @Entity
-@Immutable
 public class MapDenormalize {
   private static final Logger log = Logger.getLogger(MapDenormalize.class.getName());
 
@@ -43,6 +40,26 @@ public class MapDenormalize {
   private double              z;
 
   public MapDenormalize() {}
+
+  public MapDenormalize(int itemID, Byte celestialIndex, Integer constellationID, int groupID, String itemName, Integer orbitID, Byte orbitIndex, Double radius,
+                        Integer regionID, Double security, Integer solarSystemID, int typeID, double x, double y, double z) {
+    super();
+    this.itemID = itemID;
+    this.celestialIndex = celestialIndex;
+    this.constellationID = constellationID;
+    this.groupID = groupID;
+    this.itemName = itemName;
+    this.orbitID = orbitID;
+    this.orbitIndex = orbitIndex;
+    this.radius = radius;
+    this.regionID = regionID;
+    this.security = security;
+    this.solarSystemID = solarSystemID;
+    this.typeID = typeID;
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
 
   public int getItemID() {
     return this.itemID;

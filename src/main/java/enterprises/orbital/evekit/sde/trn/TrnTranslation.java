@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.annotations.Immutable;
 
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
@@ -24,18 +24,38 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "trntranslations")
-@Immutable
 public class TrnTranslation {
   private static final Logger log = Logger.getLogger(TrnTranslation.class.getName());
 
   @EmbeddedId
   private TrnTranslationPK    id;
+  @Lob
+  @Column(
+      length = 102400)
   private String              text;
 
   public TrnTranslation() {}
 
-  public TrnTranslationPK getId() {
+  public TrnTranslation(int tcID, int keyID, String languageID, String text) {
+    super();
+    this.id = new TrnTranslationPK(tcID, keyID, languageID);
+    this.text = text;
+  }
+
+  public TrnTranslationPK id() {
     return this.id;
+  }
+
+  public int getTcID() {
+    return id.getTcID();
+  }
+
+  public int getKeyID() {
+    return id.getKeyID();
+  }
+
+  public String getLanguageID() {
+    return id.getLanguageID();
   }
 
   public String getText() {

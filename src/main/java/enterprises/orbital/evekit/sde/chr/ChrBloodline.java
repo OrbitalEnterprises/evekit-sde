@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.annotations.Immutable;
 
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
@@ -24,7 +24,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "chrbloodlines")
-@Immutable
 public class ChrBloodline {
   public static final Logger log = Logger.getLogger(ChrBloodline.class.getName());
 
@@ -33,10 +32,19 @@ public class ChrBloodline {
   private String             bloodlineName;
   private byte               charisma;
   private int                corporationID;
+  @Lob
+  @Column(
+      length = 102400)
   private String             description;
+  @Lob
+  @Column(
+      length = 102400)
   private String             femaleDescription;
   private int                iconID;
   private byte               intelligence;
+  @Lob
+  @Column(
+      length = 102400)
   private String             maleDescription;
   private byte               memory;
   private byte               perception;
@@ -48,6 +56,29 @@ public class ChrBloodline {
   private byte               willpower;
 
   public ChrBloodline() {}
+
+  public ChrBloodline(byte bloodlineID, String bloodlineName, byte charisma, int corporationID, String description, String femaleDescription, int iconID,
+                      byte intelligence, String maleDescription, byte memory, byte perception, byte raceID, int shipTypeID, String shortDescription,
+                      String shortFemaleDescription, String shortMaleDescription, byte willpower) {
+    super();
+    this.bloodlineID = bloodlineID;
+    this.bloodlineName = bloodlineName;
+    this.charisma = charisma;
+    this.corporationID = corporationID;
+    this.description = description;
+    this.femaleDescription = femaleDescription;
+    this.iconID = iconID;
+    this.intelligence = intelligence;
+    this.maleDescription = maleDescription;
+    this.memory = memory;
+    this.perception = perception;
+    this.raceID = raceID;
+    this.shipTypeID = shipTypeID;
+    this.shortDescription = shortDescription;
+    this.shortFemaleDescription = shortFemaleDescription;
+    this.shortMaleDescription = shortMaleDescription;
+    this.willpower = willpower;
+  }
 
   public byte getBloodlineID() {
     return this.bloodlineID;

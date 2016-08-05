@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "ramassemblylinestations")
-@Immutable
 public class RamAssemblyLineStation {
   private static final Logger      log = Logger.getLogger(RamAssemblyLineStation.class.getName());
 
@@ -37,8 +34,26 @@ public class RamAssemblyLineStation {
 
   public RamAssemblyLineStation() {}
 
-  public RamAssemblyLineStationPK getId() {
+  public RamAssemblyLineStation(int stationID, int assemblyLineTypeID, int ownerID, byte quantity, int regionID, int solarSystemID, int stationTypeID) {
+    super();
+    this.id = new RamAssemblyLineStationPK(stationID, assemblyLineTypeID);
+    this.ownerID = ownerID;
+    this.quantity = quantity;
+    this.regionID = regionID;
+    this.solarSystemID = solarSystemID;
+    this.stationTypeID = stationTypeID;
+  }
+
+  public RamAssemblyLineStationPK id() {
     return this.id;
+  }
+
+  public int getStationID() {
+    return id.getStationID();
+  }
+
+  public int getAssemblyLineTypeID() {
+    return id.getAssemblyLineTypeID();
   }
 
   public int getOwnerID() {

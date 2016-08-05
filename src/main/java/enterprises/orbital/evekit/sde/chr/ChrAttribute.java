@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.annotations.Immutable;
 
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
@@ -24,19 +24,31 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "chrattributes")
-@Immutable
 public class ChrAttribute {
   public static final Logger log = Logger.getLogger(ChrAttribute.class.getName());
 
   @Id
   private byte               attributeID;
   private String             attributeName;
+  @Lob
+  @Column(
+      length = 102400)
   private String             description;
   private int                iconID;
   private String             notes;
   private String             shortDescription;
 
   public ChrAttribute() {}
+
+  public ChrAttribute(byte attributeID, String attributeName, String description, int iconID, String notes, String shortDescription) {
+    super();
+    this.attributeID = attributeID;
+    this.attributeName = attributeName;
+    this.description = description;
+    this.iconID = iconID;
+    this.notes = notes;
+    this.shortDescription = shortDescription;
+  }
 
   public byte getAttributeID() {
     return this.attributeID;

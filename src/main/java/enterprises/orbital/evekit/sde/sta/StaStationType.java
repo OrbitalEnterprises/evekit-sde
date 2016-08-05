@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "stastationtypes")
-@Immutable
 public class StaStationType {
   private static final Logger log = Logger.getLogger(StaStationType.class.getName());
   @Id
@@ -41,6 +38,22 @@ public class StaStationType {
   private Double              reprocessingEfficiency;
 
   public StaStationType() {}
+
+  public StaStationType(int stationTypeID, byte conquerable, double dockEntryX, double dockEntryY, double dockEntryZ, double dockOrientationX,
+                        double dockOrientationY, double dockOrientationZ, Byte officeSlots, Byte operationID, Double reprocessingEfficiency) {
+    super();
+    this.stationTypeID = stationTypeID;
+    this.conquerable = conquerable;
+    this.dockEntryX = dockEntryX;
+    this.dockEntryY = dockEntryY;
+    this.dockEntryZ = dockEntryZ;
+    this.dockOrientationX = dockOrientationX;
+    this.dockOrientationY = dockOrientationY;
+    this.dockOrientationZ = dockOrientationZ;
+    this.officeSlots = officeSlots;
+    this.operationID = operationID;
+    this.reprocessingEfficiency = reprocessingEfficiency;
+  }
 
   public int getStationTypeID() {
     return this.stationTypeID;

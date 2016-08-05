@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "invuniquenames")
-@Immutable
 public class InvUniqueName {
   private static final Logger log = Logger.getLogger(InvUniqueName.class.getName());
 
@@ -34,6 +31,13 @@ public class InvUniqueName {
   private String              itemName;
 
   public InvUniqueName() {}
+
+  public InvUniqueName(int itemID, int groupID, String itemName) {
+    super();
+    this.itemID = itemID;
+    this.groupID = groupID;
+    this.itemName = itemName;
+  }
 
   public int getItemID() {
     return this.itemID;

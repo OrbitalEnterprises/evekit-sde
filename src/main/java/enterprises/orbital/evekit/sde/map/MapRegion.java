@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "mapregions")
-@Immutable
 public class MapRegion {
   private static final Logger log = Logger.getLogger(MapRegion.class.getName());
 
@@ -44,6 +41,24 @@ public class MapRegion {
   private double              zMin;
 
   public MapRegion() {}
+
+  public MapRegion(int regionID, Integer factionID, double radius, String regionName, double x, double xMax, double xMin, double y, double yMax, double yMin,
+                   double z, double zMax, double zMin) {
+    super();
+    this.regionID = regionID;
+    this.factionID = factionID;
+    this.radius = radius;
+    this.regionName = regionName;
+    this.x = x;
+    this.xMax = xMax;
+    this.xMin = xMin;
+    this.y = y;
+    this.yMax = yMax;
+    this.yMin = yMin;
+    this.z = z;
+    this.zMax = zMax;
+    this.zMin = zMin;
+  }
 
   public int getRegionID() {
     return this.regionID;

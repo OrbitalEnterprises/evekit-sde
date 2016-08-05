@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,13 +21,18 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "maplocationwormholeclasses")
-@Immutable
 public class MapLocationWormholeClass {
   private static final Logger log = Logger.getLogger(MapLocationWormholeClass.class.getName());
 
   @Id
   private int                 locationID;
   private byte                wormholeClassID;
+
+  public MapLocationWormholeClass(int locationID, byte wormholeClassID) {
+    super();
+    this.locationID = locationID;
+    this.wormholeClassID = wormholeClassID;
+  }
 
   public MapLocationWormholeClass() {}
 

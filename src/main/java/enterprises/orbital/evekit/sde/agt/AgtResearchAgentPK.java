@@ -18,6 +18,12 @@ public class AgtResearchAgentPK implements Serializable {
 
   public AgtResearchAgentPK() {}
 
+  public AgtResearchAgentPK(int agentID, int typeID) {
+    super();
+    this.agentID = agentID;
+    this.typeID = typeID;
+  }
+
   public int getAgentID() {
     return this.agentID;
   }

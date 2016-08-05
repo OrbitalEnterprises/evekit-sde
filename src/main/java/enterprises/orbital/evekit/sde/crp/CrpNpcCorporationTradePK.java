@@ -18,6 +18,12 @@ public class CrpNpcCorporationTradePK implements Serializable {
 
   public CrpNpcCorporationTradePK() {}
 
+  public CrpNpcCorporationTradePK(int corporationID, int typeID) {
+    super();
+    this.corporationID = corporationID;
+    this.typeID = typeID;
+  }
+
   public int getCorporationID() {
     return this.corporationID;
   }

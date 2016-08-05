@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "invmarketgroups")
-@Immutable
 public class InvMarketGroup {
   private static final Logger log = Logger.getLogger(InvMarketGroup.class.getName());
 
@@ -37,6 +34,16 @@ public class InvMarketGroup {
   private Integer             parentGroupID;
 
   public InvMarketGroup() {}
+
+  public InvMarketGroup(int marketGroupID, String description, byte hasTypes, Integer iconID, String marketGroupName, Integer parentGroupID) {
+    super();
+    this.marketGroupID = marketGroupID;
+    this.description = description;
+    this.hasTypes = hasTypes;
+    this.iconID = iconID;
+    this.marketGroupName = marketGroupName;
+    this.parentGroupID = parentGroupID;
+  }
 
   public int getMarketGroupID() {
     return this.marketGroupID;

@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "mapcelestialstatistics")
-@Immutable
 public class MapCelestialStatistic {
   private static final Logger log = Logger.getLogger(MapCelestialStatistic.class.getName());
 
@@ -51,6 +48,32 @@ public class MapCelestialStatistic {
   private double              temperature;
 
   public MapCelestialStatistic() {}
+
+  public MapCelestialStatistic(int celestialID, double age, double density, double eccentricity, double escapeVelocity, byte fragmented, double life,
+                               byte locked, double luminosity, double mass, double massDust, double massGas, double orbitPeriod, double orbitRadius,
+                               double pressure, double radius, double rotationRate, String spectralClass, double surfaceGravity, double temperature) {
+    super();
+    this.celestialID = celestialID;
+    this.age = age;
+    this.density = density;
+    this.eccentricity = eccentricity;
+    this.escapeVelocity = escapeVelocity;
+    this.fragmented = fragmented;
+    this.life = life;
+    this.locked = locked;
+    this.luminosity = luminosity;
+    this.mass = mass;
+    this.massDust = massDust;
+    this.massGas = massGas;
+    this.orbitPeriod = orbitPeriod;
+    this.orbitRadius = orbitRadius;
+    this.pressure = pressure;
+    this.radius = radius;
+    this.rotationRate = rotationRate;
+    this.spectralClass = spectralClass;
+    this.surfaceGravity = surfaceGravity;
+    this.temperature = temperature;
+  }
 
   public int getCelestialID() {
     return this.celestialID;

@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "raminstallationtypecontents")
-@Immutable
 public class RamInstallationTypeContent {
   private static final Logger          log = Logger.getLogger(RamInstallationTypeContent.class.getName());
 
@@ -33,8 +30,22 @@ public class RamInstallationTypeContent {
 
   public RamInstallationTypeContent() {}
 
-  public RamInstallationTypeContentPK getId() {
+  public RamInstallationTypeContent(int installationTypeID, int assemblyLineTypeID, byte quantity) {
+    super();
+    this.id = new RamInstallationTypeContentPK(installationTypeID, assemblyLineTypeID);
+    this.quantity = quantity;
+  }
+
+  public RamInstallationTypeContentPK id() {
     return this.id;
+  }
+
+  public int getInstallationTypeID() {
+    return id.getInstallationTypeID();
+  }
+
+  public int getAssemblyLineTypeID() {
+    return id.getAssemblyLineTypeID();
   }
 
   public byte getQuantity() {

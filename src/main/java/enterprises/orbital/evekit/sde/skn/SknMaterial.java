@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "sknmaterials")
-@Immutable
 public class SknMaterial {
   private static final Logger log = Logger.getLogger(SknMaterial.class.getName());
 
@@ -39,6 +36,19 @@ public class SknMaterial {
   private int                 materialSetID;
 
   public SknMaterial() {}
+
+  public SknMaterial(int skinMaterialID, String colorHull, String colorPrimary, String colorSecondary, String colorWindow, int displayNameID, String material,
+                     int materialSetID) {
+    super();
+    this.skinMaterialID = skinMaterialID;
+    this.colorHull = colorHull;
+    this.colorPrimary = colorPrimary;
+    this.colorSecondary = colorSecondary;
+    this.colorWindow = colorWindow;
+    this.displayNameID = displayNameID;
+    this.material = material;
+    this.materialSetID = materialSetID;
+  }
 
   public int getSkinMaterialID() {
     return this.skinMaterialID;

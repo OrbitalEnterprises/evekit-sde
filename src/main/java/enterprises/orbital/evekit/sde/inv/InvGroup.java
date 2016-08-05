@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "invgroups")
-@Immutable
 public class InvGroup {
   private static final Logger log = Logger.getLogger(InvGroup.class.getName());
 
@@ -43,6 +40,23 @@ public class InvGroup {
   private byte                useBasePrice;
 
   public InvGroup() {}
+
+  public InvGroup(int groupID, Byte allowManufacture, Byte allowRecycler, byte anchorable, byte anchored, int categoryID, String description,
+                  byte fittableNonSingleton, String groupName, Integer iconID, byte published, byte useBasePrice) {
+    super();
+    this.groupID = groupID;
+    this.allowManufacture = allowManufacture;
+    this.allowRecycler = allowRecycler;
+    this.anchorable = anchorable;
+    this.anchored = anchored;
+    this.categoryID = categoryID;
+    this.description = description;
+    this.fittableNonSingleton = fittableNonSingleton;
+    this.groupName = groupName;
+    this.iconID = iconID;
+    this.published = published;
+    this.useBasePrice = useBasePrice;
+  }
 
   public int getGroupID() {
     return this.groupID;

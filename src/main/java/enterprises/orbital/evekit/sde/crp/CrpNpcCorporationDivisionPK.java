@@ -18,6 +18,12 @@ public class CrpNpcCorporationDivisionPK implements Serializable {
 
   public CrpNpcCorporationDivisionPK() {}
 
+  public CrpNpcCorporationDivisionPK(int corporationID, byte divisionID) {
+    super();
+    this.corporationID = corporationID;
+    this.divisionID = divisionID;
+  }
+
   public int getCorporationID() {
     return this.corporationID;
   }

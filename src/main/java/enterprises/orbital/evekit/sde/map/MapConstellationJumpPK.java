@@ -18,6 +18,12 @@ public class MapConstellationJumpPK implements Serializable {
 
   public MapConstellationJumpPK() {}
 
+  public MapConstellationJumpPK(int fromConstellationID, int toConstellationID) {
+    super();
+    this.fromConstellationID = fromConstellationID;
+    this.toConstellationID = toConstellationID;
+  }
+
   public int getFromConstellationID() {
     return this.fromConstellationID;
   }

@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "planetschematics")
-@Immutable
 public class PltSchematic {
   private static final Logger log = Logger.getLogger(PltSchematic.class.getName());
 
@@ -34,6 +31,13 @@ public class PltSchematic {
   private String              schematicName;
 
   public PltSchematic() {}
+
+  public PltSchematic(int schematicID, int cycleTime, String schematicName) {
+    super();
+    this.schematicID = schematicID;
+    this.cycleTime = cycleTime;
+    this.schematicName = schematicName;
+  }
 
   public int getSchematicID() {
     return this.schematicID;

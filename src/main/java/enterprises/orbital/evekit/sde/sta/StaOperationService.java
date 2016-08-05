@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "staoperationservices")
-@Immutable
 public class StaOperationService {
   private static final Logger   log = Logger.getLogger(StaOperationService.class.getName());
 
@@ -32,8 +29,21 @@ public class StaOperationService {
 
   public StaOperationService() {}
 
-  public StaOperationServicePK getId() {
+  public StaOperationService(byte operationID, int serviceID) {
+    super();
+    this.id = new StaOperationServicePK(operationID, serviceID);
+  }
+
+  public StaOperationServicePK id() {
     return this.id;
+  }
+
+  public byte getOperationID() {
+    return id.getOperationID();
+  }
+
+  public int getServiceID() {
+    return id.getServiceID();
   }
 
   public static List<StaOperationService> access(

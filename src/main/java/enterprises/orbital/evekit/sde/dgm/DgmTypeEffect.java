@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "dgmtypeeffects")
-@Immutable
 public class DgmTypeEffect {
   private static final Logger log = Logger.getLogger(DgmTypeEffect.class.getName());
 
@@ -33,8 +30,22 @@ public class DgmTypeEffect {
 
   public DgmTypeEffect() {}
 
-  public DgmTypeEffectPK getId() {
+  public DgmTypeEffect(int typeID, int effectID, byte isDefault) {
+    super();
+    this.id = new DgmTypeEffectPK(typeID, effectID);
+    this.isDefault = isDefault;
+  }
+
+  public DgmTypeEffectPK id() {
     return this.id;
+  }
+
+  public int getTypeID() {
+    return id.getTypeID();
+  }
+
+  public int getEffectID() {
+    return id.getEffectID();
   }
 
   public byte getIsDefault() {

@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "evegraphics")
-@Immutable
 public class EveGraphic {
   private static final Logger log = Logger.getLogger(EveGraphic.class.getName());
 
@@ -42,6 +39,22 @@ public class EveGraphic {
   private String              sofHullName;
 
   public EveGraphic() {}
+
+  public EveGraphic(int graphicID, Byte collidable, String colorScheme, String description, Integer directoryID, String gfxRaceID, String graphicFile,
+                    String graphicName, String graphicType, byte obsolete, String sofHullName) {
+    super();
+    this.graphicID = graphicID;
+    this.collidable = collidable;
+    this.colorScheme = colorScheme;
+    this.description = description;
+    this.directoryID = directoryID;
+    this.gfxRaceID = gfxRaceID;
+    this.graphicFile = graphicFile;
+    this.graphicName = graphicName;
+    this.graphicType = graphicType;
+    this.obsolete = obsolete;
+    this.sofHullName = sofHullName;
+  }
 
   public int getGraphicID() {
     return this.graphicID;

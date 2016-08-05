@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "invcontroltowerresourcepurposes")
-@Immutable
 public class InvControlTowerResourcePurpose {
   private static final Logger log = Logger.getLogger(InvControlTowerResourcePurpose.class.getName());
 
@@ -33,6 +30,12 @@ public class InvControlTowerResourcePurpose {
   private String              purposeText;
 
   public InvControlTowerResourcePurpose() {}
+
+  public InvControlTowerResourcePurpose(byte purpose, String purposeText) {
+    super();
+    this.purpose = purpose;
+    this.purposeText = purposeText;
+  }
 
   public byte getPurpose() {
     return this.purpose;

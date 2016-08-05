@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.annotations.Immutable;
 
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
@@ -24,7 +24,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "dgmexpressions")
-@Immutable
 public class DgmExpression {
   private static final Logger log = Logger.getLogger(DgmExpression.class.getName());
 
@@ -35,12 +34,30 @@ public class DgmExpression {
   private String              description;
   private Integer             expressionAttributeID;
   private Integer             expressionGroupID;
+  @Lob
+  @Column(
+      length = 102400)
   private String              expressionName;
   private Integer             expressionTypeID;
   private String              expressionValue;
   private int                 operandID;
 
   public DgmExpression() {}
+
+  public DgmExpression(int expressionID, Integer arg1, Integer arg2, String description, Integer expressionAttributeID, Integer expressionGroupID,
+                       String expressionName, Integer expressionTypeID, String expressionValue, int operandID) {
+    super();
+    this.expressionID = expressionID;
+    this.arg1 = arg1;
+    this.arg2 = arg2;
+    this.description = description;
+    this.expressionAttributeID = expressionAttributeID;
+    this.expressionGroupID = expressionGroupID;
+    this.expressionName = expressionName;
+    this.expressionTypeID = expressionTypeID;
+    this.expressionValue = expressionValue;
+    this.operandID = operandID;
+  }
 
   public int getExpressionID() {
     return this.expressionID;

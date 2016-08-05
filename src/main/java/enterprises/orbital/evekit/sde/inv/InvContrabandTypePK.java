@@ -18,6 +18,12 @@ public class InvContrabandTypePK implements Serializable {
 
   public InvContrabandTypePK() {}
 
+  public InvContrabandTypePK(int factionID, int typeID) {
+    super();
+    this.factionID = factionID;
+    this.typeID = typeID;
+  }
+
   public int getFactionID() {
     return this.factionID;
   }

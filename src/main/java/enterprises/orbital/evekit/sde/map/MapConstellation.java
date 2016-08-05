@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "mapconstellations")
-@Immutable
 public class MapConstellation {
   private static final Logger log = Logger.getLogger(MapConstellation.class.getName());
 
@@ -45,6 +42,25 @@ public class MapConstellation {
   private double              zMin;
 
   public MapConstellation() {}
+
+  public MapConstellation(int constellationID, String constellationName, Integer factionID, double radius, int regionID, double x, double xMax, double xMin,
+                          double y, double yMax, double yMin, double z, double zMax, double zMin) {
+    super();
+    this.constellationID = constellationID;
+    this.constellationName = constellationName;
+    this.factionID = factionID;
+    this.radius = radius;
+    this.regionID = regionID;
+    this.x = x;
+    this.xMax = xMax;
+    this.xMin = xMin;
+    this.y = y;
+    this.yMax = yMax;
+    this.yMin = yMin;
+    this.z = z;
+    this.zMax = zMax;
+    this.zMin = zMin;
+  }
 
   public int getConstellationID() {
     return this.constellationID;

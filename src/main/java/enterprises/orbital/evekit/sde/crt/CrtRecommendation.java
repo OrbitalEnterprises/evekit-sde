@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "crtrecommendations")
-@Immutable
 public class CrtRecommendation {
   private static final Logger log = Logger.getLogger(CrtRecommendation.class.getName());
 
@@ -34,6 +31,14 @@ public class CrtRecommendation {
   private int                 shipTypeID;
 
   public CrtRecommendation() {}
+
+  public CrtRecommendation(int recommendationID, int certificateID, byte recommendationLevel, int shipTypeID) {
+    super();
+    this.recommendationID = recommendationID;
+    this.certificateID = certificateID;
+    this.recommendationLevel = recommendationLevel;
+    this.shipTypeID = shipTypeID;
+  }
 
   public int getRecommendationID() {
     return this.recommendationID;

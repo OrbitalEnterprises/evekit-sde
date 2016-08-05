@@ -18,6 +18,12 @@ public class CrpNpcCorporationResearchFieldPK implements Serializable {
 
   public CrpNpcCorporationResearchFieldPK() {}
 
+  public CrpNpcCorporationResearchFieldPK(int skillID, int corporationID) {
+    super();
+    this.skillID = skillID;
+    this.corporationID = corporationID;
+  }
+
   public int getSkillID() {
     return this.skillID;
   }

@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "crpactivities")
-@Immutable
 public class CrpActivity {
   private static final Logger log = Logger.getLogger(CrpActivity.class.getName());
 
@@ -34,6 +31,13 @@ public class CrpActivity {
   private String              description;
 
   public CrpActivity() {}
+
+  public CrpActivity(byte activityID, String activityName, String description) {
+    super();
+    this.activityID = activityID;
+    this.activityName = activityName;
+    this.description = description;
+  }
 
   public byte getActivityID() {
     return this.activityID;

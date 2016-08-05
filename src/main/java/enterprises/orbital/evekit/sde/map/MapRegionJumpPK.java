@@ -18,6 +18,12 @@ public class MapRegionJumpPK implements Serializable {
 
   public MapRegionJumpPK() {}
 
+  public MapRegionJumpPK(int fromRegionID, int toRegionID) {
+    super();
+    this.fromRegionID = fromRegionID;
+    this.toRegionID = toRegionID;
+  }
+
   public int getFromRegionID() {
     return this.fromRegionID;
   }

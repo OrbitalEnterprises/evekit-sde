@@ -54,6 +54,10 @@ public class AttributeSelector {
     copy(convert);
   }
 
+  public static AttributeSelector makeAnySelector() {
+    return new AttributeSelector("{any: true}");
+  }
+
   public void copy(
                    AttributeSelector other) {
     this.any = other.any;

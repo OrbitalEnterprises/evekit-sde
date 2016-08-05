@@ -18,6 +18,12 @@ public class RamAssemblyLineTypeDetailPerGroupPK implements Serializable {
 
   public RamAssemblyLineTypeDetailPerGroupPK() {}
 
+  public RamAssemblyLineTypeDetailPerGroupPK(int assemblyLineTypeID, int groupID) {
+    super();
+    this.assemblyLineTypeID = assemblyLineTypeID;
+    this.groupID = groupID;
+  }
+
   public int getAssemblyLineTypeID() {
     return this.assemblyLineTypeID;
   }

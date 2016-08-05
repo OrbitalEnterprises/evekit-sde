@@ -19,6 +19,13 @@ public class TrnTranslationPK implements Serializable {
 
   public TrnTranslationPK() {}
 
+  public TrnTranslationPK(int tcID, int keyID, String languageID) {
+    super();
+    this.tcID = tcID;
+    this.keyID = keyID;
+    this.languageID = languageID;
+  }
+
   public int getTcID() {
     return this.tcID;
   }

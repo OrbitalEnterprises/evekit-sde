@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "mapjumps")
-@Immutable
 public class MapJump {
   private static final Logger log = Logger.getLogger(MapJump.class.getName());
 
@@ -32,6 +29,12 @@ public class MapJump {
   private int                 celestialID;
 
   public MapJump() {}
+
+  public MapJump(int stargateID, int celestialID) {
+    super();
+    this.stargateID = stargateID;
+    this.celestialID = celestialID;
+  }
 
   public int getStargateID() {
     return this.stargateID;

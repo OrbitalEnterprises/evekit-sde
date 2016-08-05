@@ -18,6 +18,12 @@ public class StaOperationServicePK implements Serializable {
 
   public StaOperationServicePK() {}
 
+  public StaOperationServicePK(byte operationID, int serviceID) {
+    super();
+    this.operationID = operationID;
+    this.serviceID = serviceID;
+  }
+
   public byte getOperationID() {
     return this.operationID;
   }

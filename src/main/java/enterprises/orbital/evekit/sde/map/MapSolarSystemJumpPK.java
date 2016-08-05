@@ -18,6 +18,12 @@ public class MapSolarSystemJumpPK implements Serializable {
 
   public MapSolarSystemJumpPK() {}
 
+  public MapSolarSystemJumpPK(int fromSolarSystemID, int toSolarSystemID) {
+    super();
+    this.fromSolarSystemID = fromSolarSystemID;
+    this.toSolarSystemID = toSolarSystemID;
+  }
+
   public int getFromSolarSystemID() {
     return this.fromSolarSystemID;
   }

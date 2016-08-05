@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "mapsolarsystemjumps")
-@Immutable
 public class MapSolarSystemJump {
   private static final Logger  log = Logger.getLogger(MapSolarSystemJump.class.getName());
 
@@ -36,8 +33,25 @@ public class MapSolarSystemJump {
 
   public MapSolarSystemJump() {}
 
-  public MapSolarSystemJumpPK getId() {
+  public MapSolarSystemJump(int fromSolarSystemID, int toSolarSystemID, int fromConstellationID, int fromRegionID, int toConstellationID, int toRegionID) {
+    super();
+    this.id = new MapSolarSystemJumpPK(fromSolarSystemID, toSolarSystemID);
+    this.fromConstellationID = fromConstellationID;
+    this.fromRegionID = fromRegionID;
+    this.toConstellationID = toConstellationID;
+    this.toRegionID = toRegionID;
+  }
+
+  public MapSolarSystemJumpPK id() {
     return this.id;
+  }
+
+  public int getFromSolarSystemID() {
+    return id.getFromSolarSystemID();
+  }
+
+  public int getToSolarSystemID() {
+    return id.getToSolarSystemID();
   }
 
   public int getFromConstellationID() {

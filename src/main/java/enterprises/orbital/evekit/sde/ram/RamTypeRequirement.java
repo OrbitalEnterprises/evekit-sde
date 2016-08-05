@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "ramtyperequirements")
-@Immutable
 public class RamTypeRequirement {
   private static final Logger  log = Logger.getLogger(RamTypeRequirement.class.getName());
 
@@ -39,8 +36,33 @@ public class RamTypeRequirement {
 
   public RamTypeRequirement() {}
 
-  public RamTypeRequirementPK getId() {
+  public RamTypeRequirement(int typeID, byte activityID, int requiredTypeID, Byte consume, Double damagePerJob, Integer level, Double probability,
+                            Integer quantity, Integer raceID, Byte recycle) {
+    super();
+    this.id = new RamTypeRequirementPK(typeID, activityID, requiredTypeID);
+    this.consume = consume;
+    this.damagePerJob = damagePerJob;
+    this.level = level;
+    this.probability = probability;
+    this.quantity = quantity;
+    this.raceID = raceID;
+    this.recycle = recycle;
+  }
+
+  public RamTypeRequirementPK id() {
     return this.id;
+  }
+
+  public int getTypeID() {
+    return id.getTypeID();
+  }
+
+  public byte getActivityID() {
+    return id.getActivityID();
+  }
+
+  public int getRequiredTypeID() {
+    return id.getRequiredTypeID();
   }
 
   public Byte getConsume() {

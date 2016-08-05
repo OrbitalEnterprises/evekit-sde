@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "warcombatzones")
-@Immutable
 public class WarCombatZone {
   private static final Logger log = Logger.getLogger(WarCombatZone.class.getName());
 
@@ -36,6 +33,15 @@ public class WarCombatZone {
   private int                 factionID;
 
   public WarCombatZone() {}
+
+  public WarCombatZone(int combatZoneID, int centerSystemID, String combatZoneName, String description, int factionID) {
+    super();
+    this.combatZoneID = combatZoneID;
+    this.centerSystemID = centerSystemID;
+    this.combatZoneName = combatZoneName;
+    this.description = description;
+    this.factionID = factionID;
+  }
 
   public int getCombatZoneID() {
     return this.combatZoneID;

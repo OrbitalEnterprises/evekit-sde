@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.annotations.Immutable;
 
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
@@ -24,7 +24,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "crpnpccorporations")
-@Immutable
 public class CrpNpcCorporation {
   private static final Logger log = Logger.getLogger(CrpNpcCorporation.class.getName());
 
@@ -32,10 +31,13 @@ public class CrpNpcCorporation {
   private int                 corporationID;
   private byte                border;
   private byte                corridor;
+  @Lob
+  @Column(
+      length = 102400)
   private String              description;
   private Integer             enemyID;
   private String              extent;
-  private int                 factionID;
+  private Integer             factionID;
   private Integer             friendID;
   private byte                fringe;
   private byte                hub;
@@ -54,11 +56,47 @@ public class CrpNpcCorporation {
   private byte                scattered;
   private String              size;
   private Double              sizeFactor;
-  private int                 solarSystemID;
+  private Integer             solarSystemID;
   private Short               stationCount;
   private Short               stationSystemCount;
 
   public CrpNpcCorporation() {}
+
+  public CrpNpcCorporation(int corporationID, byte border, byte corridor, String description, Integer enemyID, String extent, Integer factionID,
+                           Integer friendID, byte fringe, byte hub, Integer iconID, int initialPrice, Integer investorID1, Integer investorID2,
+                           Integer investorID3, Integer investorID4, byte investorShares1, byte investorShares2, byte investorShares3, byte investorShares4,
+                           double minSecurity, long publicShares, byte scattered, String size, Double sizeFactor, Integer solarSystemID, Short stationCount,
+                           Short stationSystemCount) {
+    super();
+    this.corporationID = corporationID;
+    this.border = border;
+    this.corridor = corridor;
+    this.description = description;
+    this.enemyID = enemyID;
+    this.extent = extent;
+    this.factionID = factionID;
+    this.friendID = friendID;
+    this.fringe = fringe;
+    this.hub = hub;
+    this.iconID = iconID;
+    this.initialPrice = initialPrice;
+    this.investorID1 = investorID1;
+    this.investorID2 = investorID2;
+    this.investorID3 = investorID3;
+    this.investorID4 = investorID4;
+    this.investorShares1 = investorShares1;
+    this.investorShares2 = investorShares2;
+    this.investorShares3 = investorShares3;
+    this.investorShares4 = investorShares4;
+    this.minSecurity = minSecurity;
+    this.publicShares = publicShares;
+    this.scattered = scattered;
+    this.size = size;
+    this.sizeFactor = sizeFactor;
+    this.solarSystemID = solarSystemID;
+    this.stationCount = stationCount;
+    this.stationSystemCount = stationSystemCount;
+  }
 
   public int getCorporationID() {
     return this.corporationID;
@@ -84,7 +122,7 @@ public class CrpNpcCorporation {
     return this.extent;
   }
 
-  public int getFactionID() {
+  public Integer getFactionID() {
     return this.factionID;
   }
 
@@ -160,7 +198,7 @@ public class CrpNpcCorporation {
     return this.sizeFactor;
   }
 
-  public int getSolarSystemID() {
+  public Integer getSolarSystemID() {
     return this.solarSystemID;
   }
 

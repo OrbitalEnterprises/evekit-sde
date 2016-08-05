@@ -18,6 +18,12 @@ public class InvControlTowerResourcePK implements Serializable {
 
   public InvControlTowerResourcePK() {}
 
+  public InvControlTowerResourcePK(int controlTowerTypeID, int resourceTypeID) {
+    super();
+    this.controlTowerTypeID = controlTowerTypeID;
+    this.resourceTypeID = resourceTypeID;
+  }
+
   public int getControlTowerTypeID() {
     return this.controlTowerTypeID;
   }

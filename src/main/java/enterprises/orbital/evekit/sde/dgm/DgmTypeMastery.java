@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "dgmtypemasteries")
-@Immutable
 public class DgmTypeMastery {
   private static final Logger log = Logger.getLogger(DgmTypeMastery.class.getName());
 
@@ -32,8 +29,21 @@ public class DgmTypeMastery {
 
   public DgmTypeMastery() {}
 
-  public DgmTypeMasteryPK getId() {
+  public DgmTypeMastery(int typeID, int masteryID) {
+    super();
+    this.id = new DgmTypeMasteryPK(typeID, masteryID);
+  }
+
+  public DgmTypeMasteryPK id() {
     return this.id;
+  }
+
+  public int getTypeID() {
+    return id.getTypeID();
+  }
+
+  public int getMasteryID() {
+    return id.getMasteryID();
   }
 
   public static List<DgmTypeMastery> access(

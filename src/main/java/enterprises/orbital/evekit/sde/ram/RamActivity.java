@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -24,7 +22,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "ramactivities")
-@Immutable
 public class RamActivity {
   private static final Logger log = Logger.getLogger(RamActivity.class.getName());
 
@@ -36,6 +33,15 @@ public class RamActivity {
   private byte                published;
 
   public RamActivity() {}
+
+  public RamActivity(byte activityID, String activityName, String description, String iconNo, byte published) {
+    super();
+    this.activityID = activityID;
+    this.activityName = activityName;
+    this.description = description;
+    this.iconNo = iconNo;
+    this.published = published;
+  }
 
   public byte getActivityID() {
     return this.activityID;

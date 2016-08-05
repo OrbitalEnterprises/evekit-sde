@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
 import enterprises.orbital.evekit.sde.AttributeSelector;
@@ -21,7 +19,6 @@ import enterprises.orbital.evekit.sde.SDE;
  * 
  */
 @Entity
-@Immutable
 public class MapUniverse {
   private static final Logger log = Logger.getLogger(MapUniverse.class.getName());
 
@@ -40,6 +37,23 @@ public class MapUniverse {
   private double              zMin;
 
   public MapUniverse() {}
+
+  public MapUniverse(int universeID, double radius, String universeName, double x, double xMax, double xMin, double y, double yMax, double yMin, double z,
+                     double zMax, double zMin) {
+    super();
+    this.universeID = universeID;
+    this.radius = radius;
+    this.universeName = universeName;
+    this.x = x;
+    this.xMax = xMax;
+    this.xMin = xMin;
+    this.y = y;
+    this.yMax = yMax;
+    this.yMin = yMin;
+    this.z = z;
+    this.zMax = zMax;
+    this.zMin = zMin;
+  }
 
   public int getUniverseID() {
     return this.universeID;

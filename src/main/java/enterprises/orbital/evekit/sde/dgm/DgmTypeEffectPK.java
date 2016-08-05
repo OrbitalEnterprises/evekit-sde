@@ -18,6 +18,12 @@ public class DgmTypeEffectPK implements Serializable {
 
   public DgmTypeEffectPK() {}
 
+  public DgmTypeEffectPK(int typeID, int effectID) {
+    super();
+    this.typeID = typeID;
+    this.effectID = effectID;
+  }
+
   public int getTypeID() {
     return this.typeID;
   }

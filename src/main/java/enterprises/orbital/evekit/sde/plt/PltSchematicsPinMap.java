@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "planetschematicspinmap")
-@Immutable
 public class PltSchematicsPinMap {
   private static final Logger   log = Logger.getLogger(PltSchematicsPinMap.class.getName());
 
@@ -32,8 +29,21 @@ public class PltSchematicsPinMap {
 
   public PltSchematicsPinMap() {}
 
-  public PltSchematicsPinMapPK getId() {
+  public PltSchematicsPinMap(int schematicID, int pinTypeID) {
+    super();
+    this.id = new PltSchematicsPinMapPK(schematicID, pinTypeID);
+  }
+
+  public PltSchematicsPinMapPK id() {
     return this.id;
+  }
+
+  public int getSchematicID() {
+    return id.getSchematicID();
+  }
+
+  public int getPinTypeID() {
+    return id.getPinTypeID();
   }
 
   public static List<PltSchematicsPinMap> access(

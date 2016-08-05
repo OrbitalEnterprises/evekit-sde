@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.annotations.Immutable;
-
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeSelector;
 import enterprises.orbital.evekit.sde.SDE;
@@ -23,7 +21,6 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "crpnpccorporationdivisions")
-@Immutable
 public class CrpNpcCorporationDivision {
   private static final Logger         log = Logger.getLogger(CrpNpcCorporationDivision.class.getName());
 
@@ -33,8 +30,22 @@ public class CrpNpcCorporationDivision {
 
   public CrpNpcCorporationDivision() {}
 
-  public CrpNpcCorporationDivisionPK getId() {
+  public CrpNpcCorporationDivision(int corporationID, byte divisionID, byte size) {
+    super();
+    this.id = new CrpNpcCorporationDivisionPK(corporationID, divisionID);
+    this.size = size;
+  }
+
+  public CrpNpcCorporationDivisionPK id() {
     return this.id;
+  }
+
+  public int getCorporationID() {
+    return id.getCorporationID();
+  }
+
+  public byte getDivisionID() {
+    return id.getDivisionID();
   }
 
   public byte getSize() {

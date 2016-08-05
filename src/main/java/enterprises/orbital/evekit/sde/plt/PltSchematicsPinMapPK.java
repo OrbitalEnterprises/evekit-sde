@@ -18,6 +18,12 @@ public class PltSchematicsPinMapPK implements Serializable {
 
   public PltSchematicsPinMapPK() {}
 
+  public PltSchematicsPinMapPK(int schematicID, int pinTypeID) {
+    super();
+    this.schematicID = schematicID;
+    this.pinTypeID = pinTypeID;
+  }
+
   public int getSchematicID() {
     return this.schematicID;
   }

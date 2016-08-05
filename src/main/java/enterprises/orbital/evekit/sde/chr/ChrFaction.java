@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.annotations.Immutable;
 
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
@@ -24,13 +24,15 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "chrfactions")
-@Immutable
 public class ChrFaction {
   public static final Logger log = Logger.getLogger(ChrFaction.class.getName());
 
   @Id
   private int                factionID;
   private int                corporationID;
+  @Lob
+  @Column(
+      length = 102400)
   private String             description;
   private String             factionName;
   private int                iconID;
@@ -42,6 +44,22 @@ public class ChrFaction {
   private short              stationSystemCount;
 
   public ChrFaction() {}
+
+  public ChrFaction(int factionID, int corporationID, String description, String factionName, int iconID, Integer militiaCorporationID, int raceIDs,
+                    double sizeFactor, int solarSystemID, short stationCount, short stationSystemCount) {
+    super();
+    this.factionID = factionID;
+    this.corporationID = corporationID;
+    this.description = description;
+    this.factionName = factionName;
+    this.iconID = iconID;
+    this.militiaCorporationID = militiaCorporationID;
+    this.raceIDs = raceIDs;
+    this.sizeFactor = sizeFactor;
+    this.solarSystemID = solarSystemID;
+    this.stationCount = stationCount;
+    this.stationSystemCount = stationSystemCount;
+  }
 
   public int getFactionID() {
     return this.factionID;

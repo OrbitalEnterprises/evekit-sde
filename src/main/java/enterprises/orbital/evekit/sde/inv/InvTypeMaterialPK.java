@@ -18,6 +18,12 @@ public class InvTypeMaterialPK implements Serializable {
 
   public InvTypeMaterialPK() {}
 
+  public InvTypeMaterialPK(int typeID, int materialTypeID) {
+    super();
+    this.typeID = typeID;
+    this.materialTypeID = materialTypeID;
+  }
+
   public int getTypeID() {
     return this.typeID;
   }

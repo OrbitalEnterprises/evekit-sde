@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.annotations.Immutable;
 
 import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
 import enterprises.orbital.evekit.sde.AttributeParameters;
@@ -24,12 +24,14 @@ import enterprises.orbital.evekit.sde.SDE;
 @Entity
 @Table(
     name = "dgmeffects")
-@Immutable
 public class DgmEffect {
   private static final Logger log = Logger.getLogger(DgmEffect.class.getName());
 
   @Id
   private int                 effectID;
+  @Lob
+  @Column(
+      length = 102400)
   private String              description;
   private byte                disallowAutoRepeat;
   private Integer             dischargeAttributeID;
@@ -46,6 +48,9 @@ public class DgmEffect {
   private byte                isAssistance;
   private byte                isOffensive;
   private byte                isWarpSafe;
+  @Lob
+  @Column(
+      length = 102400)
   private String              modifierInfo;
   private Integer             npcActivationChanceAttributeID;
   private Integer             npcUsageChanceAttributeID;
@@ -59,6 +64,42 @@ public class DgmEffect {
   private Integer             trackingSpeedAttributeID;
 
   public DgmEffect() {}
+
+  public DgmEffect(int effectID, String description, byte disallowAutoRepeat, Integer dischargeAttributeID, String displayName, Byte distribution,
+                   Integer durationAttributeID, short effectCategory, String effectName, byte electronicChance, Integer falloffAttributeID,
+                   Integer fittingUsageChanceAttributeID, String guid, Integer iconID, byte isAssistance, byte isOffensive, byte isWarpSafe,
+                   String modifierInfo, Integer npcActivationChanceAttributeID, Integer npcUsageChanceAttributeID, int postExpression, int preExpression,
+                   byte propulsionChance, byte published, Integer rangeAttributeID, byte rangeChance, String sfxName, Integer trackingSpeedAttributeID) {
+    super();
+    this.effectID = effectID;
+    this.description = description;
+    this.disallowAutoRepeat = disallowAutoRepeat;
+    this.dischargeAttributeID = dischargeAttributeID;
+    this.displayName = displayName;
+    this.distribution = distribution;
+    this.durationAttributeID = durationAttributeID;
+    this.effectCategory = effectCategory;
+    this.effectName = effectName;
+    this.electronicChance = electronicChance;
+    this.falloffAttributeID = falloffAttributeID;
+    this.fittingUsageChanceAttributeID = fittingUsageChanceAttributeID;
+    this.guid = guid;
+    this.iconID = iconID;
+    this.isAssistance = isAssistance;
+    this.isOffensive = isOffensive;
+    this.isWarpSafe = isWarpSafe;
+    this.modifierInfo = modifierInfo;
+    this.npcActivationChanceAttributeID = npcActivationChanceAttributeID;
+    this.npcUsageChanceAttributeID = npcUsageChanceAttributeID;
+    this.postExpression = postExpression;
+    this.preExpression = preExpression;
+    this.propulsionChance = propulsionChance;
+    this.published = published;
+    this.rangeAttributeID = rangeAttributeID;
+    this.rangeChance = rangeChance;
+    this.sfxName = sfxName;
+    this.trackingSpeedAttributeID = trackingSpeedAttributeID;
+  }
 
   public int getEffectID() {
     return this.effectID;

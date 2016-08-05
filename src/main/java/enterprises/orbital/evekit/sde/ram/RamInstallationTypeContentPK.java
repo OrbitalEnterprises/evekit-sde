@@ -18,6 +18,12 @@ public class RamInstallationTypeContentPK implements Serializable {
 
   public RamInstallationTypeContentPK() {}
 
+  public RamInstallationTypeContentPK(int installationTypeID, int assemblyLineTypeID) {
+    super();
+    this.installationTypeID = installationTypeID;
+    this.assemblyLineTypeID = assemblyLineTypeID;
+  }
+
   public int getInstallationTypeID() {
     return this.installationTypeID;
   }

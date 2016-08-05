@@ -18,6 +18,12 @@ public class DgmTypeMasteryPK implements Serializable {
 
   public DgmTypeMasteryPK() {}
 
+  public DgmTypeMasteryPK(int typeID, int masteryID) {
+    super();
+    this.typeID = typeID;
+    this.masteryID = masteryID;
+  }
+
   public int getTypeID() {
     return this.typeID;
   }
