@@ -24,17 +24,17 @@ public class MapUniverse {
 
   @Id
   private int                 universeID;
-  private double              radius;
   private String              universeName;
   private double              x;
-  private double              xMax;
-  private double              xMin;
   private double              y;
-  private double              yMax;
-  private double              yMin;
   private double              z;
-  private double              zMax;
+  private double              xMin;
+  private double              xMax;
+  private double              yMin;
+  private double              yMax;
   private double              zMin;
+  private double              zMax;
+  private double              radius;
 
   public MapUniverse() {}
 

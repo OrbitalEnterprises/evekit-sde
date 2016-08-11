@@ -27,93 +27,57 @@ public class EveGraphic {
 
   @Id
   private int                 graphicID;
-  private Byte                collidable;
-  private String              colorScheme;
-  private String              description;
-  private Integer             directoryID;
-  private String              gfxRaceID;
+  private String              sofFactionName;
   private String              graphicFile;
-  private String              graphicName;
-  private String              graphicType;
-  private byte                obsolete;
   private String              sofHullName;
+  private String              sofRaceName;
+  private String              description;
 
   public EveGraphic() {}
 
-  public EveGraphic(int graphicID, Byte collidable, String colorScheme, String description, Integer directoryID, String gfxRaceID, String graphicFile,
-                    String graphicName, String graphicType, byte obsolete, String sofHullName) {
+  public EveGraphic(int graphicID, String sofFactionName, String graphicFile, String sofHullName, String sofRaceName, String description) {
     super();
     this.graphicID = graphicID;
-    this.collidable = collidable;
-    this.colorScheme = colorScheme;
-    this.description = description;
-    this.directoryID = directoryID;
-    this.gfxRaceID = gfxRaceID;
+    this.sofFactionName = sofFactionName;
     this.graphicFile = graphicFile;
-    this.graphicName = graphicName;
-    this.graphicType = graphicType;
-    this.obsolete = obsolete;
     this.sofHullName = sofHullName;
+    this.sofRaceName = sofRaceName;
+    this.description = description;
   }
 
   public int getGraphicID() {
-    return this.graphicID;
+    return graphicID;
   }
 
-  public Byte getCollidable() {
-    return this.collidable;
-  }
-
-  public String getColorScheme() {
-    return this.colorScheme;
-  }
-
-  public String getDescription() {
-    return this.description;
-  }
-
-  public Integer getDirectoryID() {
-    return this.directoryID;
-  }
-
-  public String getGfxRaceID() {
-    return this.gfxRaceID;
+  public String getSofFactionName() {
+    return sofFactionName;
   }
 
   public String getGraphicFile() {
-    return this.graphicFile;
-  }
-
-  public String getGraphicName() {
-    return this.graphicName;
-  }
-
-  public String getGraphicType() {
-    return this.graphicType;
-  }
-
-  public byte getObsolete() {
-    return this.obsolete;
+    return graphicFile;
   }
 
   public String getSofHullName() {
-    return this.sofHullName;
+    return sofHullName;
+  }
+
+  public String getSofRaceName() {
+    return sofRaceName;
+  }
+
+  public String getDescription() {
+    return description;
   }
 
   public static List<EveGraphic> access(
                                         final int contid,
                                         final int maxresults,
                                         final AttributeSelector graphicID,
-                                        final AttributeSelector collidable,
-                                        final AttributeSelector colorScheme,
-                                        final AttributeSelector description,
-                                        final AttributeSelector directoryID,
-                                        final AttributeSelector gfxRaceID,
+                                        final AttributeSelector sofFactionName,
                                         final AttributeSelector graphicFile,
-                                        final AttributeSelector graphicName,
-                                        final AttributeSelector graphicType,
-                                        final AttributeSelector obsolete,
-                                        final AttributeSelector sofHullName) {
+                                        final AttributeSelector sofHullName,
+                                        final AttributeSelector sofRaceName,
+                                        final AttributeSelector description) {
     try {
       return SDE.getFactory().runTransaction(new RunInTransaction<List<EveGraphic>>() {
         @Override
@@ -125,16 +89,11 @@ public class EveGraphic {
           qs.append("SELECT c FROM EveGraphic c WHERE 1 = 1");
           AttributeParameters p = new AttributeParameters("att");
           AttributeSelector.addIntSelector(qs, "c", "graphicID", graphicID);
-          AttributeSelector.addIntSelector(qs, "c", "collidable", collidable);
-          AttributeSelector.addStringSelector(qs, "c", "colorScheme", colorScheme, p);
-          AttributeSelector.addStringSelector(qs, "c", "description", description, p);
-          AttributeSelector.addIntSelector(qs, "c", "directoryID", directoryID);
-          AttributeSelector.addStringSelector(qs, "c", "gfxRaceID", gfxRaceID, p);
+          AttributeSelector.addStringSelector(qs, "c", "sofFactionName", sofFactionName, p);
           AttributeSelector.addStringSelector(qs, "c", "graphicFile", graphicFile, p);
-          AttributeSelector.addStringSelector(qs, "c", "graphicName", graphicName, p);
-          AttributeSelector.addStringSelector(qs, "c", "graphicType", graphicType, p);
-          AttributeSelector.addIntSelector(qs, "c", "obsolete", obsolete);
           AttributeSelector.addStringSelector(qs, "c", "sofHullName", sofHullName, p);
+          AttributeSelector.addStringSelector(qs, "c", "sofRaceName", sofRaceName, p);
+          AttributeSelector.addStringSelector(qs, "c", "description", description, p);
           // Return result
           TypedQuery<EveGraphic> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), EveGraphic.class);
           p.fillParams(query);
@@ -151,9 +110,8 @@ public class EveGraphic {
 
   @Override
   public String toString() {
-    return "EveGraphic [graphicID=" + graphicID + ", collidable=" + collidable + ", colorScheme=" + colorScheme + ", description=" + description
-        + ", directoryID=" + directoryID + ", gfxRaceID=" + gfxRaceID + ", graphicFile=" + graphicFile + ", graphicName=" + graphicName + ", graphicType="
-        + graphicType + ", obsolete=" + obsolete + ", sofHullName=" + sofHullName + "]";
+    return "EveGraphic [graphicID=" + graphicID + ", sofFactionName=" + sofFactionName + ", graphicFile=" + graphicFile + ", sofHullName=" + sofHullName
+        + ", sofRaceName=" + sofRaceName + ", description=" + description + "]";
   }
 
 }

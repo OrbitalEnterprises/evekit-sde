@@ -27,22 +27,22 @@ public class MapRegion {
 
   @Id
   private int                 regionID;
-  private Integer             factionID;
-  private double              radius;
   private String              regionName;
   private double              x;
-  private double              xMax;
-  private double              xMin;
   private double              y;
-  private double              yMax;
-  private double              yMin;
   private double              z;
-  private double              zMax;
+  private double              xMin;
+  private double              xMax;
+  private double              yMin;
+  private double              yMax;
   private double              zMin;
+  private double              zMax;
+  private Integer             factionID;
+  private Double              radius;
 
   public MapRegion() {}
 
-  public MapRegion(int regionID, Integer factionID, double radius, String regionName, double x, double xMax, double xMin, double y, double yMax, double yMin,
+  public MapRegion(int regionID, Integer factionID, Double radius, String regionName, double x, double xMax, double xMin, double y, double yMax, double yMin,
                    double z, double zMax, double zMin) {
     super();
     this.regionID = regionID;
@@ -68,7 +68,7 @@ public class MapRegion {
     return this.factionID;
   }
 
-  public double getRadius() {
+  public Double getRadius() {
     return this.radius;
   }
 

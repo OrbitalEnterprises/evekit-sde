@@ -27,8 +27,8 @@ public class DgmAttributeCategory {
 
   @Id
   private byte                categoryID;
-  private String              categoryDescription;
   private String              categoryName;
+  private String              categoryDescription;
 
   public DgmAttributeCategory() {}
 

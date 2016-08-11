@@ -27,8 +27,8 @@ public class InvMetaType {
 
   @Id
   private int                 typeID;
-  private int                 metaGroupID;
   private int                 parentTypeID;
+  private int                 metaGroupID;
 
   public InvMetaType() {}
 

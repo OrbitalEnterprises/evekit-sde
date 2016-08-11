@@ -26,10 +26,10 @@ public class InvContrabandType {
 
   @EmbeddedId
   private InvContrabandTypePK id;
-  private double              attackMinSec;
+  private double              standingLoss;
   private double              confiscateMinSec;
   private double              fineByValue;
-  private double              standingLoss;
+  private double              attackMinSec;
 
   public InvContrabandType() {}
 

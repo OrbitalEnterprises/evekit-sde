@@ -24,20 +24,20 @@ public class MapDenormalize {
 
   @Id
   private int                 itemID;
-  private Byte                celestialIndex;
-  private Integer             constellationID;
-  private int                 groupID;
-  private String              itemName;
-  private Integer             orbitID;
-  private Byte                orbitIndex;
-  private Double              radius;
-  private Integer             regionID;
-  private Double              security;
-  private Integer             solarSystemID;
   private int                 typeID;
+  private int                 groupID;
+  private Integer             solarSystemID;
+  private Integer             constellationID;
+  private Integer             regionID;
+  private Integer             orbitID;
   private double              x;
   private double              y;
   private double              z;
+  private Double              radius;
+  private String              itemName;
+  private Double              security;
+  private Byte                celestialIndex;
+  private Byte                orbitIndex;
 
   public MapDenormalize() {}
 

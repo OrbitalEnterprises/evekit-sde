@@ -29,36 +29,36 @@ public class CrpNpcCorporation {
 
   @Id
   private int                 corporationID;
-  private byte                border;
+  private String              size;
+  private String              extent;
+  private Integer             solarSystemID;
+  private Integer             investorID1;
+  private byte                investorShares1;
+  private Integer             investorID2;
+  private byte                investorShares2;
+  private Integer             investorID3;
+  private byte                investorShares3;
+  private Integer             investorID4;
+  private byte                investorShares4;
+  private Integer             friendID;
+  private Integer             enemyID;
+  private long                publicShares;
+  private int                 initialPrice;
+  private double              minSecurity;
+  private byte                scattered;
+  private byte                fringe;
   private byte                corridor;
+  private byte                hub;
+  private byte                border;
+  private Integer             factionID;
+  private Double              sizeFactor;
+  private Short               stationCount;
+  private Short               stationSystemCount;
   @Lob
   @Column(
       length = 102400)
   private String              description;
-  private Integer             enemyID;
-  private String              extent;
-  private Integer             factionID;
-  private Integer             friendID;
-  private byte                fringe;
-  private byte                hub;
   private Integer             iconID;
-  private int                 initialPrice;
-  private Integer             investorID1;
-  private Integer             investorID2;
-  private Integer             investorID3;
-  private Integer             investorID4;
-  private byte                investorShares1;
-  private byte                investorShares2;
-  private byte                investorShares3;
-  private byte                investorShares4;
-  private double              minSecurity;
-  private long                publicShares;
-  private byte                scattered;
-  private String              size;
-  private Double              sizeFactor;
-  private Integer             solarSystemID;
-  private Short               stationCount;
-  private Short               stationSystemCount;
 
   public CrpNpcCorporation() {}
 

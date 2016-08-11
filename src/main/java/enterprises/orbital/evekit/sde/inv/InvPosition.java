@@ -26,12 +26,12 @@ public class InvPosition {
 
   @Id
   private long                itemID;
-  private Double              pitch;
-  private Double              roll;
   private double              x;
   private double              y;
-  private Double              yaw;
   private double              z;
+  private Double              yaw;
+  private Double              pitch;
+  private Double              roll;
 
   public InvPosition() {}
 

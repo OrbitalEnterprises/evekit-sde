@@ -26,29 +26,29 @@ public class MapJump {
 
   @Id
   private int                 stargateID;
-  private int                 celestialID;
+  private int                 destinationID;
 
   public MapJump() {}
 
-  public MapJump(int stargateID, int celestialID) {
+  public MapJump(int stargateID, int destinationID) {
     super();
     this.stargateID = stargateID;
-    this.celestialID = celestialID;
+    this.destinationID = destinationID;
   }
 
   public int getStargateID() {
     return this.stargateID;
   }
 
-  public int getCelestialID() {
-    return this.celestialID;
+  public int getDestinationID() {
+    return this.destinationID;
   }
 
   public static List<MapJump> access(
                                      final int contid,
                                      final int maxresults,
                                      final AttributeSelector stargateID,
-                                     final AttributeSelector celestialID) {
+                                     final AttributeSelector destinationID) {
     try {
       return SDE.getFactory().runTransaction(new RunInTransaction<List<MapJump>>() {
         @Override
@@ -59,7 +59,7 @@ public class MapJump {
           // Constrain attributes
           qs.append("SELECT c FROM MapJump c WHERE 1 = 1");
           AttributeSelector.addIntSelector(qs, "c", "stargateID", stargateID);
-          AttributeSelector.addIntSelector(qs, "c", "celestialID", celestialID);
+          AttributeSelector.addIntSelector(qs, "c", "celestialID", destinationID);
           // Return result
           TypedQuery<MapJump> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), MapJump.class);
           query.setMaxResults(maxcount);
@@ -75,7 +75,7 @@ public class MapJump {
 
   @Override
   public String toString() {
-    return "MapJump [stargateID=" + stargateID + ", celestialID=" + celestialID + "]";
+    return "MapJump [stargateID=" + stargateID + ", celestialID=" + destinationID + "]";
   }
 
 }

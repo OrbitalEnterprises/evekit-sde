@@ -27,10 +27,10 @@ public class WarCombatZone {
 
   @Id
   private int                 combatZoneID;
-  private int                 centerSystemID;
   private String              combatZoneName;
-  private String              description;
   private int                 factionID;
+  private int                 centerSystemID;
+  private String              description;
 
   public WarCombatZone() {}
 

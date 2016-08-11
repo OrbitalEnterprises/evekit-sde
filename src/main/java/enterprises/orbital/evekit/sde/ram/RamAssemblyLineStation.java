@@ -26,11 +26,11 @@ public class RamAssemblyLineStation {
 
   @EmbeddedId
   private RamAssemblyLineStationPK id;
-  private int                      ownerID;
   private byte                     quantity;
-  private int                      regionID;
-  private int                      solarSystemID;
   private int                      stationTypeID;
+  private int                      ownerID;
+  private int                      solarSystemID;
+  private int                      regionID;
 
   public RamAssemblyLineStation() {}
 

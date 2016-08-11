@@ -27,23 +27,23 @@ public class StaStation {
 
   @Id
   private int                 stationID;
-  private int                 constellationID;
-  private int                 corporationID;
+  private double              security;
   private double              dockingCostPerVolume;
   private double              maxShipVolumeDockable;
   private int                 officeRentalCost;
   private byte                operationID;
-  private int                 regionID;
-  private double              reprocessingEfficiency;
-  private byte                reprocessingHangarFlag;
-  private double              reprocessingStationsTake;
-  private double              security;
-  private int                 solarSystemID;
-  private String              stationName;
   private int                 stationTypeID;
+  private int                 corporationID;
+  private int                 solarSystemID;
+  private int                 constellationID;
+  private int                 regionID;
+  private String              stationName;
   private double              x;
   private double              y;
   private double              z;
+  private double              reprocessingEfficiency;
+  private double              reprocessingStationsTake;
+  private byte                reprocessingHangarFlag;
 
   public StaStation() {}
 

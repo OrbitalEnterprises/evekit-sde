@@ -27,19 +27,19 @@ public class MapConstellation {
 
   @Id
   private int                 constellationID;
+  private int                 regionID;
   private String              constellationName;
+  private double              x;
+  private double              y;
+  private double              z;
+  private double              xMin;
+  private double              xMax;
+  private double              yMin;
+  private double              yMax;
+  private double              zMin;
+  private double              zMax;
   private Integer             factionID;
   private double              radius;
-  private int                 regionID;
-  private double              x;
-  private double              xMax;
-  private double              xMin;
-  private double              y;
-  private double              yMax;
-  private double              yMin;
-  private double              z;
-  private double              zMax;
-  private double              zMin;
 
   public MapConstellation() {}
 

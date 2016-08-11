@@ -26,16 +26,16 @@ public class StaStationType {
   private static final Logger log = Logger.getLogger(StaStationType.class.getName());
   @Id
   private int                 stationTypeID;
-  private byte                conquerable;
   private double              dockEntryX;
   private double              dockEntryY;
   private double              dockEntryZ;
   private double              dockOrientationX;
   private double              dockOrientationY;
   private double              dockOrientationZ;
-  private Byte                officeSlots;
   private Byte                operationID;
+  private Byte                officeSlots;
   private Double              reprocessingEfficiency;
+  private byte                conquerable;
 
   public StaStationType() {}
 

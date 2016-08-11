@@ -21,38 +21,26 @@ import enterprises.orbital.evekit.sde.SDE;
  */
 @Entity
 @Table(
-    name = "sknskins")
+    name = "skins")
 public class SknSkin {
   private static final Logger log = Logger.getLogger(SknSkin.class.getName());
 
   @Id
   private int                 skinID;
-  private byte                allowCCPDevs;
   private String              internalName;
   private int                 skinMaterialID;
-  private Integer             typeID;
-  private byte                visibleSerenity;
-  private byte                visibleTranquility;
 
   public SknSkin() {}
 
-  public SknSkin(int skinID, byte allowCCPDevs, String internalName, int skinMaterialID, Integer typeID, byte visibleSerenity, byte visibleTranquility) {
+  public SknSkin(int skinID, String internalName, int skinMaterialID) {
     super();
     this.skinID = skinID;
-    this.allowCCPDevs = allowCCPDevs;
     this.internalName = internalName;
     this.skinMaterialID = skinMaterialID;
-    this.typeID = typeID;
-    this.visibleSerenity = visibleSerenity;
-    this.visibleTranquility = visibleTranquility;
   }
 
   public int getSkinID() {
     return this.skinID;
-  }
-
-  public byte getAllowCCPDevs() {
-    return this.allowCCPDevs;
   }
 
   public String getInternalName() {
@@ -63,28 +51,12 @@ public class SknSkin {
     return this.skinMaterialID;
   }
 
-  public Integer getTypeID() {
-    return this.typeID;
-  }
-
-  public byte getVisibleSerenity() {
-    return this.visibleSerenity;
-  }
-
-  public byte getVisibleTranquility() {
-    return this.visibleTranquility;
-  }
-
   public static List<SknSkin> access(
                                      final int contid,
                                      final int maxresults,
                                      final AttributeSelector skinID,
-                                     final AttributeSelector allowCCPDevs,
                                      final AttributeSelector internalName,
-                                     final AttributeSelector skinMaterialID,
-                                     final AttributeSelector typeID,
-                                     final AttributeSelector visibleSerenity,
-                                     final AttributeSelector visibleTranquility) {
+                                     final AttributeSelector skinMaterialID) {
     try {
       return SDE.getFactory().runTransaction(new RunInTransaction<List<SknSkin>>() {
         @Override
@@ -96,12 +68,8 @@ public class SknSkin {
           qs.append("SELECT c FROM SknSkin c WHERE 1 = 1");
           AttributeParameters p = new AttributeParameters("att");
           AttributeSelector.addIntSelector(qs, "c", "skinID", skinID);
-          AttributeSelector.addIntSelector(qs, "c", "allowCCPDevs", allowCCPDevs);
           AttributeSelector.addStringSelector(qs, "c", "internalName", internalName, p);
           AttributeSelector.addIntSelector(qs, "c", "skinMaterialID", skinMaterialID);
-          AttributeSelector.addIntSelector(qs, "c", "typeID", typeID);
-          AttributeSelector.addIntSelector(qs, "c", "visibleSerenity", visibleSerenity);
-          AttributeSelector.addIntSelector(qs, "c", "visibleTranquility", visibleTranquility);
           // Return result
           TypedQuery<SknSkin> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), SknSkin.class);
           p.fillParams(query);
@@ -118,8 +86,7 @@ public class SknSkin {
 
   @Override
   public String toString() {
-    return "SknSkin [skinID=" + skinID + ", allowCCPDevs=" + allowCCPDevs + ", internalName=" + internalName + ", skinMaterialID=" + skinMaterialID
-        + ", typeID=" + typeID + ", visibleSerenity=" + visibleSerenity + ", visibleTranquility=" + visibleTranquility + "]";
+    return "SknSkin [skinID=" + skinID + ", internalName=" + internalName + ", skinMaterialID=" + skinMaterialID + "]";
   }
 
 }

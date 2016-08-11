@@ -31,17 +31,17 @@ public class ChrAncestry {
   private byte               ancestryID;
   private String             ancestryName;
   private byte               bloodlineID;
-  private byte               charisma;
   @Lob
   @Column(
       length = 102400)
   private String             description;
-  private Integer            iconID;
-  private byte               intelligence;
-  private byte               memory;
   private byte               perception;
-  private String             shortDescription;
   private byte               willpower;
+  private byte               charisma;
+  private byte               memory;
+  private byte               intelligence;
+  private Integer            iconID;
+  private String             shortDescription;
 
   public ChrAncestry() {}
 

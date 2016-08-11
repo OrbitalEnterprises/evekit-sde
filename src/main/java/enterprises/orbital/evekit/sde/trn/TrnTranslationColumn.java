@@ -27,10 +27,10 @@ public class TrnTranslationColumn {
 
   @Id
   private int                 tcID;
+  private int                 tcGroupID;
+  private String              tableName;
   private String              columnName;
   private String              masterID;
-  private String              tableName;
-  private int                 tcGroupID;
 
   public TrnTranslationColumn() {}
 

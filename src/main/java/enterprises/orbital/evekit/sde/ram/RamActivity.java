@@ -28,8 +28,8 @@ public class RamActivity {
   @Id
   private byte                activityID;
   private String              activityName;
-  private String              description;
   private String              iconNo;
+  private String              description;
   private byte                published;
 
   public RamActivity() {}

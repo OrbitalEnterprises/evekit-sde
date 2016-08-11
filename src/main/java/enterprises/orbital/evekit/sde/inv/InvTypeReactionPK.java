@@ -2,7 +2,6 @@ package enterprises.orbital.evekit.sde.inv;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -15,8 +14,6 @@ public class InvTypeReactionPK implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private int               reactionTypeID;
-  @Column(
-      name = "inputColumn")
   private byte              input;
   private int               typeID;
 

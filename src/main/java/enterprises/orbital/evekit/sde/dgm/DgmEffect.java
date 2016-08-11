@@ -29,39 +29,39 @@ public class DgmEffect {
 
   @Id
   private int                 effectID;
+  private String              effectName;
+  private short               effectCategory;
+  private int                 preExpression;
+  private int                 postExpression;
   @Lob
   @Column(
       length = 102400)
   private String              description;
-  private byte                disallowAutoRepeat;
-  private Integer             dischargeAttributeID;
-  private String              displayName;
-  private Byte                distribution;
-  private Integer             durationAttributeID;
-  private short               effectCategory;
-  private String              effectName;
-  private byte                electronicChance;
-  private Integer             falloffAttributeID;
-  private Integer             fittingUsageChanceAttributeID;
   private String              guid;
   private Integer             iconID;
-  private byte                isAssistance;
   private byte                isOffensive;
+  private byte                isAssistance;
+  private Integer             durationAttributeID;
+  private Integer             trackingSpeedAttributeID;
+  private Integer             dischargeAttributeID;
+  private Integer             rangeAttributeID;
+  private Integer             falloffAttributeID;
+  private byte                disallowAutoRepeat;
+  private byte                published;
+  private String              displayName;
   private byte                isWarpSafe;
+  private byte                rangeChance;
+  private byte                electronicChance;
+  private byte                propulsionChance;
+  private Byte                distribution;
+  private String              sfxName;
+  private Integer             npcUsageChanceAttributeID;
+  private Integer             npcActivationChanceAttributeID;
+  private Integer             fittingUsageChanceAttributeID;
   @Lob
   @Column(
       length = 102400)
   private String              modifierInfo;
-  private Integer             npcActivationChanceAttributeID;
-  private Integer             npcUsageChanceAttributeID;
-  private int                 postExpression;
-  private int                 preExpression;
-  private byte                propulsionChance;
-  private byte                published;
-  private Integer             rangeAttributeID;
-  private byte                rangeChance;
-  private String              sfxName;
-  private Integer             trackingSpeedAttributeID;
 
   public DgmEffect() {}
 

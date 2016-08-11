@@ -28,17 +28,15 @@ public class InvCategory {
   @Id
   private int                 categoryID;
   private String              categoryName;
-  private String              description;
   private Integer             iconID;
   private byte                published;
 
   public InvCategory() {}
 
-  public InvCategory(int categoryID, String categoryName, String description, Integer iconID, byte published) {
+  public InvCategory(int categoryID, String categoryName, Integer iconID, byte published) {
     super();
     this.categoryID = categoryID;
     this.categoryName = categoryName;
-    this.description = description;
     this.iconID = iconID;
     this.published = published;
   }
@@ -49,10 +47,6 @@ public class InvCategory {
 
   public String getCategoryName() {
     return this.categoryName;
-  }
-
-  public String getDescription() {
-    return this.description;
   }
 
   public Integer getIconID() {
@@ -68,7 +62,6 @@ public class InvCategory {
                                          final int maxresults,
                                          final AttributeSelector categoryID,
                                          final AttributeSelector categoryName,
-                                         final AttributeSelector description,
                                          final AttributeSelector iconID,
                                          final AttributeSelector published) {
     try {
@@ -83,7 +76,6 @@ public class InvCategory {
           AttributeParameters p = new AttributeParameters("att");
           AttributeSelector.addIntSelector(qs, "c", "categoryID", categoryID);
           AttributeSelector.addStringSelector(qs, "c", "categoryName", categoryName, p);
-          AttributeSelector.addStringSelector(qs, "c", "description", description, p);
           AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
           AttributeSelector.addIntSelector(qs, "c", "published", published);
           // Return result
@@ -102,8 +94,7 @@ public class InvCategory {
 
   @Override
   public String toString() {
-    return "InvCategory [categoryID=" + categoryID + ", categoryName=" + categoryName + ", description=" + description + ", iconID=" + iconID + ", published="
-        + published + "]";
+    return "InvCategory [categoryID=" + categoryID + ", categoryName=" + categoryName + ", iconID=" + iconID + ", published=" + published + "]";
   }
 
 }

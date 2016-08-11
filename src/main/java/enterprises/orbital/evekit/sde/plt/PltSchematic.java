@@ -27,8 +27,8 @@ public class PltSchematic {
 
   @Id
   private int                 schematicID;
-  private int                 cycleTime;
   private String              schematicName;
+  private int                 cycleTime;
 
   public PltSchematic() {}
 

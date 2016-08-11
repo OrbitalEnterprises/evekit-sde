@@ -26,13 +26,13 @@ public class AgtAgent {
 
   @Id
   private int                agentID;
-  private int                agentTypeID;
-  private int                corporationID;
   private byte               divisionID;
-  private byte               isLocator;
-  private byte               level;
+  private int                corporationID;
   private int                locationID;
+  private byte               level;
   private short              quality;
+  private int                agentTypeID;
+  private byte               isLocator;
 
   public AgtAgent() {}
 

@@ -30,8 +30,7 @@ public class ChrBloodline {
   @Id
   private byte               bloodlineID;
   private String             bloodlineName;
-  private byte               charisma;
-  private int                corporationID;
+  private byte               raceID;
   @Lob
   @Column(
       length = 102400)
@@ -39,21 +38,22 @@ public class ChrBloodline {
   @Lob
   @Column(
       length = 102400)
-  private String             femaleDescription;
-  private int                iconID;
-  private byte               intelligence;
+  private String             maleDescription;
   @Lob
   @Column(
       length = 102400)
-  private String             maleDescription;
-  private byte               memory;
-  private byte               perception;
-  private byte               raceID;
+  private String             femaleDescription;
   private int                shipTypeID;
+  private int                corporationID;
+  private byte               perception;
+  private byte               willpower;
+  private byte               charisma;
+  private byte               memory;
+  private byte               intelligence;
+  private int                iconID;
   private String             shortDescription;
   private String             shortFemaleDescription;
   private String             shortMaleDescription;
-  private byte               willpower;
 
   public ChrBloodline() {}
 

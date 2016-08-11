@@ -29,19 +29,19 @@ public class ChrFaction {
 
   @Id
   private int                factionID;
-  private int                corporationID;
+  private String             factionName;
   @Lob
   @Column(
       length = 102400)
   private String             description;
-  private String             factionName;
-  private int                iconID;
-  private Integer            militiaCorporationID;
   private int                raceIDs;
-  private double             sizeFactor;
   private int                solarSystemID;
+  private int                corporationID;
+  private double             sizeFactor;
   private short              stationCount;
   private short              stationSystemCount;
+  private Integer            militiaCorporationID;
+  private int                iconID;
 
   public ChrFaction() {}
 

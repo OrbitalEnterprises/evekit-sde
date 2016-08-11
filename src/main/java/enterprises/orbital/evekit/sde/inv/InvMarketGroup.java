@@ -27,11 +27,11 @@ public class InvMarketGroup {
 
   @Id
   private int                 marketGroupID;
-  private String              description;
-  private byte                hasTypes;
-  private Integer             iconID;
-  private String              marketGroupName;
   private Integer             parentGroupID;
+  private String              marketGroupName;
+  private String              description;
+  private Integer             iconID;
+  private byte                hasTypes;
 
   public InvMarketGroup() {}
 

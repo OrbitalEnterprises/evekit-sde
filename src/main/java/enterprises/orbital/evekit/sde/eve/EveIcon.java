@@ -27,8 +27,8 @@ public class EveIcon {
 
   @Id
   private int                 iconID;
-  private String              description;
   private String              iconFile;
+  private String              description;
 
   public EveIcon() {}
 

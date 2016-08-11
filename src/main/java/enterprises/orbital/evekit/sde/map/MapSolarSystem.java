@@ -27,35 +27,35 @@ public class MapSolarSystem {
 
   @Id
   private int                 solarSystemID;
-  private byte                border;
-  private byte                constellation;
+  private int                 regionID;
   private int                 constellationID;
-  private byte                corridor;
-  private Integer             factionID;
+  private String              solarSystemName;
+  private double              x;
+  private double              y;
+  private double              z;
+  private double              xMin;
+  private double              xMax;
+  private double              yMin;
+  private double              yMax;
+  private double              zMin;
+  private double              zMax;
+  private double              luminosity;
+  private byte                border;
   private byte                fringe;
+  private byte                corridor;
   private byte                hub;
   private byte                international;
-  private double              luminosity;
-  private double              radius;
   private byte                regional;
-  private int                 regionID;
+  private Byte                constellation;
   private double              security;
-  private String              securityClass;
-  private String              solarSystemName;
+  private Integer             factionID;
+  private double              radius;
   private int                 sunTypeID;
-  private double              x;
-  private double              xMax;
-  private double              xMin;
-  private double              y;
-  private double              yMax;
-  private double              yMin;
-  private double              z;
-  private double              zMax;
-  private double              zMin;
+  private String              securityClass;
 
   public MapSolarSystem() {}
 
-  public MapSolarSystem(int solarSystemID, byte border, byte constellation, int constellationID, byte corridor, Integer factionID, byte fringe, byte hub,
+  public MapSolarSystem(int solarSystemID, byte border, Byte constellation, int constellationID, byte corridor, Integer factionID, byte fringe, byte hub,
                         byte international, double luminosity, double radius, byte regional, int regionID, double security, String securityClass,
                         String solarSystemName, int sunTypeID, double x, double xMax, double xMin, double y, double yMax, double yMin, double z, double zMax,
                         double zMin) {
@@ -96,7 +96,7 @@ public class MapSolarSystem {
     return this.border;
   }
 
-  public byte getConstellation() {
+  public Byte getConstellation() {
     return this.constellation;
   }
 

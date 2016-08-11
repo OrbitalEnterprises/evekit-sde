@@ -29,12 +29,12 @@ public class ChrRace {
 
   @Id
   private int                raceID;
+  private String             raceName;
   @Lob
   @Column(
       length = 102400)
   private String             description;
   private Integer            iconID;
-  private String             raceName;
   private String             shortDescription;
 
   public ChrRace() {}

@@ -27,9 +27,9 @@ public class InvMetaGroup {
 
   @Id
   private int                 metaGroupID;
+  private String              metaGroupName;
   private String              description;
   private Integer             iconID;
-  private String              metaGroupName;
 
   public InvMetaGroup() {}
 

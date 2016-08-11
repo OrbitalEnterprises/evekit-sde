@@ -27,8 +27,8 @@ public class StaService {
 
   @Id
   private int                 serviceID;
-  private String              description;
   private String              serviceName;
+  private String              description;
 
   public StaService() {}
 

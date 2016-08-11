@@ -26,9 +26,9 @@ public class RamAssemblyLineTypeDetailPerGroup {
 
   @EmbeddedId
   private RamAssemblyLineTypeDetailPerGroupPK id;
-  private double                              costMultiplier;
-  private double                              materialMultiplier;
   private double                              timeMultiplier;
+  private double                              materialMultiplier;
+  private double                              costMultiplier;
 
   public RamAssemblyLineTypeDetailPerGroup() {}
 

@@ -27,8 +27,8 @@ public class InvUniqueName {
 
   @Id
   private int                 itemID;
-  private int                 groupID;
   private String              itemName;
+  private int                 groupID;
 
   public InvUniqueName() {}
 

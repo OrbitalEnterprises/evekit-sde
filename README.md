@@ -5,7 +5,7 @@ This module provides library code for accessing the EVE Online Static Data Expor
 ## Database Setup
 
 This module assumes the SDE has been imported into a database supported by [Hibernate](http://hibernate.org/orm/).  Prior to August 2016, we used Desmont McCallock's [EVESDEToSQL](https://bitbucket.org/Desmont_McCallock/evesdetosql/overview) tool to convert the raw SDE to database form.  Unfortunately, Des retired from EVE,
-so after this date we use our own [SDE Converter](https://github.com/OrbitalEnterprises/evekit-sde-converter) tool which is a port of Des's tool to Java.  The new tool only works with the new YAML export of the SDE.  See the GitHub page for the converter for instructions on how to create your own conversions.  You'll normally want to clone the branch of this module corresponding to the release you plan to use.
+so after this date we use [Fuzzy Steve's conversions](https://www.fuzzwork.co.uk/dump/) which are created by his [YAML converter](https://github.com/fuzzysteve/yamlloader).
 
 ## Configuration  
 

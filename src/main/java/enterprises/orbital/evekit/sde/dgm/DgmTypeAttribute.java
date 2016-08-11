@@ -26,8 +26,8 @@ public class DgmTypeAttribute {
 
   @EmbeddedId
   private DgmTypeAttributePK  id;
-  private Double              valueFloat;
   private Integer             valueInt;
+  private Double              valueFloat;
 
   public DgmTypeAttribute() {}
 

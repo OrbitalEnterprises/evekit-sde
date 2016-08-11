@@ -20,7 +20,7 @@ import enterprises.orbital.evekit.sde.SDE;
  */
 @Entity
 @Table(
-    name = "sknlicenses")
+    name = "skinlicense")
 public class SknLicense {
   private static final Logger log = Logger.getLogger(SknLicense.class.getName());
 

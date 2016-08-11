@@ -30,21 +30,21 @@ public class StaOperation {
   @Id
   private byte                operationID;
   private byte                activityID;
-  private Integer             amarrStationTypeID;
-  private byte                border;
-  private Integer             caldariStationTypeID;
-  private byte                corridor;
+  private String              operationName;
   @Lob
   @Column(
       length = 102400)
   private String              description;
   private byte                fringe;
-  private Integer             gallenteStationTypeID;
+  private byte                corridor;
   private byte                hub;
-  private Integer             joveStationTypeID;
-  private Integer             minmatarStationTypeID;
-  private String              operationName;
+  private byte                border;
   private byte                ratio;
+  private Integer             caldariStationTypeID;
+  private Integer             minmatarStationTypeID;
+  private Integer             amarrStationTypeID;
+  private Integer             gallenteStationTypeID;
+  private Integer             joveStationTypeID;
 
   public StaOperation() {}
 

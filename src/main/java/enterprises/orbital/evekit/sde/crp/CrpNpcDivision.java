@@ -27,8 +27,8 @@ public class CrpNpcDivision {
 
   @Id
   private byte                divisionID;
-  private String              description;
   private String              divisionName;
+  private String              description;
   private String              leaderType;
 
   public CrpNpcDivision() {}

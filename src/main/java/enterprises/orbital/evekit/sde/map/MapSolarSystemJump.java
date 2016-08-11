@@ -26,8 +26,8 @@ public class MapSolarSystemJump {
 
   @EmbeddedId
   private MapSolarSystemJumpPK id;
-  private int                  fromConstellationID;
   private int                  fromRegionID;
+  private int                  fromConstellationID;
   private int                  toConstellationID;
   private int                  toRegionID;
 

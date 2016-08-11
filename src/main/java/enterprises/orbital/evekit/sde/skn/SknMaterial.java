@@ -21,32 +21,21 @@ import enterprises.orbital.evekit.sde.SDE;
  */
 @Entity
 @Table(
-    name = "sknmaterials")
+    name = "skinmaterials")
 public class SknMaterial {
   private static final Logger log = Logger.getLogger(SknMaterial.class.getName());
 
   @Id
   private int                 skinMaterialID;
-  private String              colorHull;
-  private String              colorPrimary;
-  private String              colorSecondary;
-  private String              colorWindow;
   private int                 displayNameID;
-  private String              material;
   private int                 materialSetID;
 
   public SknMaterial() {}
 
-  public SknMaterial(int skinMaterialID, String colorHull, String colorPrimary, String colorSecondary, String colorWindow, int displayNameID, String material,
-                     int materialSetID) {
+  public SknMaterial(int skinMaterialID, int displayNameID, int materialSetID) {
     super();
     this.skinMaterialID = skinMaterialID;
-    this.colorHull = colorHull;
-    this.colorPrimary = colorPrimary;
-    this.colorSecondary = colorSecondary;
-    this.colorWindow = colorWindow;
     this.displayNameID = displayNameID;
-    this.material = material;
     this.materialSetID = materialSetID;
   }
 
@@ -54,28 +43,8 @@ public class SknMaterial {
     return this.skinMaterialID;
   }
 
-  public String getColorHull() {
-    return this.colorHull;
-  }
-
-  public String getColorPrimary() {
-    return this.colorPrimary;
-  }
-
-  public String getColorSecondary() {
-    return this.colorSecondary;
-  }
-
-  public String getColorWindow() {
-    return this.colorWindow;
-  }
-
   public int getDisplayNameID() {
     return this.displayNameID;
-  }
-
-  public String getMaterial() {
-    return this.material;
   }
 
   public int getMaterialSetID() {
@@ -86,12 +55,7 @@ public class SknMaterial {
                                          final int contid,
                                          final int maxresults,
                                          final AttributeSelector skinMaterialID,
-                                         final AttributeSelector colorHull,
-                                         final AttributeSelector colorPrimary,
-                                         final AttributeSelector colorSecondary,
-                                         final AttributeSelector colorWindow,
                                          final AttributeSelector displayNameID,
-                                         final AttributeSelector material,
                                          final AttributeSelector materialSetID) {
     try {
       return SDE.getFactory().runTransaction(new RunInTransaction<List<SknMaterial>>() {
@@ -104,12 +68,7 @@ public class SknMaterial {
           qs.append("SELECT c FROM SknMaterial c WHERE 1 = 1");
           AttributeParameters p = new AttributeParameters("att");
           AttributeSelector.addIntSelector(qs, "c", "skinMaterialID", skinMaterialID);
-          AttributeSelector.addStringSelector(qs, "c", "colorHull", colorHull, p);
-          AttributeSelector.addStringSelector(qs, "c", "colorPrimary", colorPrimary, p);
-          AttributeSelector.addStringSelector(qs, "c", "colorSecondary", colorSecondary, p);
-          AttributeSelector.addStringSelector(qs, "c", "colorWindow", colorWindow, p);
           AttributeSelector.addIntSelector(qs, "c", "displayNameID", displayNameID);
-          AttributeSelector.addStringSelector(qs, "c", "material", material, p);
           AttributeSelector.addIntSelector(qs, "c", "materialSetID", materialSetID);
           // Return result
           TypedQuery<SknMaterial> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), SknMaterial.class);
@@ -127,9 +86,7 @@ public class SknMaterial {
 
   @Override
   public String toString() {
-    return "SknMaterial [skinMaterialID=" + skinMaterialID + ", colorHull=" + colorHull + ", colorPrimary=" + colorPrimary + ", colorSecondary="
-        + colorSecondary + ", colorWindow=" + colorWindow + ", displayNameID=" + displayNameID + ", material=" + material + ", materialSetID=" + materialSetID
-        + "]";
+    return "SknMaterial [skinMaterialID=" + skinMaterialID + ", displayNameID=" + displayNameID + ", materialSetID=" + materialSetID + "]";
   }
 
 }

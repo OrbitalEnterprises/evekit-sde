@@ -26,11 +26,11 @@ public class InvItem {
 
   @Id
   private long                itemID;
-  private int                 flagID;
-  private long                locationID;
-  private int                 ownerID;
-  private int                 quantity;
   private int                 typeID;
+  private int                 ownerID;
+  private long                locationID;
+  private int                 flagID;
+  private int                 quantity;
 
   public InvItem() {}
 

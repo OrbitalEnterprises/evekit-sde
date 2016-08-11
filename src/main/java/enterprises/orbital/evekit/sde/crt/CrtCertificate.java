@@ -23,73 +23,52 @@ import enterprises.orbital.evekit.sde.SDE;
  */
 @Entity
 @Table(
-    name = "crtcertificates")
+    name = "certcerts")
 public class CrtCertificate {
   private static final Logger log = Logger.getLogger(CrtCertificate.class.getName());
 
   @Id
-  private int                 certificateID;
-  private int                 classID;
-  private Integer             corpID;
+  private int                 certID;
   @Lob
   @Column(
       length = 102400)
   private String              description;
-  private Byte                grade;
   private int                 groupID;
-  private Integer             iconID;
+  private String              name;
 
   public CrtCertificate() {}
 
-  public CrtCertificate(int certificateID, int classID, Integer corpID, String description, Byte grade, int groupID, Integer iconID) {
+  public CrtCertificate(int certificateID, String description, int groupID, String name) {
     super();
-    this.certificateID = certificateID;
-    this.classID = classID;
-    this.corpID = corpID;
+    this.certID = certificateID;
     this.description = description;
-    this.grade = grade;
     this.groupID = groupID;
-    this.iconID = iconID;
+    this.name = name;
   }
 
-  public int getCertificateID() {
-    return this.certificateID;
-  }
-
-  public int getClassID() {
-    return this.classID;
-  }
-
-  public Integer getCorpID() {
-    return this.corpID;
+  public int getCertID() {
+    return this.certID;
   }
 
   public String getDescription() {
     return this.description;
   }
 
-  public Byte getGrade() {
-    return this.grade;
-  }
-
   public int getGroupID() {
     return this.groupID;
   }
 
-  public Integer getIconID() {
-    return this.iconID;
+  public String getName() {
+    return name;
   }
 
   public static List<CrtCertificate> access(
                                             final int contid,
                                             final int maxresults,
-                                            final AttributeSelector certificateID,
-                                            final AttributeSelector classID,
-                                            final AttributeSelector corpID,
+                                            final AttributeSelector certID,
                                             final AttributeSelector description,
-                                            final AttributeSelector grade,
                                             final AttributeSelector groupID,
-                                            final AttributeSelector iconID) {
+                                            final AttributeSelector name) {
     try {
       return SDE.getFactory().runTransaction(new RunInTransaction<List<CrtCertificate>>() {
         @Override
@@ -100,13 +79,10 @@ public class CrtCertificate {
           // Constrain attributes
           qs.append("SELECT c FROM CrtCertificate c WHERE 1 = 1");
           AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "certificateID", certificateID);
-          AttributeSelector.addIntSelector(qs, "c", "classID", classID);
-          AttributeSelector.addIntSelector(qs, "c", "corpID", corpID);
+          AttributeSelector.addIntSelector(qs, "c", "certID", certID);
           AttributeSelector.addStringSelector(qs, "c", "description", description, p);
-          AttributeSelector.addIntSelector(qs, "c", "grade", grade);
           AttributeSelector.addIntSelector(qs, "c", "groupID", groupID);
-          AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
+          AttributeSelector.addStringSelector(qs, "c", "name", name, p);
           // Return result
           TypedQuery<CrtCertificate> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), CrtCertificate.class);
           p.fillParams(query);
@@ -123,8 +99,7 @@ public class CrtCertificate {
 
   @Override
   public String toString() {
-    return "CrtCertificate [certificateID=" + certificateID + ", classID=" + classID + ", corpID=" + corpID + ", description=" + description + ", grade="
-        + grade + ", groupID=" + groupID + ", iconID=" + iconID + "]";
+    return "CrtCertificate [certID=" + certID + ", description=" + description + ", groupID=" + groupID + ", name=" + name + "]";
   }
 
 }

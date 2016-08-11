@@ -35,8 +35,8 @@ public class ChrAttribute {
       length = 102400)
   private String             description;
   private int                iconID;
-  private String             notes;
   private String             shortDescription;
+  private String             notes;
 
   public ChrAttribute() {}
 

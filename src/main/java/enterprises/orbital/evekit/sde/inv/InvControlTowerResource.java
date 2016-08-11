@@ -26,10 +26,10 @@ public class InvControlTowerResource {
 
   @EmbeddedId
   private InvControlTowerResourcePK id;
-  private Integer                   factionID;
-  private Double                    minSecurityLevel;
   private byte                      purpose;
   private int                       quantity;
+  private Double                    minSecurityLevel;
+  private Integer                   factionID;
 
   public InvControlTowerResource() {}
 

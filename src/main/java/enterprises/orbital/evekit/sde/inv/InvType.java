@@ -30,39 +30,33 @@ public class InvType {
 
   @Id
   private int                 typeID;
-  private BigDecimal          basePrice;
-  private Double              capacity;
-  private double              chanceOfDuplicating;
+  private int                 groupID;
+  private String              typeName;
   @Lob
   @Column(
       length = 102400)
   private String              description;
-  private Integer             factionID;
-  private Integer             graphicID;
-  private int                 groupID;
-  private Integer             iconID;
-  private Integer             marketGroupID;
   private Double              mass;
-  private int                 portionSize;
-  private byte                published;
-  private Integer             raceID;
-  private Double              radius;
-  private Integer             soundID;
-  private String              typeName;
   private Double              volume;
+  private Double              capacity;
+  private int                 portionSize;
+  private Integer             raceID;
+  private BigDecimal          basePrice;
+  private byte                published;
+  private Integer             marketGroupID;
+  private Integer             iconID;
+  private Integer             soundID;
+  private Integer             graphicID;
 
   public InvType() {}
 
-  public InvType(int typeID, BigDecimal basePrice, Double capacity, double chanceOfDuplicating, String description, Integer factionID, Integer graphicID,
-                 int groupID, Integer iconID, Integer marketGroupID, Double mass, int portionSize, byte published, Integer raceID, Double radius,
-                 Integer soundID, String typeName, Double volume) {
+  public InvType(int typeID, BigDecimal basePrice, Double capacity, String description, Integer factionID, Integer graphicID, int groupID, Integer iconID,
+                 Integer marketGroupID, Double mass, int portionSize, byte published, Integer raceID, Integer soundID, String typeName, Double volume) {
     super();
     this.typeID = typeID;
     this.basePrice = basePrice;
     this.capacity = capacity;
-    this.chanceOfDuplicating = chanceOfDuplicating;
     this.description = description;
-    this.factionID = factionID;
     this.graphicID = graphicID;
     this.groupID = groupID;
     this.iconID = iconID;
@@ -71,7 +65,6 @@ public class InvType {
     this.portionSize = portionSize;
     this.published = published;
     this.raceID = raceID;
-    this.radius = radius;
     this.soundID = soundID;
     this.typeName = typeName;
     this.volume = volume;
@@ -89,16 +82,8 @@ public class InvType {
     return this.capacity;
   }
 
-  public double getChanceOfDuplicating() {
-    return this.chanceOfDuplicating;
-  }
-
   public String getDescription() {
     return this.description;
-  }
-
-  public Integer getFactionID() {
-    return this.factionID;
   }
 
   public Integer getGraphicID() {
@@ -133,10 +118,6 @@ public class InvType {
     return this.raceID;
   }
 
-  public Double getRadius() {
-    return this.radius;
-  }
-
   public Integer getSoundID() {
     return this.soundID;
   }
@@ -166,7 +147,6 @@ public class InvType {
                                      final AttributeSelector portionSize,
                                      final AttributeSelector published,
                                      final AttributeSelector raceID,
-                                     final AttributeSelector radius,
                                      final AttributeSelector soundID,
                                      final AttributeSelector typeName,
                                      final AttributeSelector volume) {
@@ -194,7 +174,6 @@ public class InvType {
           AttributeSelector.addIntSelector(qs, "c", "portionSize", portionSize);
           AttributeSelector.addIntSelector(qs, "c", "published", published);
           AttributeSelector.addIntSelector(qs, "c", "raceID", raceID);
-          AttributeSelector.addDoubleSelector(qs, "c", "radius", radius);
           AttributeSelector.addIntSelector(qs, "c", "soundID", soundID);
           AttributeSelector.addStringSelector(qs, "c", "typeName", typeName, p);
           AttributeSelector.addDoubleSelector(qs, "c", "volume", volume);
@@ -214,10 +193,9 @@ public class InvType {
 
   @Override
   public String toString() {
-    return "InvType [typeID=" + typeID + ", basePrice=" + basePrice + ", capacity=" + capacity + ", chanceOfDuplicating=" + chanceOfDuplicating
-        + ", description=" + description + ", factionID=" + factionID + ", graphicID=" + graphicID + ", groupID=" + groupID + ", iconID=" + iconID
-        + ", marketGroupID=" + marketGroupID + ", mass=" + mass + ", portionSize=" + portionSize + ", published=" + published + ", raceID=" + raceID
-        + ", radius=" + radius + ", soundID=" + soundID + ", typeName=" + typeName + ", volume=" + volume + "]";
+    return "InvType [typeID=" + typeID + ", basePrice=" + basePrice + ", capacity=" + capacity + ", description=" + description + ", graphicID=" + graphicID
+        + ", groupID=" + groupID + ", iconID=" + iconID + ", marketGroupID=" + marketGroupID + ", mass=" + mass + ", portionSize=" + portionSize
+        + ", published=" + published + ", raceID=" + raceID + ", soundID=" + soundID + ", typeName=" + typeName + ", volume=" + volume + "]";
   }
 
 }

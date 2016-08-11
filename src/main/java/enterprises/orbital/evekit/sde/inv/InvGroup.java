@@ -27,30 +27,24 @@ public class InvGroup {
 
   @Id
   private int                 groupID;
-  private Byte                allowManufacture;
-  private Byte                allowRecycler;
-  private byte                anchorable;
-  private byte                anchored;
   private int                 categoryID;
-  private String              description;
-  private byte                fittableNonSingleton;
   private String              groupName;
   private Integer             iconID;
-  private byte                published;
   private byte                useBasePrice;
+  private byte                anchored;
+  private byte                anchorable;
+  private byte                fittableNonSingleton;
+  private byte                published;
 
   public InvGroup() {}
 
-  public InvGroup(int groupID, Byte allowManufacture, Byte allowRecycler, byte anchorable, byte anchored, int categoryID, String description,
-                  byte fittableNonSingleton, String groupName, Integer iconID, byte published, byte useBasePrice) {
+  public InvGroup(int groupID, byte anchorable, byte anchored, int categoryID, byte fittableNonSingleton, String groupName, Integer iconID, byte published,
+                  byte useBasePrice) {
     super();
     this.groupID = groupID;
-    this.allowManufacture = allowManufacture;
-    this.allowRecycler = allowRecycler;
     this.anchorable = anchorable;
     this.anchored = anchored;
     this.categoryID = categoryID;
-    this.description = description;
     this.fittableNonSingleton = fittableNonSingleton;
     this.groupName = groupName;
     this.iconID = iconID;
@@ -60,14 +54,6 @@ public class InvGroup {
 
   public int getGroupID() {
     return this.groupID;
-  }
-
-  public Byte getAllowManufacture() {
-    return this.allowManufacture;
-  }
-
-  public Byte getAllowRecycler() {
-    return this.allowRecycler;
   }
 
   public byte getAnchorable() {
@@ -80,10 +66,6 @@ public class InvGroup {
 
   public int getCategoryID() {
     return this.categoryID;
-  }
-
-  public String getDescription() {
-    return this.description;
   }
 
   public byte getFittableNonSingleton() {
@@ -110,12 +92,9 @@ public class InvGroup {
                                       final int contid,
                                       final int maxresults,
                                       final AttributeSelector groupID,
-                                      final AttributeSelector allowManufacture,
-                                      final AttributeSelector allowRecycler,
                                       final AttributeSelector anchorable,
                                       final AttributeSelector anchored,
                                       final AttributeSelector categoryID,
-                                      final AttributeSelector description,
                                       final AttributeSelector fittableNonSingleton,
                                       final AttributeSelector groupName,
                                       final AttributeSelector iconID,
@@ -132,12 +111,9 @@ public class InvGroup {
           qs.append("SELECT c FROM InvGroup c WHERE 1 = 1");
           AttributeParameters p = new AttributeParameters("att");
           AttributeSelector.addIntSelector(qs, "c", "groupID", groupID);
-          AttributeSelector.addIntSelector(qs, "c", "allowManufacture", allowManufacture);
-          AttributeSelector.addIntSelector(qs, "c", "allowRecycler", allowRecycler);
           AttributeSelector.addIntSelector(qs, "c", "anchorable", anchorable);
           AttributeSelector.addIntSelector(qs, "c", "anchored", anchored);
           AttributeSelector.addIntSelector(qs, "c", "categoryID", categoryID);
-          AttributeSelector.addStringSelector(qs, "c", "description", description, p);
           AttributeSelector.addIntSelector(qs, "c", "fittableNonSingleton", fittableNonSingleton);
           AttributeSelector.addStringSelector(qs, "c", "groupName", groupName, p);
           AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
@@ -159,9 +135,8 @@ public class InvGroup {
 
   @Override
   public String toString() {
-    return "InvGroup [groupID=" + groupID + ", allowManufacture=" + allowManufacture + ", allowRecycler=" + allowRecycler + ", anchorable=" + anchorable
-        + ", anchored=" + anchored + ", categoryID=" + categoryID + ", description=" + description + ", fittableNonSingleton=" + fittableNonSingleton
-        + ", groupName=" + groupName + ", iconID=" + iconID + ", published=" + published + ", useBasePrice=" + useBasePrice + "]";
+    return "InvGroup [groupID=" + groupID + ", anchorable=" + anchorable + ", anchored=" + anchored + ", categoryID=" + categoryID + ", fittableNonSingleton="
+        + fittableNonSingleton + ", groupName=" + groupName + ", iconID=" + iconID + ", published=" + published + ", useBasePrice=" + useBasePrice + "]";
   }
 
 }

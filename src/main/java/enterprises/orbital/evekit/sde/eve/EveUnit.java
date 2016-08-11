@@ -27,9 +27,9 @@ public class EveUnit {
 
   @Id
   private int                 unitID;
-  private String              description;
-  private String              displayName;
   private String              unitName;
+  private String              displayName;
+  private String              description;
 
   public EveUnit() {}
 

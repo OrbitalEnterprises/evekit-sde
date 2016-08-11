@@ -29,18 +29,18 @@ public class DgmExpression {
 
   @Id
   private int                 expressionID;
+  private int                 operandID;
   private Integer             arg1;
   private Integer             arg2;
-  private String              description;
-  private Integer             expressionAttributeID;
-  private Integer             expressionGroupID;
+  private String              expressionValue;
   @Lob
   @Column(
       length = 102400)
+  private String              description;
   private String              expressionName;
   private Integer             expressionTypeID;
-  private String              expressionValue;
-  private int                 operandID;
+  private Integer             expressionGroupID;
+  private Integer             expressionAttributeID;
 
   public DgmExpression() {}
 

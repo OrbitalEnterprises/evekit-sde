@@ -30,18 +30,18 @@ public class DgmAttributeType {
   @Id
   private int                 attributeID;
   private String              attributeName;
-  private Byte                categoryID;
-  private double              defaultValue;
   @Lob
   @Column(
       length = 102400)
   private String              description;
-  private String              displayName;
-  private byte                highIsGood;
   private Integer             iconID;
+  private double              defaultValue;
   private byte                published;
-  private byte                stackable;
+  private String              displayName;
   private Integer             unitID;
+  private byte                stackable;
+  private byte                highIsGood;
+  private Byte                categoryID;
 
   public DgmAttributeType() {}
 

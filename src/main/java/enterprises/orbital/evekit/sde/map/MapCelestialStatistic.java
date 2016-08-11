@@ -27,31 +27,31 @@ public class MapCelestialStatistic {
 
   @Id
   private int                 celestialID;
-  private double              age;
-  private double              density;
-  private double              eccentricity;
-  private double              escapeVelocity;
-  private byte                fragmented;
-  private double              life;
-  private byte                locked;
-  private double              luminosity;
-  private double              mass;
-  private double              massDust;
-  private double              massGas;
-  private double              orbitPeriod;
-  private double              orbitRadius;
-  private double              pressure;
-  private double              radius;
-  private double              rotationRate;
+  private Double              temperature;
   private String              spectralClass;
-  private double              surfaceGravity;
-  private double              temperature;
+  private Double              luminosity;
+  private Double              age;
+  private Double              life;
+  private Double              orbitRadius;
+  private Double              eccentricity;
+  private Double              massDust;
+  private Double              massGas;
+  private Byte                fragmented;
+  private Double              density;
+  private Double              surfaceGravity;
+  private Double              escapeVelocity;
+  private Double              orbitPeriod;
+  private Double              rotationRate;
+  private Byte                locked;
+  private Double              pressure;
+  private Double              radius;
+  private Double              mass;
 
   public MapCelestialStatistic() {}
 
-  public MapCelestialStatistic(int celestialID, double age, double density, double eccentricity, double escapeVelocity, byte fragmented, double life,
-                               byte locked, double luminosity, double mass, double massDust, double massGas, double orbitPeriod, double orbitRadius,
-                               double pressure, double radius, double rotationRate, String spectralClass, double surfaceGravity, double temperature) {
+  public MapCelestialStatistic(int celestialID, Double age, Double density, Double eccentricity, Double escapeVelocity, Byte fragmented, Double life,
+                               Byte locked, Double luminosity, Double mass, Double massDust, Double massGas, Double orbitPeriod, Double orbitRadius,
+                               Double pressure, Double radius, Double rotationRate, String spectralClass, Double surfaceGravity, Double temperature) {
     super();
     this.celestialID = celestialID;
     this.age = age;
@@ -79,67 +79,67 @@ public class MapCelestialStatistic {
     return this.celestialID;
   }
 
-  public double getAge() {
+  public Double getAge() {
     return this.age;
   }
 
-  public double getDensity() {
+  public Double getDensity() {
     return this.density;
   }
 
-  public double getEccentricity() {
+  public Double getEccentricity() {
     return this.eccentricity;
   }
 
-  public double getEscapeVelocity() {
+  public Double getEscapeVelocity() {
     return this.escapeVelocity;
   }
 
-  public byte getFragmented() {
+  public Byte getFragmented() {
     return this.fragmented;
   }
 
-  public double getLife() {
+  public Double getLife() {
     return this.life;
   }
 
-  public byte getLocked() {
+  public Byte getLocked() {
     return this.locked;
   }
 
-  public double getLuminosity() {
+  public Double getLuminosity() {
     return this.luminosity;
   }
 
-  public double getMass() {
+  public Double getMass() {
     return this.mass;
   }
 
-  public double getMassDust() {
+  public Double getMassDust() {
     return this.massDust;
   }
 
-  public double getMassGas() {
+  public Double getMassGas() {
     return this.massGas;
   }
 
-  public double getOrbitPeriod() {
+  public Double getOrbitPeriod() {
     return this.orbitPeriod;
   }
 
-  public double getOrbitRadius() {
+  public Double getOrbitRadius() {
     return this.orbitRadius;
   }
 
-  public double getPressure() {
+  public Double getPressure() {
     return this.pressure;
   }
 
-  public double getRadius() {
+  public Double getRadius() {
     return this.radius;
   }
 
-  public double getRotationRate() {
+  public Double getRotationRate() {
     return this.rotationRate;
   }
 
@@ -147,11 +147,11 @@ public class MapCelestialStatistic {
     return this.spectralClass;
   }
 
-  public double getSurfaceGravity() {
+  public Double getSurfaceGravity() {
     return this.surfaceGravity;
   }
 
-  public double getTemperature() {
+  public Double getTemperature() {
     return this.temperature;
   }
 

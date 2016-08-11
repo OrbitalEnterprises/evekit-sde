@@ -27,14 +27,14 @@ public class RamAssemblyLineType {
 
   @Id
   private int                 assemblyLineTypeID;
-  private byte                activityID;
   private String              assemblyLineTypeName;
-  private double              baseCostMultiplier;
-  private double              baseMaterialMultiplier;
-  private double              baseTimeMultiplier;
   private String              description;
-  private Double              minCostPerHour;
+  private double              baseTimeMultiplier;
+  private double              baseMaterialMultiplier;
+  private double              baseCostMultiplier;
   private double              volume;
+  private byte                activityID;
+  private Double              minCostPerHour;
 
   public RamAssemblyLineType() {}
 
