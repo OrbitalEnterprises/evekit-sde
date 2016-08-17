@@ -138,7 +138,6 @@ public class InvType {
                                      final AttributeSelector capacity,
                                      final AttributeSelector chanceOfDuplicating,
                                      final AttributeSelector description,
-                                     final AttributeSelector factionID,
                                      final AttributeSelector graphicID,
                                      final AttributeSelector groupID,
                                      final AttributeSelector iconID,
@@ -165,7 +164,6 @@ public class InvType {
           AttributeSelector.addDoubleSelector(qs, "c", "capacity", capacity);
           AttributeSelector.addDoubleSelector(qs, "c", "chanceOfDuplicating", chanceOfDuplicating);
           AttributeSelector.addStringSelector(qs, "c", "description", description, p);
-          AttributeSelector.addIntSelector(qs, "c", "factionID", factionID);
           AttributeSelector.addIntSelector(qs, "c", "graphicID", graphicID);
           AttributeSelector.addIntSelector(qs, "c", "groupID", groupID);
           AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);

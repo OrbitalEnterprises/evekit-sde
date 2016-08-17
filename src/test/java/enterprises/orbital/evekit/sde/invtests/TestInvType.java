@@ -16,10 +16,10 @@ public class TestInvType extends TestSetup {
     int maxresults = 1000;
     int contid = 0;
     AttributeSelector all = new AttributeSelector("{any:true}");
-    List<InvType> next = InvType.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all);
+    List<InvType> next = InvType.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all);
     while (!next.isEmpty()) {
       contid += next.size();
-      next = InvType.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all);
+      next = InvType.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all);
     }
     Assert.assertEquals(29693, contid);
   }
@@ -28,7 +28,7 @@ public class TestInvType extends TestSetup {
   public void testRandomElement() {
     AttributeSelector all = new AttributeSelector("{any:true}");
     List<InvType> next = InvType.access(0, 1000, new AttributeSelector("{values:[16]}"), all, all, all, all, all, all, all, all, all, all, all, all, all, all,
-                                        all, all);
+                                        all);
     Assert.assertEquals(1, next.size());
     InvType random = next.get(0);
     Assert.assertNotNull(random);
