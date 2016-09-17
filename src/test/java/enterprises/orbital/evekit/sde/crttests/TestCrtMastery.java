@@ -21,7 +21,7 @@ public class TestCrtMastery extends TestSetup {
       contid += next.size();
       next = CrtMastery.access(contid, maxresults, all, all, all);
     }
-    Assert.assertEquals(13969, contid);
+    Assert.assertEquals(13986, contid);
   }
 
   @Test
