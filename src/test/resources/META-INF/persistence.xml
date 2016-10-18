@@ -71,6 +71,7 @@
 		<class>enterprises.orbital.evekit.sde.inv.InvTypeReactionPK</class>
 		<class>enterprises.orbital.evekit.sde.inv.InvType</class>
 		<class>enterprises.orbital.evekit.sde.inv.InvUniqueName</class>
+		<class>enterprises.orbital.evekit.sde.inv.InvVolume</class>
 		<class>enterprises.orbital.evekit.sde.map.MapCelestialStatistic</class>
 		<class>enterprises.orbital.evekit.sde.map.MapConstellationJump</class>
 		<class>enterprises.orbital.evekit.sde.map.MapConstellationJumpPK</class>

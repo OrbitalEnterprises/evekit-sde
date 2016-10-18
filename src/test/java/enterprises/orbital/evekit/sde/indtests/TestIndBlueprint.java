@@ -21,7 +21,7 @@ public class TestIndBlueprint extends TestSetup {
       contid += next.size();
       next = IndBlueprint.access(contid, maxresults, all, all);
     }
-    Assert.assertEquals(3892, contid);
+    Assert.assertEquals(3909, contid);
   }
 
   @Test
