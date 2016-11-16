@@ -21,7 +21,7 @@ public class TestRamAssemblyLineType extends TestSetup {
       contid += next.size();
       next = RamAssemblyLineType.access(contid, maxresults, all, all, all, all, all, all, all, all, all);
     }
-    Assert.assertEquals(134, contid);
+    Assert.assertEquals(141, contid);
   }
 
   @Test

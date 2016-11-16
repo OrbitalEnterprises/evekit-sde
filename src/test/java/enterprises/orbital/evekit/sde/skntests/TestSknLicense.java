@@ -21,7 +21,7 @@ public class TestSknLicense extends TestSetup {
       contid += next.size();
       next = SknLicense.access(contid, maxresults, all, all, all);
     }
-    Assert.assertEquals(5929, contid);
+    Assert.assertEquals(6040, contid);
   }
 
   @Test

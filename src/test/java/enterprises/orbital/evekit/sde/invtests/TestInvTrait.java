@@ -21,22 +21,22 @@ public class TestInvTrait extends TestSetup {
       contid += next.size();
       next = InvTrait.access(contid, maxresults, all, all, all, all, all, all);
     }
-    Assert.assertEquals(1884, contid);
+    Assert.assertEquals(1954, contid);
   }
 
   @Test
   public void testRandomElement() {
     AttributeSelector all = new AttributeSelector("{any:true}");
-    // '560', '12015', '3333', '5', 'bonus to <a href=showinfo:3305>Medium Projectile Turret</a> rate of fire', '105'
+    // '560', '12011', '16591', '5', 'bonus to <a href=showinfo:3304>Medium Hybrid Turret</a> damage', '105'
     List<InvTrait> next = InvTrait.access(0, 1000, new AttributeSelector("{values:[560]}"), all, all, all, all, all);
     Assert.assertEquals(1, next.size());
     InvTrait random = next.get(0);
     Assert.assertNotNull(random);
     Assert.assertEquals(560, random.getTraitID());
-    Assert.assertEquals(12015, random.getTypeID());
-    Assert.assertEquals(3333, random.getSkillID());
+    Assert.assertEquals(12011, random.getTypeID());
+    Assert.assertEquals(16591, random.getSkillID());
     Assert.assertEquals(5, random.getBonus(), 0.001);
-    Assert.assertEquals("bonus to <a href=showinfo:3305>Medium Projectile Turret</a> rate of fire", random.getBonusText());
+    Assert.assertEquals("bonus to <a href=showinfo:3304>Medium Hybrid Turret</a> damage", random.getBonusText());
     Assert.assertEquals(105, random.getUnitID().intValue());
     Assert.assertNotNull(random.toString());
   }

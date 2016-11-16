@@ -26,7 +26,7 @@ public class StaStation {
   private static final Logger log = Logger.getLogger(StaStation.class.getName());
 
   @Id
-  private int                 stationID;
+  private long                stationID;
   private double              security;
   private double              dockingCostPerVolume;
   private double              maxShipVolumeDockable;
@@ -47,7 +47,7 @@ public class StaStation {
 
   public StaStation() {}
 
-  public StaStation(int stationID, int constellationID, int corporationID, double dockingCostPerVolume, double maxShipVolumeDockable, int officeRentalCost,
+  public StaStation(long stationID, int constellationID, int corporationID, double dockingCostPerVolume, double maxShipVolumeDockable, int officeRentalCost,
                     byte operationID, int regionID, double reprocessingEfficiency, byte reprocessingHangarFlag, double reprocessingStationsTake,
                     double security, int solarSystemID, String stationName, int stationTypeID, double x, double y, double z) {
     super();
@@ -71,7 +71,7 @@ public class StaStation {
     this.z = z;
   }
 
-  public int getStationID() {
+  public long getStationID() {
     return this.stationID;
   }
 
@@ -174,7 +174,7 @@ public class StaStation {
           // Constrain attributes
           qs.append("SELECT c FROM StaStation c WHERE 1 = 1");
           AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "stationID", stationID);
+          AttributeSelector.addLongSelector(qs, "c", "stationID", stationID);
           AttributeSelector.addIntSelector(qs, "c", "constellationID", constellationID);
           AttributeSelector.addIntSelector(qs, "c", "corporationID", corporationID);
           AttributeSelector.addDoubleSelector(qs, "c", "dockingCostPerVolume", dockingCostPerVolume);
