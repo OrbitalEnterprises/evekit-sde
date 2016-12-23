@@ -33,10 +33,10 @@ public class TestInvTrait extends TestSetup {
     InvTrait random = next.get(0);
     Assert.assertNotNull(random);
     Assert.assertEquals(560, random.getTraitID());
-    Assert.assertEquals(12011, random.getTypeID());
-    Assert.assertEquals(16591, random.getSkillID());
+    Assert.assertEquals(12013, random.getTypeID());
+    Assert.assertEquals(28609, random.getSkillID());
     Assert.assertEquals(5, random.getBonus(), 0.001);
-    Assert.assertEquals("bonus to <a href=showinfo:3304>Medium Hybrid Turret</a> damage", random.getBonusText());
+    Assert.assertEquals("bonus to <a href=showinfo:28654>Warp Disruption Field Generator</a> scramble range", random.getBonusText());
     Assert.assertEquals(105, random.getUnitID().intValue());
     Assert.assertNotNull(random.toString());
   }
