@@ -21,7 +21,7 @@ public class TestInvPosition extends TestSetup {
       contid += next.size();
       next = InvPosition.access(contid, maxresults, all, all, all, all, all, all, all);
     }
-    Assert.assertEquals(508383, contid);
+    Assert.assertEquals(508384, contid);
   }
 
   @Test
