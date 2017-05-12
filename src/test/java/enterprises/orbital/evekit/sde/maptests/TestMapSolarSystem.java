@@ -57,7 +57,7 @@ public class TestMapSolarSystem extends TestSetup {
     Assert.assertEquals(0.1097049725986509, random.getSecurity(), 0.0001);
     Assert.assertEquals(500007, (int) random.getFactionID());
     Assert.assertEquals(2620460967184.0, random.getRadius(), 0.0001);
-    Assert.assertEquals(3798, random.getSunTypeID());
+    Assert.assertEquals(45037, random.getSunTypeID());
     Assert.assertEquals("B3", random.getSecurityClass());
     Assert.assertNotNull(random.toString());
   }
