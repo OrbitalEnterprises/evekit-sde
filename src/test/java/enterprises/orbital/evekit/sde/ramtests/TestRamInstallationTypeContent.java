@@ -21,7 +21,7 @@ public class TestRamInstallationTypeContent extends TestSetup {
       contid += next.size();
       next = RamInstallationTypeContent.access(contid, maxresults, all, all, all);
     }
-    Assert.assertEquals(370, contid);
+    Assert.assertEquals(376, contid);
   }
 
   @Test
