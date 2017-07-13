@@ -21,7 +21,7 @@ public class TestInvVolume extends TestSetup {
       contid += next.size();
       next = InvVolume.access(contid, maxresults, all, all);
     }
-    Assert.assertEquals(487, contid);
+    Assert.assertEquals(489, contid);
   }
 
   @Test

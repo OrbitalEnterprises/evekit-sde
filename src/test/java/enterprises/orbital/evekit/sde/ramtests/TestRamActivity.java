@@ -21,7 +21,7 @@ public class TestRamActivity extends TestSetup {
       contid += next.size();
       next = RamActivity.access(contid, maxresults, all, all, all, all, all);
     }
-    Assert.assertEquals(9, contid);
+    Assert.assertEquals(10, contid);
   }
 
   @Test

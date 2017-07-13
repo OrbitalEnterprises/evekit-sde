@@ -21,7 +21,7 @@ public class TestEveGraphic extends TestSetup {
       contid += next.size();
       next = EveGraphic.access(contid, maxresults, all, all, all, all, all, all);
     }
-    Assert.assertEquals(3206, contid);
+    Assert.assertEquals(3489, contid);
   }
 
   @Test

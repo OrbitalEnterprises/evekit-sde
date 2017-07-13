@@ -20,7 +20,7 @@ public class TestDgmTypeEffect extends TestSetup {
       contid += next.size();
       next = DgmTypeEffect.access(contid, maxresults, all, all, all);
     }
-    Assert.assertEquals(30968, contid);
+    Assert.assertEquals(31341, contid);
   }
 
   @Test
