@@ -21,7 +21,7 @@ public class TestInvUniqueName extends TestSetup {
       contid += next.size();
       next = InvUniqueName.access(contid, maxresults, all, all, all);
     }
-    Assert.assertEquals(365423, contid);
+    Assert.assertEquals(342013, contid);
   }
 
   @Test

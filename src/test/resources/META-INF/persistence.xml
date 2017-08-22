@@ -39,16 +39,16 @@
 		<class>enterprises.orbital.evekit.sde.eve.EveGraphic</class>
 		<class>enterprises.orbital.evekit.sde.eve.EveIcon</class>
 		<class>enterprises.orbital.evekit.sde.eve.EveUnit</class>
-    <class>enterprises.orbital.evekit.sde.ind.IndActivity</class>
-    <class>enterprises.orbital.evekit.sde.ind.IndActivityMaterial</class>
-    <class>enterprises.orbital.evekit.sde.ind.IndActivityMaterialPK</class>
-    <class>enterprises.orbital.evekit.sde.ind.IndActivityPK</class>
-    <class>enterprises.orbital.evekit.sde.ind.IndActivityProbability</class>
-    <class>enterprises.orbital.evekit.sde.ind.IndActivityProbabilityPK</class>
-    <class>enterprises.orbital.evekit.sde.ind.IndActivityProduct</class>
-    <class>enterprises.orbital.evekit.sde.ind.IndActivityProductPK</class>
-    <class>enterprises.orbital.evekit.sde.ind.IndActivitySkill</class>
-    <class>enterprises.orbital.evekit.sde.ind.IndActivitySkillPK</class>
+		<class>enterprises.orbital.evekit.sde.ind.IndActivity</class>
+		<class>enterprises.orbital.evekit.sde.ind.IndActivityMaterial</class>
+		<class>enterprises.orbital.evekit.sde.ind.IndActivityMaterialPK</class>
+		<class>enterprises.orbital.evekit.sde.ind.IndActivityPK</class>
+		<class>enterprises.orbital.evekit.sde.ind.IndActivityProbability</class>
+		<class>enterprises.orbital.evekit.sde.ind.IndActivityProbabilityPK</class>
+		<class>enterprises.orbital.evekit.sde.ind.IndActivityProduct</class>
+		<class>enterprises.orbital.evekit.sde.ind.IndActivityProductPK</class>
+		<class>enterprises.orbital.evekit.sde.ind.IndActivitySkill</class>
+		<class>enterprises.orbital.evekit.sde.ind.IndActivitySkillPK</class>
 		<class>enterprises.orbital.evekit.sde.ind.IndBlueprint</class>
 		<class>enterprises.orbital.evekit.sde.inv.InvCategory</class>
 		<class>enterprises.orbital.evekit.sde.inv.InvContrabandType</class>
