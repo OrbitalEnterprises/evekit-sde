@@ -21,7 +21,7 @@ public class TestInvItem extends TestSetup {
       contid += next.size();
       next = InvItem.access(contid, maxresults, all, all, all, all, all, all);
     }
-    Assert.assertEquals(531487, contid);
+    Assert.assertEquals(531494, contid);
   }
 
   @Test

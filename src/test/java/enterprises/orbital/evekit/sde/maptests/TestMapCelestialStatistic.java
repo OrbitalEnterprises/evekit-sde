@@ -50,7 +50,7 @@ public class TestMapCelestialStatistic extends TestSetup {
     Assert.assertEquals(2548940000.0, random.getOrbitPeriod(), 0.0001);
     Assert.assertEquals(101420.0, random.getRotationRate(), 0.0001);
     Assert.assertEquals(Byte.valueOf((byte) 0), random.getLocked());
-    Assert.assertEquals(0.0, random.getPressure(), 0.0001);
+    Assert.assertEquals(0.137934, random.getPressure(), 0.0001);
     Assert.assertEquals(5540000.0, random.getRadius(), 0.0001);
     Assert.assertNull(random.getMass());
     Assert.assertNotNull(random.toString());
