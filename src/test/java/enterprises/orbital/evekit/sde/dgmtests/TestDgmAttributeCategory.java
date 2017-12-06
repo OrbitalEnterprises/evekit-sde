@@ -20,7 +20,7 @@ public class TestDgmAttributeCategory extends TestSetup {
       contid += next.size();
       next = DgmAttributeCategory.access(contid, maxresults, all, all, all);
     }
-    Assert.assertEquals(36, contid);
+    Assert.assertEquals(35, contid);
   }
 
   @Test

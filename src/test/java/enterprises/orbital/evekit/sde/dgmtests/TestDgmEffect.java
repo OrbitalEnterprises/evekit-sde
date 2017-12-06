@@ -22,7 +22,7 @@ public class TestDgmEffect extends TestSetup {
       next = DgmEffect.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all,
                               all, all, all, all, all, all);
     }
-    Assert.assertEquals(3941, contid);
+    Assert.assertEquals(3977, contid);
   }
 
   @Test
