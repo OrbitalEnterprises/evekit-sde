@@ -33,7 +33,7 @@ public class TestStaStation extends TestSetup {
     StaStation random = next.get(0);
     Assert.assertNotNull(random);
     Assert.assertEquals(60000019, random.getStationID());
-    Assert.assertEquals(0.830854795783324, random.getSecurity(), 0.0001);
+    Assert.assertEquals(1.0, random.getSecurity(), 0.0001);
     Assert.assertEquals(0.0, random.getDockingCostPerVolume(), 0.0001);
     Assert.assertEquals(50000000.0, random.getMaxShipVolumeDockable(), 0.0001);
     Assert.assertEquals(10000, random.getOfficeRentalCost());
