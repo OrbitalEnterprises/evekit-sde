@@ -21,7 +21,7 @@ public class TestInvCategory extends TestSetup {
       contid += next.size();
       next = InvCategory.access(contid, maxresults, all, all, all, all);
     }
-    Assert.assertEquals(42, contid);
+    Assert.assertEquals(43, contid);
   }
 
   @Test

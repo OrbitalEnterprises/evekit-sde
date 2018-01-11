@@ -21,7 +21,7 @@ public class TestInvTypeMaterial extends TestSetup {
       contid += next.size();
       next = InvTypeMaterial.access(contid, maxresults, all, all, all);
     }
-    Assert.assertEquals(42022, contid);
+    Assert.assertEquals(42057, contid);
   }
 
   @Test
