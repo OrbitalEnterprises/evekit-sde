@@ -1,19 +1,17 @@
 package enterprises.orbital.evekit.sde.dgm;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import enterprises.orbital.evekit.sde.AttributeParameters;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeParameters;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The persistent class for the dgmattributecategories database table.
@@ -26,20 +24,20 @@ public class DgmAttributeCategory {
   private static final Logger log = Logger.getLogger(DgmAttributeCategory.class.getName());
 
   @Id
-  private byte                categoryID;
+  private int                categoryID;
   private String              categoryName;
   private String              categoryDescription;
 
   public DgmAttributeCategory() {}
 
-  public DgmAttributeCategory(byte categoryID, String categoryDescription, String categoryName) {
+  public DgmAttributeCategory(int categoryID, String categoryDescription, String categoryName) {
     super();
     this.categoryID = categoryID;
     this.categoryDescription = categoryDescription;
     this.categoryName = categoryName;
   }
 
-  public byte getCategoryID() {
+  public int getCategoryID() {
     return this.categoryID;
   }
 
@@ -58,25 +56,22 @@ public class DgmAttributeCategory {
                                                   final AttributeSelector categoryDescription,
                                                   final AttributeSelector categoryName) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<DgmAttributeCategory>>() {
-        @Override
-        public List<DgmAttributeCategory> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM DgmAttributeCategory c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "categoryID", categoryID);
-          AttributeSelector.addStringSelector(qs, "c", "categoryDescription", categoryDescription, p);
-          AttributeSelector.addStringSelector(qs, "c", "categoryName", categoryName, p);
-          // Return result
-          TypedQuery<DgmAttributeCategory> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), DgmAttributeCategory.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM DgmAttributeCategory c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "categoryID", categoryID);
+        AttributeSelector.addStringSelector(qs, "c", "categoryDescription", categoryDescription, p);
+        AttributeSelector.addStringSelector(qs, "c", "categoryName", categoryName, p);
+        // Return result
+        TypedQuery<DgmAttributeCategory> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), DgmAttributeCategory.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

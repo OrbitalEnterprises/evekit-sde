@@ -1,21 +1,14 @@
 package enterprises.orbital.evekit.sde.chr;
 
+import enterprises.orbital.evekit.sde.AttributeParameters;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
+
+import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
-import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeParameters;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
 
 /**
  * The persistent class for the chrancestries database table.
@@ -28,25 +21,25 @@ public class ChrAncestry {
   public static final Logger log = Logger.getLogger(ChrAncestry.class.getName());
 
   @Id
-  private byte               ancestryID;
+  private int               ancestryID;
   private String             ancestryName;
-  private byte               bloodlineID;
+  private int               bloodlineID;
   @Lob
   @Column(
       length = 102400)
   private String             description;
-  private byte               perception;
-  private byte               willpower;
-  private byte               charisma;
-  private byte               memory;
-  private byte               intelligence;
+  private int               perception;
+  private int               willpower;
+  private int               charisma;
+  private int               memory;
+  private int               intelligence;
   private Integer            iconID;
   private String             shortDescription;
 
   public ChrAncestry() {}
 
-  public ChrAncestry(byte ancestryID, String ancestryName, byte bloodlineID, byte charisma, String description, Integer iconID, byte intelligence, byte memory,
-                     byte perception, String shortDescription, byte willpower) {
+  public ChrAncestry(int ancestryID, String ancestryName, int bloodlineID, int charisma, String description, Integer iconID, int intelligence, int memory,
+                     int perception, String shortDescription, int willpower) {
     super();
     this.ancestryID = ancestryID;
     this.ancestryName = ancestryName;
@@ -61,7 +54,7 @@ public class ChrAncestry {
     this.willpower = willpower;
   }
 
-  public byte getAncestryID() {
+  public int getAncestryID() {
     return this.ancestryID;
   }
 
@@ -69,11 +62,11 @@ public class ChrAncestry {
     return this.ancestryName;
   }
 
-  public byte getBloodlineID() {
+  public int getBloodlineID() {
     return this.bloodlineID;
   }
 
-  public byte getCharisma() {
+  public int getCharisma() {
     return this.charisma;
   }
 
@@ -85,15 +78,15 @@ public class ChrAncestry {
     return iconID;
   }
 
-  public byte getIntelligence() {
+  public int getIntelligence() {
     return this.intelligence;
   }
 
-  public byte getMemory() {
+  public int getMemory() {
     return this.memory;
   }
 
-  public byte getPerception() {
+  public int getPerception() {
     return this.perception;
   }
 
@@ -101,7 +94,7 @@ public class ChrAncestry {
     return this.shortDescription;
   }
 
-  public byte getWillpower() {
+  public int getWillpower() {
     return this.willpower;
   }
 
@@ -120,33 +113,30 @@ public class ChrAncestry {
                                          final AttributeSelector shortDescription,
                                          final AttributeSelector willpower) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<ChrAncestry>>() {
-        @Override
-        public List<ChrAncestry> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM ChrAncestry c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "ancestryID", ancestryID);
-          AttributeSelector.addStringSelector(qs, "c", "ancestryName", ancestryName, p);
-          AttributeSelector.addIntSelector(qs, "c", "bloodlineID", bloodlineID);
-          AttributeSelector.addIntSelector(qs, "c", "charisma", charisma);
-          AttributeSelector.addStringSelector(qs, "c", "description", description, p);
-          AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
-          AttributeSelector.addIntSelector(qs, "c", "intelligence", intelligence);
-          AttributeSelector.addIntSelector(qs, "c", "memory", memory);
-          AttributeSelector.addIntSelector(qs, "c", "perception", perception);
-          AttributeSelector.addStringSelector(qs, "c", "shortDescription", shortDescription, p);
-          AttributeSelector.addIntSelector(qs, "c", "willpower", willpower);
-          // Return result
-          TypedQuery<ChrAncestry> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), ChrAncestry.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM ChrAncestry c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "ancestryID", ancestryID);
+        AttributeSelector.addStringSelector(qs, "c", "ancestryName", ancestryName, p);
+        AttributeSelector.addIntSelector(qs, "c", "bloodlineID", bloodlineID);
+        AttributeSelector.addIntSelector(qs, "c", "charisma", charisma);
+        AttributeSelector.addStringSelector(qs, "c", "description", description, p);
+        AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
+        AttributeSelector.addIntSelector(qs, "c", "intelligence", intelligence);
+        AttributeSelector.addIntSelector(qs, "c", "memory", memory);
+        AttributeSelector.addIntSelector(qs, "c", "perception", perception);
+        AttributeSelector.addStringSelector(qs, "c", "shortDescription", shortDescription, p);
+        AttributeSelector.addIntSelector(qs, "c", "willpower", willpower);
+        // Return result
+        TypedQuery<ChrAncestry> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), ChrAncestry.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

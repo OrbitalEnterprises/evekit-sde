@@ -35,7 +35,7 @@ public class TestRamActivity extends TestSetup {
     Assert.assertEquals("Copying", random.getActivityName());
     Assert.assertEquals("33_02", random.getIconNo());
     Assert.assertEquals("Copying", random.getDescription());
-    Assert.assertEquals(1, random.getPublished());
+    Assert.assertTrue(random.isPublished());
     Assert.assertNotNull(random.toString());
   }
 

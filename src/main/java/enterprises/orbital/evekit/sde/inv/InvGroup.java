@@ -1,19 +1,17 @@
 package enterprises.orbital.evekit.sde.inv;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import enterprises.orbital.evekit.sde.AttributeParameters;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeParameters;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The persistent class for the invgroups database table.
@@ -30,16 +28,16 @@ public class InvGroup {
   private int                 categoryID;
   private String              groupName;
   private Integer             iconID;
-  private byte                useBasePrice;
-  private byte                anchored;
-  private byte                anchorable;
-  private byte                fittableNonSingleton;
-  private byte                published;
+  private boolean                useBasePrice;
+  private boolean                anchored;
+  private boolean                anchorable;
+  private boolean                fittableNonSingleton;
+  private boolean                published;
 
   public InvGroup() {}
 
-  public InvGroup(int groupID, byte anchorable, byte anchored, int categoryID, byte fittableNonSingleton, String groupName, Integer iconID, byte published,
-                  byte useBasePrice) {
+  public InvGroup(int groupID, boolean anchorable, boolean anchored, int categoryID, boolean fittableNonSingleton, String groupName, Integer iconID, boolean published,
+                  boolean useBasePrice) {
     super();
     this.groupID = groupID;
     this.anchorable = anchorable;
@@ -56,11 +54,11 @@ public class InvGroup {
     return this.groupID;
   }
 
-  public byte getAnchorable() {
+  public boolean isAnchorable() {
     return this.anchorable;
   }
 
-  public byte getAnchored() {
+  public boolean isAnchored() {
     return this.anchored;
   }
 
@@ -68,7 +66,7 @@ public class InvGroup {
     return this.categoryID;
   }
 
-  public byte getFittableNonSingleton() {
+  public boolean isFittableNonSingleton() {
     return this.fittableNonSingleton;
   }
 
@@ -80,11 +78,11 @@ public class InvGroup {
     return this.iconID;
   }
 
-  public byte getPublished() {
+  public boolean isPublished() {
     return this.published;
   }
 
-  public byte getUseBasePrice() {
+  public boolean isUseBasePrice() {
     return this.useBasePrice;
   }
 
@@ -101,31 +99,28 @@ public class InvGroup {
                                       final AttributeSelector published,
                                       final AttributeSelector useBasePrice) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<InvGroup>>() {
-        @Override
-        public List<InvGroup> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM InvGroup c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "groupID", groupID);
-          AttributeSelector.addIntSelector(qs, "c", "anchorable", anchorable);
-          AttributeSelector.addIntSelector(qs, "c", "anchored", anchored);
-          AttributeSelector.addIntSelector(qs, "c", "categoryID", categoryID);
-          AttributeSelector.addIntSelector(qs, "c", "fittableNonSingleton", fittableNonSingleton);
-          AttributeSelector.addStringSelector(qs, "c", "groupName", groupName, p);
-          AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
-          AttributeSelector.addIntSelector(qs, "c", "published", published);
-          AttributeSelector.addIntSelector(qs, "c", "useBasePrice", useBasePrice);
-          // Return result
-          TypedQuery<InvGroup> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), InvGroup.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM InvGroup c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "groupID", groupID);
+        AttributeSelector.addBooleanSelector(qs, "c", "anchorable", anchorable);
+        AttributeSelector.addBooleanSelector(qs, "c", "anchored", anchored);
+        AttributeSelector.addIntSelector(qs, "c", "categoryID", categoryID);
+        AttributeSelector.addBooleanSelector(qs, "c", "fittableNonSingleton", fittableNonSingleton);
+        AttributeSelector.addStringSelector(qs, "c", "groupName", groupName, p);
+        AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
+        AttributeSelector.addBooleanSelector(qs, "c", "published", published);
+        AttributeSelector.addBooleanSelector(qs, "c", "useBasePrice", useBasePrice);
+        // Return result
+        TypedQuery<InvGroup> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), InvGroup.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

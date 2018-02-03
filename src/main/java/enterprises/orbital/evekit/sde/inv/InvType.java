@@ -1,22 +1,15 @@
 package enterprises.orbital.evekit.sde.inv;
 
+import enterprises.orbital.evekit.sde.AttributeParameters;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
-import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeParameters;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
 
 /**
  * The persistent class for the invtypes database table.
@@ -42,7 +35,7 @@ public class InvType {
   private int                 portionSize;
   private Integer             raceID;
   private BigDecimal          basePrice;
-  private byte                published;
+  private boolean                published;
   private Integer             marketGroupID;
   private Integer             iconID;
   private Integer             soundID;
@@ -51,7 +44,7 @@ public class InvType {
   public InvType() {}
 
   public InvType(int typeID, BigDecimal basePrice, Double capacity, String description, Integer factionID, Integer graphicID, int groupID, Integer iconID,
-                 Integer marketGroupID, Double mass, int portionSize, byte published, Integer raceID, Integer soundID, String typeName, Double volume) {
+                 Integer marketGroupID, Double mass, int portionSize, boolean published, Integer raceID, Integer soundID, String typeName, Double volume) {
     super();
     this.typeID = typeID;
     this.basePrice = basePrice;
@@ -110,7 +103,7 @@ public class InvType {
     return this.portionSize;
   }
 
-  public byte getPublished() {
+  public boolean isPublished() {
     return this.published;
   }
 
@@ -150,38 +143,35 @@ public class InvType {
                                      final AttributeSelector typeName,
                                      final AttributeSelector volume) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<InvType>>() {
-        @Override
-        public List<InvType> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM InvType c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "typeID", typeID);
-          AttributeSelector.addDoubleSelector(qs, "c", "basePrice", basePrice);
-          AttributeSelector.addDoubleSelector(qs, "c", "capacity", capacity);
-          AttributeSelector.addDoubleSelector(qs, "c", "chanceOfDuplicating", chanceOfDuplicating);
-          AttributeSelector.addStringSelector(qs, "c", "description", description, p);
-          AttributeSelector.addIntSelector(qs, "c", "graphicID", graphicID);
-          AttributeSelector.addIntSelector(qs, "c", "groupID", groupID);
-          AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
-          AttributeSelector.addIntSelector(qs, "c", "marketGroupID", marketGroupID);
-          AttributeSelector.addDoubleSelector(qs, "c", "mass", mass);
-          AttributeSelector.addIntSelector(qs, "c", "portionSize", portionSize);
-          AttributeSelector.addIntSelector(qs, "c", "published", published);
-          AttributeSelector.addIntSelector(qs, "c", "raceID", raceID);
-          AttributeSelector.addIntSelector(qs, "c", "soundID", soundID);
-          AttributeSelector.addStringSelector(qs, "c", "typeName", typeName, p);
-          AttributeSelector.addDoubleSelector(qs, "c", "volume", volume);
-          // Return result
-          TypedQuery<InvType> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), InvType.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM InvType c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "typeID", typeID);
+        AttributeSelector.addDoubleSelector(qs, "c", "basePrice", basePrice);
+        AttributeSelector.addDoubleSelector(qs, "c", "capacity", capacity);
+        AttributeSelector.addDoubleSelector(qs, "c", "chanceOfDuplicating", chanceOfDuplicating);
+        AttributeSelector.addStringSelector(qs, "c", "description", description, p);
+        AttributeSelector.addIntSelector(qs, "c", "graphicID", graphicID);
+        AttributeSelector.addIntSelector(qs, "c", "groupID", groupID);
+        AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
+        AttributeSelector.addIntSelector(qs, "c", "marketGroupID", marketGroupID);
+        AttributeSelector.addDoubleSelector(qs, "c", "mass", mass);
+        AttributeSelector.addIntSelector(qs, "c", "portionSize", portionSize);
+        AttributeSelector.addBooleanSelector(qs, "c", "published", published);
+        AttributeSelector.addIntSelector(qs, "c", "raceID", raceID);
+        AttributeSelector.addIntSelector(qs, "c", "soundID", soundID);
+        AttributeSelector.addStringSelector(qs, "c", "typeName", typeName, p);
+        AttributeSelector.addDoubleSelector(qs, "c", "volume", volume);
+        // Return result
+        TypedQuery<InvType> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), InvType.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

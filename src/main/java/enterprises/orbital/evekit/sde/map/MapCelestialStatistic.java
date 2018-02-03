@@ -36,21 +36,21 @@ public class MapCelestialStatistic {
   private Double              eccentricity;
   private Double              massDust;
   private Double              massGas;
-  private Byte                fragmented;
+  private Boolean                fragmented;
   private Double              density;
   private Double              surfaceGravity;
   private Double              escapeVelocity;
   private Double              orbitPeriod;
   private Double              rotationRate;
-  private Byte                locked;
+  private Boolean                locked;
   private Double              pressure;
   private Double              radius;
   private Double              mass;
 
   public MapCelestialStatistic() {}
 
-  public MapCelestialStatistic(int celestialID, Double age, Double density, Double eccentricity, Double escapeVelocity, Byte fragmented, Double life,
-                               Byte locked, Double luminosity, Double mass, Double massDust, Double massGas, Double orbitPeriod, Double orbitRadius,
+  public MapCelestialStatistic(int celestialID, Double age, Double density, Double eccentricity, Double escapeVelocity, Boolean fragmented, Double life,
+                               Boolean locked, Double luminosity, Double mass, Double massDust, Double massGas, Double orbitPeriod, Double orbitRadius,
                                Double pressure, Double radius, Double rotationRate, String spectralClass, Double surfaceGravity, Double temperature) {
     super();
     this.celestialID = celestialID;
@@ -95,7 +95,7 @@ public class MapCelestialStatistic {
     return this.escapeVelocity;
   }
 
-  public Byte getFragmented() {
+  public Boolean isFragmented() {
     return this.fragmented;
   }
 
@@ -103,7 +103,7 @@ public class MapCelestialStatistic {
     return this.life;
   }
 
-  public Byte getLocked() {
+  public Boolean isLocked() {
     return this.locked;
   }
 
@@ -179,42 +179,39 @@ public class MapCelestialStatistic {
                                                    final AttributeSelector surfaceGravity,
                                                    final AttributeSelector temperature) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<MapCelestialStatistic>>() {
-        @Override
-        public List<MapCelestialStatistic> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM MapCelestialStatistic c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "celestialID", celestialID);
-          AttributeSelector.addDoubleSelector(qs, "c", "age", age);
-          AttributeSelector.addDoubleSelector(qs, "c", "density", density);
-          AttributeSelector.addDoubleSelector(qs, "c", "eccentricity", eccentricity);
-          AttributeSelector.addDoubleSelector(qs, "c", "escapeVelocity", escapeVelocity);
-          AttributeSelector.addIntSelector(qs, "c", "fragmented", fragmented);
-          AttributeSelector.addDoubleSelector(qs, "c", "life", life);
-          AttributeSelector.addIntSelector(qs, "c", "locked", locked);
-          AttributeSelector.addDoubleSelector(qs, "c", "luminosity", luminosity);
-          AttributeSelector.addDoubleSelector(qs, "c", "mass", mass);
-          AttributeSelector.addDoubleSelector(qs, "c", "massDust", massDust);
-          AttributeSelector.addDoubleSelector(qs, "c", "massGas", massGas);
-          AttributeSelector.addDoubleSelector(qs, "c", "orbitPeriod", orbitPeriod);
-          AttributeSelector.addDoubleSelector(qs, "c", "orbitRadius", orbitRadius);
-          AttributeSelector.addDoubleSelector(qs, "c", "pressure", pressure);
-          AttributeSelector.addDoubleSelector(qs, "c", "radius", radius);
-          AttributeSelector.addDoubleSelector(qs, "c", "rotationRate", rotationRate);
-          AttributeSelector.addStringSelector(qs, "c", "spectralClass", spectralClass, p);
-          AttributeSelector.addDoubleSelector(qs, "c", "surfaceGravity", surfaceGravity);
-          AttributeSelector.addDoubleSelector(qs, "c", "temperature", temperature);
-          // Return result
-          TypedQuery<MapCelestialStatistic> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), MapCelestialStatistic.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM MapCelestialStatistic c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "celestialID", celestialID);
+        AttributeSelector.addDoubleSelector(qs, "c", "age", age);
+        AttributeSelector.addDoubleSelector(qs, "c", "density", density);
+        AttributeSelector.addDoubleSelector(qs, "c", "eccentricity", eccentricity);
+        AttributeSelector.addDoubleSelector(qs, "c", "escapeVelocity", escapeVelocity);
+        AttributeSelector.addBooleanSelector(qs, "c", "fragmented", fragmented);
+        AttributeSelector.addDoubleSelector(qs, "c", "life", life);
+        AttributeSelector.addBooleanSelector(qs, "c", "locked", locked);
+        AttributeSelector.addDoubleSelector(qs, "c", "luminosity", luminosity);
+        AttributeSelector.addDoubleSelector(qs, "c", "mass", mass);
+        AttributeSelector.addDoubleSelector(qs, "c", "massDust", massDust);
+        AttributeSelector.addDoubleSelector(qs, "c", "massGas", massGas);
+        AttributeSelector.addDoubleSelector(qs, "c", "orbitPeriod", orbitPeriod);
+        AttributeSelector.addDoubleSelector(qs, "c", "orbitRadius", orbitRadius);
+        AttributeSelector.addDoubleSelector(qs, "c", "pressure", pressure);
+        AttributeSelector.addDoubleSelector(qs, "c", "radius", radius);
+        AttributeSelector.addDoubleSelector(qs, "c", "rotationRate", rotationRate);
+        AttributeSelector.addStringSelector(qs, "c", "spectralClass", spectralClass, p);
+        AttributeSelector.addDoubleSelector(qs, "c", "surfaceGravity", surfaceGravity);
+        AttributeSelector.addDoubleSelector(qs, "c", "temperature", temperature);
+        // Return result
+        TypedQuery<MapCelestialStatistic> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), MapCelestialStatistic.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

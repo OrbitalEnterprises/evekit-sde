@@ -1,21 +1,14 @@
 package enterprises.orbital.evekit.sde.dgm;
 
+import enterprises.orbital.evekit.sde.AttributeParameters;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
+
+import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
-import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeParameters;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
 
 /**
  * The persistent class for the dgmattributetypes database table.
@@ -36,17 +29,17 @@ public class DgmAttributeType {
   private String              description;
   private Integer             iconID;
   private double              defaultValue;
-  private byte                published;
+  private boolean                published;
   private String              displayName;
   private Integer             unitID;
-  private byte                stackable;
-  private byte                highIsGood;
-  private Byte                categoryID;
+  private boolean                stackable;
+  private boolean                highIsGood;
+  private Integer                categoryID;
 
   public DgmAttributeType() {}
 
-  public DgmAttributeType(int attributeID, String attributeName, Byte categoryID, double defaultValue, String description, String displayName, byte highIsGood,
-                          Integer iconID, byte published, byte stackable, Integer unitID) {
+  public DgmAttributeType(int attributeID, String attributeName, Integer categoryID, double defaultValue, String description, String displayName, boolean highIsGood,
+                          Integer iconID, boolean published, boolean stackable, Integer unitID) {
     super();
     this.attributeID = attributeID;
     this.attributeName = attributeName;
@@ -69,7 +62,7 @@ public class DgmAttributeType {
     return this.attributeName;
   }
 
-  public Byte getCategoryID() {
+  public Integer getCategoryID() {
     return this.categoryID;
   }
 
@@ -85,7 +78,7 @@ public class DgmAttributeType {
     return this.displayName;
   }
 
-  public byte getHighIsGood() {
+  public boolean isHighIsGood() {
     return this.highIsGood;
   }
 
@@ -93,11 +86,11 @@ public class DgmAttributeType {
     return this.iconID;
   }
 
-  public byte getPublished() {
+  public boolean isPublished() {
     return this.published;
   }
 
-  public byte getStackable() {
+  public boolean isStackable() {
     return this.stackable;
   }
 
@@ -120,33 +113,30 @@ public class DgmAttributeType {
                                               final AttributeSelector stackable,
                                               final AttributeSelector unitID) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<DgmAttributeType>>() {
-        @Override
-        public List<DgmAttributeType> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM DgmAttributeType c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "attributeID", attributeID);
-          AttributeSelector.addStringSelector(qs, "c", "attributeName", attributeName, p);
-          AttributeSelector.addIntSelector(qs, "c", "categoryID", categoryID);
-          AttributeSelector.addDoubleSelector(qs, "c", "defaultValue", defaultValue);
-          AttributeSelector.addStringSelector(qs, "c", "description", description, p);
-          AttributeSelector.addStringSelector(qs, "c", "displayName", displayName, p);
-          AttributeSelector.addIntSelector(qs, "c", "highIsGood", highIsGood);
-          AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
-          AttributeSelector.addIntSelector(qs, "c", "published", published);
-          AttributeSelector.addIntSelector(qs, "c", "stackable", stackable);
-          AttributeSelector.addIntSelector(qs, "c", "unitID", unitID);
-          // Return result
-          TypedQuery<DgmAttributeType> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), DgmAttributeType.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM DgmAttributeType c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "attributeID", attributeID);
+        AttributeSelector.addStringSelector(qs, "c", "attributeName", attributeName, p);
+        AttributeSelector.addIntSelector(qs, "c", "categoryID", categoryID);
+        AttributeSelector.addDoubleSelector(qs, "c", "defaultValue", defaultValue);
+        AttributeSelector.addStringSelector(qs, "c", "description", description, p);
+        AttributeSelector.addStringSelector(qs, "c", "displayName", displayName, p);
+        AttributeSelector.addBooleanSelector(qs, "c", "highIsGood", highIsGood);
+        AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
+        AttributeSelector.addBooleanSelector(qs, "c", "published", published);
+        AttributeSelector.addBooleanSelector(qs, "c", "stackable", stackable);
+        AttributeSelector.addIntSelector(qs, "c", "unitID", unitID);
+        // Return result
+        TypedQuery<DgmAttributeType> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), DgmAttributeType.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

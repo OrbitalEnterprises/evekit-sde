@@ -1,18 +1,16 @@
 package enterprises.orbital.evekit.sde.agt;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The persistent class for the agtagents database table.
@@ -26,17 +24,17 @@ public class AgtAgent {
 
   @Id
   private int                agentID;
-  private byte               divisionID;
+  private int               divisionID;
   private int                corporationID;
   private int                locationID;
-  private byte               level;
+  private int               level;
   private short              quality;
   private int                agentTypeID;
-  private byte               isLocator;
+  private boolean               isLocator;
 
   public AgtAgent() {}
 
-  public AgtAgent(int agentID, int agentTypeID, int corporationID, byte divisionID, byte isLocator, byte level, int locationID, short quality) {
+  public AgtAgent(int agentID, int agentTypeID, int corporationID, int divisionID, boolean isLocator, int level, int locationID, short quality) {
     super();
     this.agentID = agentID;
     this.agentTypeID = agentTypeID;
@@ -60,15 +58,15 @@ public class AgtAgent {
     return this.corporationID;
   }
 
-  public byte getDivisionID() {
+  public int getDivisionID() {
     return this.divisionID;
   }
 
-  public byte getIsLocator() {
+  public boolean isLocator() {
     return this.isLocator;
   }
 
-  public byte getLevel() {
+  public int getLevel() {
     return this.level;
   }
 
@@ -92,28 +90,25 @@ public class AgtAgent {
                                       final AttributeSelector locationID,
                                       final AttributeSelector quality) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<AgtAgent>>() {
-        @Override
-        public List<AgtAgent> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM AgtAgent c WHERE 1 = 1");
-          AttributeSelector.addIntSelector(qs, "c", "agentID", agentID);
-          AttributeSelector.addIntSelector(qs, "c", "agentTypeID", agentTypeID);
-          AttributeSelector.addIntSelector(qs, "c", "corporationID", corporationID);
-          AttributeSelector.addIntSelector(qs, "c", "divisionID", divisionID);
-          AttributeSelector.addIntSelector(qs, "c", "isLocator", isLocator);
-          AttributeSelector.addIntSelector(qs, "c", "level", level);
-          AttributeSelector.addIntSelector(qs, "c", "locationID", locationID);
-          AttributeSelector.addIntSelector(qs, "c", "quality", quality);
-          // Return result
-          TypedQuery<AgtAgent> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), AgtAgent.class);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM AgtAgent c WHERE 1 = 1");
+        AttributeSelector.addIntSelector(qs, "c", "agentID", agentID);
+        AttributeSelector.addIntSelector(qs, "c", "agentTypeID", agentTypeID);
+        AttributeSelector.addIntSelector(qs, "c", "corporationID", corporationID);
+        AttributeSelector.addIntSelector(qs, "c", "divisionID", divisionID);
+        AttributeSelector.addBooleanSelector(qs, "c", "isLocator", isLocator);
+        AttributeSelector.addIntSelector(qs, "c", "level", level);
+        AttributeSelector.addIntSelector(qs, "c", "locationID", locationID);
+        AttributeSelector.addIntSelector(qs, "c", "quality", quality);
+        // Return result
+        TypedQuery<AgtAgent> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), AgtAgent.class);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

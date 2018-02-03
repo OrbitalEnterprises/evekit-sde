@@ -14,11 +14,11 @@ public class CrpNpcCorporationDivisionPK implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private int               corporationID;
-  private byte              divisionID;
+  private int              divisionID;
 
   public CrpNpcCorporationDivisionPK() {}
 
-  public CrpNpcCorporationDivisionPK(int corporationID, byte divisionID) {
+  public CrpNpcCorporationDivisionPK(int corporationID, int divisionID) {
     super();
     this.corporationID = corporationID;
     this.divisionID = divisionID;
@@ -28,7 +28,7 @@ public class CrpNpcCorporationDivisionPK implements Serializable {
     return this.corporationID;
   }
 
-  public byte getDivisionID() {
+  public int getDivisionID() {
     return this.divisionID;
   }
 

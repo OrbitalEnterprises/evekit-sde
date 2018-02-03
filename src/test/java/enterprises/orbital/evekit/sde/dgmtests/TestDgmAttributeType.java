@@ -35,12 +35,12 @@ public class TestDgmAttributeType extends TestSetup {
     Assert.assertEquals("The number of low power slots on the ship.", random.getDescription());
     Assert.assertEquals(new Integer(295), random.getIconID());
     Assert.assertEquals(0.0, random.getDefaultValue(), 0.0001);
-    Assert.assertEquals(1, random.getPublished());
+    Assert.assertTrue(random.isPublished());
     Assert.assertEquals("Low Slots", random.getDisplayName());
     Assert.assertEquals(new Integer(122), random.getUnitID());
-    Assert.assertEquals(1, random.getStackable());
-    Assert.assertEquals(1, random.getHighIsGood());
-    Assert.assertEquals(new Byte((byte) 1), random.getCategoryID());
+    Assert.assertTrue(random.isStackable());
+    Assert.assertTrue(random.isHighIsGood());
+    Assert.assertEquals((Integer) 1, random.getCategoryID());
     Assert.assertNotNull(random.toString());
   }
 }

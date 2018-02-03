@@ -43,13 +43,13 @@ public class TestMapCelestialStatistic extends TestSetup {
     Assert.assertEquals(0.0366146, random.getEccentricity(), 0.0001);
     Assert.assertEquals(2.22368008041802e+24, random.getMassDust(), 0.0001);
     Assert.assertEquals(1.84618e+17, random.getMassGas(), 0.0001);
-    Assert.assertEquals(Byte.valueOf((byte) 0), random.getFragmented());
+    Assert.assertFalse(random.isFragmented());
     Assert.assertEquals(3122.15458534349, random.getDensity(), 0.0001);
     Assert.assertEquals(4.83567604397697, random.getSurfaceGravity(), 0.0001);
     Assert.assertEquals(7319.78760397218, random.getEscapeVelocity(), 0.0001);
     Assert.assertEquals(2548940000.0, random.getOrbitPeriod(), 0.0001);
     Assert.assertEquals(101420.0, random.getRotationRate(), 0.0001);
-    Assert.assertEquals(Byte.valueOf((byte) 0), random.getLocked());
+    Assert.assertFalse(random.isLocked());
     Assert.assertEquals(0.137934, random.getPressure(), 0.0001);
     Assert.assertEquals(5540000.0, random.getRadius(), 0.0001);
     Assert.assertNull(random.getMass());

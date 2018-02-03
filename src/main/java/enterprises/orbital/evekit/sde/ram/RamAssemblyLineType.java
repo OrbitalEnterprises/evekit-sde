@@ -1,19 +1,17 @@
 package enterprises.orbital.evekit.sde.ram;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import enterprises.orbital.evekit.sde.AttributeParameters;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeParameters;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The persistent class for the ramassemblylinetypes database table.
@@ -33,12 +31,12 @@ public class RamAssemblyLineType {
   private double              baseMaterialMultiplier;
   private double              baseCostMultiplier;
   private double              volume;
-  private byte                activityID;
+  private int                activityID;
   private Double              minCostPerHour;
 
   public RamAssemblyLineType() {}
 
-  public RamAssemblyLineType(int assemblyLineTypeID, byte activityID, String assemblyLineTypeName, double baseCostMultiplier, double baseMaterialMultiplier,
+  public RamAssemblyLineType(int assemblyLineTypeID, int activityID, String assemblyLineTypeName, double baseCostMultiplier, double baseMaterialMultiplier,
                              double baseTimeMultiplier, String description, Double minCostPerHour, double volume) {
     super();
     this.assemblyLineTypeID = assemblyLineTypeID;
@@ -56,7 +54,7 @@ public class RamAssemblyLineType {
     return this.assemblyLineTypeID;
   }
 
-  public byte getActivityID() {
+  public int getActivityID() {
     return this.activityID;
   }
 
@@ -101,31 +99,28 @@ public class RamAssemblyLineType {
                                                  final AttributeSelector minCostPerHour,
                                                  final AttributeSelector volume) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<RamAssemblyLineType>>() {
-        @Override
-        public List<RamAssemblyLineType> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM RamAssemblyLineType c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "assemblyLineTypeID", assemblyLineTypeID);
-          AttributeSelector.addIntSelector(qs, "c", "activityID", activityID);
-          AttributeSelector.addStringSelector(qs, "c", "assemblyLineTypeName", assemblyLineTypeName, p);
-          AttributeSelector.addDoubleSelector(qs, "c", "baseCostMultiplier", baseCostMultiplier);
-          AttributeSelector.addDoubleSelector(qs, "c", "baseMaterialMultiplier", baseMaterialMultiplier);
-          AttributeSelector.addDoubleSelector(qs, "c", "baseTimeMultiplier", baseTimeMultiplier);
-          AttributeSelector.addStringSelector(qs, "c", "description", description, p);
-          AttributeSelector.addDoubleSelector(qs, "c", "minCostPerHour", minCostPerHour);
-          AttributeSelector.addDoubleSelector(qs, "c", "volume", volume);
-          // Return result
-          TypedQuery<RamAssemblyLineType> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), RamAssemblyLineType.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM RamAssemblyLineType c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "assemblyLineTypeID", assemblyLineTypeID);
+        AttributeSelector.addIntSelector(qs, "c", "activityID", activityID);
+        AttributeSelector.addStringSelector(qs, "c", "assemblyLineTypeName", assemblyLineTypeName, p);
+        AttributeSelector.addDoubleSelector(qs, "c", "baseCostMultiplier", baseCostMultiplier);
+        AttributeSelector.addDoubleSelector(qs, "c", "baseMaterialMultiplier", baseMaterialMultiplier);
+        AttributeSelector.addDoubleSelector(qs, "c", "baseTimeMultiplier", baseTimeMultiplier);
+        AttributeSelector.addStringSelector(qs, "c", "description", description, p);
+        AttributeSelector.addDoubleSelector(qs, "c", "minCostPerHour", minCostPerHour);
+        AttributeSelector.addDoubleSelector(qs, "c", "volume", volume);
+        // Return result
+        TypedQuery<RamAssemblyLineType> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), RamAssemblyLineType.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

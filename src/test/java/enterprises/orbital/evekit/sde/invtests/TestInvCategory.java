@@ -34,7 +34,7 @@ public class TestInvCategory extends TestSetup {
     Assert.assertEquals(4, random.getCategoryID());
     Assert.assertEquals("Material", random.getCategoryName());
     Assert.assertEquals(new Integer(22), random.getIconID());
-    Assert.assertEquals(1, random.getPublished());
+    Assert.assertTrue(random.isPublished());
     Assert.assertNotNull(random.toString());
   }
 

@@ -38,7 +38,7 @@ public class TestInvMarketGroup extends TestSetup {
                         "Many unusual goods are traded by capsuleers, including various tags, chips, tokens, charters and tools that are used in special activities or have exchange value with non-capsuleers",
                         random.getDescription());
     Assert.assertEquals(new Integer(2340), random.getIconID());
-    Assert.assertEquals(0, random.getHasTypes());
+    Assert.assertFalse(random.isHasTypes());
   }
 
 }

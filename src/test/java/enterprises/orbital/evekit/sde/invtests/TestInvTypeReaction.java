@@ -27,13 +27,13 @@ public class TestInvTypeReaction extends TestSetup {
   @Test
   public void testRandomElement() {
     AttributeSelector all = new AttributeSelector("{any:true}");
-    List<InvTypeReaction> next = InvTypeReaction.access(0, 1000, new AttributeSelector("{values:[17941]}"), new AttributeSelector("{values:[1]}"),
+    List<InvTypeReaction> next = InvTypeReaction.access(0, 1000, new AttributeSelector("{values:[17941]}"), new AttributeSelector("{values:[true]}"),
                                                         new AttributeSelector("{values:[16647]}"), all);
     Assert.assertEquals(1, next.size());
     InvTypeReaction random = next.get(0);
     Assert.assertNotNull(random);
     Assert.assertEquals(17941, random.id().getReactionTypeID());
-    Assert.assertEquals(1, random.id().getInput());
+    Assert.assertTrue(random.id().isInput());
     Assert.assertEquals(16647, random.id().getTypeID());
     Assert.assertEquals(1, random.getQuantity());
     Assert.assertNotNull(random.toString());

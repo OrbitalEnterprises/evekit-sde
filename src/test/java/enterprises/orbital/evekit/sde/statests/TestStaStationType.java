@@ -39,9 +39,9 @@ public class TestStaStationType extends TestSetup {
     Assert.assertEquals(5.96046447754e-08, random.getDockOrientationY(), 0.0001);
     Assert.assertEquals(0.999999940395, random.getDockOrientationZ(), 0.0001);
     Assert.assertNull(random.getOperationID());
-    Assert.assertNull(random.getOfficeSlots());
+    Assert.assertNull(random.isOfficeSlots());
     Assert.assertNull(random.getReprocessingEfficiency());
-    Assert.assertEquals(0, random.getConquerable());
+    Assert.assertFalse(random.isConquerable());
     Assert.assertNotNull(random.toString());
   }
 

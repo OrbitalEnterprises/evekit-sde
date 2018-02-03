@@ -1,18 +1,16 @@
 package enterprises.orbital.evekit.sde.map;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import enterprises.orbital.evekit.sde.AttributeParameters;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeParameters;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The persistent class for the mapdenormalize database table.
@@ -36,12 +34,12 @@ public class MapDenormalize {
   private Double              radius;
   private String              itemName;
   private Double              security;
-  private Byte                celestialIndex;
-  private Byte                orbitIndex;
+  private Integer                celestialIndex;
+  private Integer                orbitIndex;
 
   public MapDenormalize() {}
 
-  public MapDenormalize(int itemID, Byte celestialIndex, Integer constellationID, int groupID, String itemName, Integer orbitID, Byte orbitIndex, Double radius,
+  public MapDenormalize(int itemID, Integer celestialIndex, Integer constellationID, int groupID, String itemName, Integer orbitID, Integer orbitIndex, Double radius,
                         Integer regionID, Double security, Integer solarSystemID, int typeID, double x, double y, double z) {
     super();
     this.itemID = itemID;
@@ -65,7 +63,7 @@ public class MapDenormalize {
     return this.itemID;
   }
 
-  public Byte getCelestialIndex() {
+  public Integer getCelestialIndex() {
     return this.celestialIndex;
   }
 
@@ -85,7 +83,7 @@ public class MapDenormalize {
     return this.orbitID;
   }
 
-  public Byte getOrbitIndex() {
+  public Integer getOrbitIndex() {
     return this.orbitIndex;
   }
 
@@ -140,37 +138,34 @@ public class MapDenormalize {
                                             final AttributeSelector y,
                                             final AttributeSelector z) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<MapDenormalize>>() {
-        @Override
-        public List<MapDenormalize> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM MapDenormalize c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "itemID", itemID);
-          AttributeSelector.addIntSelector(qs, "c", "celestialIndex", celestialIndex);
-          AttributeSelector.addIntSelector(qs, "c", "constellationID", constellationID);
-          AttributeSelector.addIntSelector(qs, "c", "groupID", groupID);
-          AttributeSelector.addStringSelector(qs, "c", "itemName", itemName, p);
-          AttributeSelector.addIntSelector(qs, "c", "orbitID", orbitID);
-          AttributeSelector.addIntSelector(qs, "c", "orbitIndex", orbitIndex);
-          AttributeSelector.addDoubleSelector(qs, "c", "radius", radius);
-          AttributeSelector.addIntSelector(qs, "c", "regionID", regionID);
-          AttributeSelector.addDoubleSelector(qs, "c", "security", security);
-          AttributeSelector.addIntSelector(qs, "c", "solarSystemID", solarSystemID);
-          AttributeSelector.addIntSelector(qs, "c", "typeID", typeID);
-          AttributeSelector.addDoubleSelector(qs, "c", "x", x);
-          AttributeSelector.addDoubleSelector(qs, "c", "y", y);
-          AttributeSelector.addDoubleSelector(qs, "c", "z", z);
-          // Return result
-          TypedQuery<MapDenormalize> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), MapDenormalize.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM MapDenormalize c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "itemID", itemID);
+        AttributeSelector.addIntSelector(qs, "c", "celestialIndex", celestialIndex);
+        AttributeSelector.addIntSelector(qs, "c", "constellationID", constellationID);
+        AttributeSelector.addIntSelector(qs, "c", "groupID", groupID);
+        AttributeSelector.addStringSelector(qs, "c", "itemName", itemName, p);
+        AttributeSelector.addIntSelector(qs, "c", "orbitID", orbitID);
+        AttributeSelector.addIntSelector(qs, "c", "orbitIndex", orbitIndex);
+        AttributeSelector.addDoubleSelector(qs, "c", "radius", radius);
+        AttributeSelector.addIntSelector(qs, "c", "regionID", regionID);
+        AttributeSelector.addDoubleSelector(qs, "c", "security", security);
+        AttributeSelector.addIntSelector(qs, "c", "solarSystemID", solarSystemID);
+        AttributeSelector.addIntSelector(qs, "c", "typeID", typeID);
+        AttributeSelector.addDoubleSelector(qs, "c", "x", x);
+        AttributeSelector.addDoubleSelector(qs, "c", "y", y);
+        AttributeSelector.addDoubleSelector(qs, "c", "z", z);
+        // Return result
+        TypedQuery<MapDenormalize> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), MapDenormalize.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

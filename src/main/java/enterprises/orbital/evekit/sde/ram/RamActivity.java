@@ -1,19 +1,17 @@
 package enterprises.orbital.evekit.sde.ram;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import enterprises.orbital.evekit.sde.AttributeParameters;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeParameters;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The persistent class for the ramactivities database table.
@@ -26,15 +24,15 @@ public class RamActivity {
   private static final Logger log = Logger.getLogger(RamActivity.class.getName());
 
   @Id
-  private byte                activityID;
+  private int                activityID;
   private String              activityName;
   private String              iconNo;
   private String              description;
-  private byte                published;
+  private boolean                published;
 
   public RamActivity() {}
 
-  public RamActivity(byte activityID, String activityName, String description, String iconNo, byte published) {
+  public RamActivity(int activityID, String activityName, String description, String iconNo, boolean published) {
     super();
     this.activityID = activityID;
     this.activityName = activityName;
@@ -43,7 +41,7 @@ public class RamActivity {
     this.published = published;
   }
 
-  public byte getActivityID() {
+  public int getActivityID() {
     return this.activityID;
   }
 
@@ -59,7 +57,7 @@ public class RamActivity {
     return this.iconNo;
   }
 
-  public byte getPublished() {
+  public boolean isPublished() {
     return this.published;
   }
 
@@ -72,27 +70,24 @@ public class RamActivity {
                                          final AttributeSelector iconNo,
                                          final AttributeSelector published) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<RamActivity>>() {
-        @Override
-        public List<RamActivity> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM RamActivity c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "activityID", activityID);
-          AttributeSelector.addStringSelector(qs, "c", "activityName", activityName, p);
-          AttributeSelector.addStringSelector(qs, "c", "description", description, p);
-          AttributeSelector.addStringSelector(qs, "c", "iconNo", iconNo, p);
-          AttributeSelector.addIntSelector(qs, "c", "published", published);
-          // Return result
-          TypedQuery<RamActivity> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), RamActivity.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM RamActivity c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "activityID", activityID);
+        AttributeSelector.addStringSelector(qs, "c", "activityName", activityName, p);
+        AttributeSelector.addStringSelector(qs, "c", "description", description, p);
+        AttributeSelector.addStringSelector(qs, "c", "iconNo", iconNo, p);
+        AttributeSelector.addBooleanSelector(qs, "c", "published", published);
+        // Return result
+        TypedQuery<RamActivity> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), RamActivity.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

@@ -43,7 +43,7 @@ public class TestInvType extends TestSetup {
     Assert.assertEquals(1, random.getPortionSize());
     Assert.assertEquals(new Integer(1), random.getRaceID());
     Assert.assertNull(random.getBasePrice());
-    Assert.assertEquals(0, random.getPublished());
+    Assert.assertFalse(random.isPublished());
     Assert.assertNull(random.getMarketGroupID());
     Assert.assertNull(random.getIconID());
     Assert.assertNotNull(random.toString());

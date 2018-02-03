@@ -1,21 +1,14 @@
 package enterprises.orbital.evekit.sde.chr;
 
+import enterprises.orbital.evekit.sde.AttributeParameters;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
+
+import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
-import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeParameters;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
 
 /**
  * The persistent class for the chrbloodlines database table.
@@ -28,9 +21,9 @@ public class ChrBloodline {
   public static final Logger log = Logger.getLogger(ChrBloodline.class.getName());
 
   @Id
-  private byte               bloodlineID;
+  private int               bloodlineID;
   private String             bloodlineName;
-  private byte               raceID;
+  private int               raceID;
   @Lob
   @Column(
       length = 102400)
@@ -45,11 +38,11 @@ public class ChrBloodline {
   private String             femaleDescription;
   private int                shipTypeID;
   private int                corporationID;
-  private byte               perception;
-  private byte               willpower;
-  private byte               charisma;
-  private byte               memory;
-  private byte               intelligence;
+  private int               perception;
+  private int               willpower;
+  private int               charisma;
+  private int               memory;
+  private int               intelligence;
   private int                iconID;
   private String             shortDescription;
   private String             shortFemaleDescription;
@@ -57,9 +50,9 @@ public class ChrBloodline {
 
   public ChrBloodline() {}
 
-  public ChrBloodline(byte bloodlineID, String bloodlineName, byte charisma, int corporationID, String description, String femaleDescription, int iconID,
-                      byte intelligence, String maleDescription, byte memory, byte perception, byte raceID, int shipTypeID, String shortDescription,
-                      String shortFemaleDescription, String shortMaleDescription, byte willpower) {
+  public ChrBloodline(int bloodlineID, String bloodlineName, int charisma, int corporationID, String description, String femaleDescription, int iconID,
+                      int intelligence, String maleDescription, int memory, int perception, int raceID, int shipTypeID, String shortDescription,
+                      String shortFemaleDescription, String shortMaleDescription, int willpower) {
     super();
     this.bloodlineID = bloodlineID;
     this.bloodlineName = bloodlineName;
@@ -80,7 +73,7 @@ public class ChrBloodline {
     this.willpower = willpower;
   }
 
-  public byte getBloodlineID() {
+  public int getBloodlineID() {
     return this.bloodlineID;
   }
 
@@ -88,7 +81,7 @@ public class ChrBloodline {
     return this.bloodlineName;
   }
 
-  public byte getCharisma() {
+  public int getCharisma() {
     return this.charisma;
   }
 
@@ -108,7 +101,7 @@ public class ChrBloodline {
     return this.iconID;
   }
 
-  public byte getIntelligence() {
+  public int getIntelligence() {
     return this.intelligence;
   }
 
@@ -116,15 +109,15 @@ public class ChrBloodline {
     return this.maleDescription;
   }
 
-  public byte getMemory() {
+  public int getMemory() {
     return this.memory;
   }
 
-  public byte getPerception() {
+  public int getPerception() {
     return this.perception;
   }
 
-  public byte getRaceID() {
+  public int getRaceID() {
     return this.raceID;
   }
 
@@ -144,7 +137,7 @@ public class ChrBloodline {
     return this.shortMaleDescription;
   }
 
-  public byte getWillpower() {
+  public int getWillpower() {
     return this.willpower;
   }
 
@@ -169,39 +162,36 @@ public class ChrBloodline {
                                           final AttributeSelector shortMaleDescription,
                                           final AttributeSelector willpower) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<ChrBloodline>>() {
-        @Override
-        public List<ChrBloodline> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM ChrBloodline c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "bloodlineID", bloodlineID);
-          AttributeSelector.addStringSelector(qs, "c", "bloodlineName", bloodlineName, p);
-          AttributeSelector.addIntSelector(qs, "c", "charisma", charisma);
-          AttributeSelector.addIntSelector(qs, "c", "corporationID", corporationID);
-          AttributeSelector.addStringSelector(qs, "c", "description", description, p);
-          AttributeSelector.addStringSelector(qs, "c", "femaleDescription", femaleDescription, p);
-          AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
-          AttributeSelector.addIntSelector(qs, "c", "intelligence", intelligence);
-          AttributeSelector.addStringSelector(qs, "c", "maleDescription", maleDescription, p);
-          AttributeSelector.addIntSelector(qs, "c", "memory", memory);
-          AttributeSelector.addIntSelector(qs, "c", "perception", perception);
-          AttributeSelector.addIntSelector(qs, "c", "raceID", raceID);
-          AttributeSelector.addIntSelector(qs, "c", "shipTypeID", shipTypeID);
-          AttributeSelector.addStringSelector(qs, "c", "shortDescription", shortDescription, p);
-          AttributeSelector.addStringSelector(qs, "c", "shortFemaleDescription", shortFemaleDescription, p);
-          AttributeSelector.addStringSelector(qs, "c", "shortMaleDescription", shortMaleDescription, p);
-          AttributeSelector.addIntSelector(qs, "c", "willpower", willpower);
-          // Return result
-          TypedQuery<ChrBloodline> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), ChrBloodline.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM ChrBloodline c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "bloodlineID", bloodlineID);
+        AttributeSelector.addStringSelector(qs, "c", "bloodlineName", bloodlineName, p);
+        AttributeSelector.addIntSelector(qs, "c", "charisma", charisma);
+        AttributeSelector.addIntSelector(qs, "c", "corporationID", corporationID);
+        AttributeSelector.addStringSelector(qs, "c", "description", description, p);
+        AttributeSelector.addStringSelector(qs, "c", "femaleDescription", femaleDescription, p);
+        AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
+        AttributeSelector.addIntSelector(qs, "c", "intelligence", intelligence);
+        AttributeSelector.addStringSelector(qs, "c", "maleDescription", maleDescription, p);
+        AttributeSelector.addIntSelector(qs, "c", "memory", memory);
+        AttributeSelector.addIntSelector(qs, "c", "perception", perception);
+        AttributeSelector.addIntSelector(qs, "c", "raceID", raceID);
+        AttributeSelector.addIntSelector(qs, "c", "shipTypeID", shipTypeID);
+        AttributeSelector.addStringSelector(qs, "c", "shortDescription", shortDescription, p);
+        AttributeSelector.addStringSelector(qs, "c", "shortFemaleDescription", shortFemaleDescription, p);
+        AttributeSelector.addStringSelector(qs, "c", "shortMaleDescription", shortMaleDescription, p);
+        AttributeSelector.addIntSelector(qs, "c", "willpower", willpower);
+        // Return result
+        TypedQuery<ChrBloodline> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), ChrBloodline.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

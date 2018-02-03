@@ -35,11 +35,11 @@ public class TestInvGroup extends TestSetup {
     Assert.assertEquals(2, random.getCategoryID());
     Assert.assertEquals("Asteroid Belt", random.getGroupName());
     Assert.assertEquals(new Integer(15), random.getIconID());
-    Assert.assertEquals(0, random.getUseBasePrice());
-    Assert.assertEquals(0, random.getAnchored());
-    Assert.assertEquals(0, random.getAnchorable());
-    Assert.assertEquals(0, random.getFittableNonSingleton());
-    Assert.assertEquals(0, random.getPublished());
+    Assert.assertFalse(random.isUseBasePrice());
+    Assert.assertFalse(random.isAnchored());
+    Assert.assertFalse(random.isAnchorable());
+    Assert.assertFalse(random.isFittableNonSingleton());
+    Assert.assertFalse(random.isPublished());
     Assert.assertNotNull(random.toString());
   }
 

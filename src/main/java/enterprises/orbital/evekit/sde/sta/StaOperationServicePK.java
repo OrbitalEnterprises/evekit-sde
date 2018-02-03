@@ -13,18 +13,18 @@ public class StaOperationServicePK implements Serializable {
   // default serial version id, required for serializable classes.
   private static final long serialVersionUID = 1L;
 
-  private byte              operationID;
+  private int              operationID;
   private int               serviceID;
 
   public StaOperationServicePK() {}
 
-  public StaOperationServicePK(byte operationID, int serviceID) {
+  public StaOperationServicePK(int operationID, int serviceID) {
     super();
     this.operationID = operationID;
     this.serviceID = serviceID;
   }
 
-  public byte getOperationID() {
+  public int getOperationID() {
     return this.operationID;
   }
 

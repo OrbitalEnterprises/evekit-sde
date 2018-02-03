@@ -32,7 +32,7 @@ public class TestDgmTypeEffect extends TestSetup {
     Assert.assertNotNull(random);
     Assert.assertEquals(180, random.id().getTypeID());
     Assert.assertEquals(600, random.id().getEffectID());
-    Assert.assertEquals(0, random.getIsDefault());
+    Assert.assertFalse(random.isDefault());
     Assert.assertNotNull(random.toString());
   }
 }

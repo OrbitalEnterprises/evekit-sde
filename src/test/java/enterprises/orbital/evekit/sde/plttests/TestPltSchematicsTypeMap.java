@@ -35,7 +35,7 @@ public class TestPltSchematicsTypeMap extends TestSetup {
     Assert.assertEquals(71, random.id().getSchematicID());
     Assert.assertEquals(2389, random.id().getTypeID());
     Assert.assertEquals(40, random.getQuantity());
-    Assert.assertEquals(1, random.getIsInput());
+    Assert.assertTrue(random.isInput());
     Assert.assertNotNull(random.toString());
   }
 

@@ -1,19 +1,17 @@
 package enterprises.orbital.evekit.sde.inv;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import enterprises.orbital.evekit.sde.AttributeParameters;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeParameters;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The persistent class for the invmarketgroups database table.
@@ -31,11 +29,11 @@ public class InvMarketGroup {
   private String              marketGroupName;
   private String              description;
   private Integer             iconID;
-  private byte                hasTypes;
+  private boolean                hasTypes;
 
   public InvMarketGroup() {}
 
-  public InvMarketGroup(int marketGroupID, String description, byte hasTypes, Integer iconID, String marketGroupName, Integer parentGroupID) {
+  public InvMarketGroup(int marketGroupID, String description, boolean hasTypes, Integer iconID, String marketGroupName, Integer parentGroupID) {
     super();
     this.marketGroupID = marketGroupID;
     this.description = description;
@@ -53,7 +51,7 @@ public class InvMarketGroup {
     return this.description;
   }
 
-  public byte getHasTypes() {
+  public boolean isHasTypes() {
     return this.hasTypes;
   }
 
@@ -79,28 +77,25 @@ public class InvMarketGroup {
                                             final AttributeSelector marketGroupName,
                                             final AttributeSelector parentGroupID) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<InvMarketGroup>>() {
-        @Override
-        public List<InvMarketGroup> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM InvMarketGroup c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "marketGroupID", marketGroupID);
-          AttributeSelector.addStringSelector(qs, "c", "description", description, p);
-          AttributeSelector.addIntSelector(qs, "c", "hasTypes", hasTypes);
-          AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
-          AttributeSelector.addStringSelector(qs, "c", "marketGroupName", marketGroupName, p);
-          AttributeSelector.addIntSelector(qs, "c", "parentGroupID", parentGroupID);
-          // Return result
-          TypedQuery<InvMarketGroup> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), InvMarketGroup.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM InvMarketGroup c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "marketGroupID", marketGroupID);
+        AttributeSelector.addStringSelector(qs, "c", "description", description, p);
+        AttributeSelector.addBooleanSelector(qs, "c", "hasTypes", hasTypes);
+        AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
+        AttributeSelector.addStringSelector(qs, "c", "marketGroupName", marketGroupName, p);
+        AttributeSelector.addIntSelector(qs, "c", "parentGroupID", parentGroupID);
+        // Return result
+        TypedQuery<InvMarketGroup> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), InvMarketGroup.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

@@ -1,19 +1,17 @@
 package enterprises.orbital.evekit.sde.map;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import enterprises.orbital.evekit.sde.AttributeParameters;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeParameters;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The persistent class for the mapsolarsystems database table.
@@ -40,13 +38,13 @@ public class MapSolarSystem {
   private double              zMin;
   private double              zMax;
   private double              luminosity;
-  private byte                border;
-  private byte                fringe;
-  private byte                corridor;
-  private byte                hub;
-  private byte                international;
-  private byte                regional;
-  private Byte                constellation;
+  private boolean                border;
+  private boolean                fringe;
+  private boolean                corridor;
+  private boolean                hub;
+  private boolean                international;
+  private boolean                regional;
+  private Boolean                constellation;
   private double              security;
   private Integer             factionID;
   private double              radius;
@@ -55,8 +53,8 @@ public class MapSolarSystem {
 
   public MapSolarSystem() {}
 
-  public MapSolarSystem(int solarSystemID, byte border, Byte constellation, int constellationID, byte corridor, Integer factionID, byte fringe, byte hub,
-                        byte international, double luminosity, double radius, byte regional, int regionID, double security, String securityClass,
+  public MapSolarSystem(int solarSystemID, boolean border, Boolean constellation, int constellationID, boolean corridor, Integer factionID, boolean fringe, boolean hub,
+                        boolean international, double luminosity, double radius, boolean regional, int regionID, double security, String securityClass,
                         String solarSystemName, int sunTypeID, double x, double xMax, double xMin, double y, double yMax, double yMin, double z, double zMax,
                         double zMin) {
     super();
@@ -92,11 +90,11 @@ public class MapSolarSystem {
     return this.solarSystemID;
   }
 
-  public byte getBorder() {
+  public boolean isBorder() {
     return this.border;
   }
 
-  public Byte getConstellation() {
+  public Boolean isConstellation() {
     return this.constellation;
   }
 
@@ -104,7 +102,7 @@ public class MapSolarSystem {
     return this.constellationID;
   }
 
-  public byte getCorridor() {
+  public boolean isCorridor() {
     return this.corridor;
   }
 
@@ -112,15 +110,15 @@ public class MapSolarSystem {
     return this.factionID;
   }
 
-  public byte getFringe() {
+  public boolean isFringe() {
     return this.fringe;
   }
 
-  public byte getHub() {
+  public boolean isHub() {
     return this.hub;
   }
 
-  public byte getInternational() {
+  public boolean isInternational() {
     return this.international;
   }
 
@@ -132,7 +130,7 @@ public class MapSolarSystem {
     return this.radius;
   }
 
-  public byte getRegional() {
+  public boolean isRegional() {
     return this.regional;
   }
 
@@ -222,48 +220,45 @@ public class MapSolarSystem {
                                             final AttributeSelector zMax,
                                             final AttributeSelector zMin) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<MapSolarSystem>>() {
-        @Override
-        public List<MapSolarSystem> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM MapSolarSystem c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "solarSystemID", solarSystemID);
-          AttributeSelector.addIntSelector(qs, "c", "border", border);
-          AttributeSelector.addIntSelector(qs, "c", "constellation", constellation);
-          AttributeSelector.addIntSelector(qs, "c", "constellationID", constellationID);
-          AttributeSelector.addIntSelector(qs, "c", "corridor", corridor);
-          AttributeSelector.addIntSelector(qs, "c", "factionID", factionID);
-          AttributeSelector.addIntSelector(qs, "c", "fringe", fringe);
-          AttributeSelector.addIntSelector(qs, "c", "hub", hub);
-          AttributeSelector.addIntSelector(qs, "c", "international", international);
-          AttributeSelector.addDoubleSelector(qs, "c", "luminosity", luminosity);
-          AttributeSelector.addDoubleSelector(qs, "c", "radius", radius);
-          AttributeSelector.addIntSelector(qs, "c", "regional", regional);
-          AttributeSelector.addIntSelector(qs, "c", "regionID", regionID);
-          AttributeSelector.addDoubleSelector(qs, "c", "security", security);
-          AttributeSelector.addStringSelector(qs, "c", "securityClass", securityClass, p);
-          AttributeSelector.addStringSelector(qs, "c", "solarSystemName", solarSystemName, p);
-          AttributeSelector.addIntSelector(qs, "c", "sunTypeID", sunTypeID);
-          AttributeSelector.addDoubleSelector(qs, "c", "x", x);
-          AttributeSelector.addDoubleSelector(qs, "c", "xMax", xMax);
-          AttributeSelector.addDoubleSelector(qs, "c", "xMin", xMin);
-          AttributeSelector.addDoubleSelector(qs, "c", "y", y);
-          AttributeSelector.addDoubleSelector(qs, "c", "yMax", yMax);
-          AttributeSelector.addDoubleSelector(qs, "c", "yMin", yMin);
-          AttributeSelector.addDoubleSelector(qs, "c", "z", z);
-          AttributeSelector.addDoubleSelector(qs, "c", "zMax", zMax);
-          AttributeSelector.addDoubleSelector(qs, "c", "zMin", zMin);
-          // Return result
-          TypedQuery<MapSolarSystem> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), MapSolarSystem.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM MapSolarSystem c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "solarSystemID", solarSystemID);
+        AttributeSelector.addBooleanSelector(qs, "c", "border", border);
+        AttributeSelector.addBooleanSelector(qs, "c", "constellation", constellation);
+        AttributeSelector.addIntSelector(qs, "c", "constellationID", constellationID);
+        AttributeSelector.addBooleanSelector(qs, "c", "corridor", corridor);
+        AttributeSelector.addIntSelector(qs, "c", "factionID", factionID);
+        AttributeSelector.addBooleanSelector(qs, "c", "fringe", fringe);
+        AttributeSelector.addBooleanSelector(qs, "c", "hub", hub);
+        AttributeSelector.addBooleanSelector(qs, "c", "international", international);
+        AttributeSelector.addDoubleSelector(qs, "c", "luminosity", luminosity);
+        AttributeSelector.addDoubleSelector(qs, "c", "radius", radius);
+        AttributeSelector.addBooleanSelector(qs, "c", "regional", regional);
+        AttributeSelector.addIntSelector(qs, "c", "regionID", regionID);
+        AttributeSelector.addDoubleSelector(qs, "c", "security", security);
+        AttributeSelector.addStringSelector(qs, "c", "securityClass", securityClass, p);
+        AttributeSelector.addStringSelector(qs, "c", "solarSystemName", solarSystemName, p);
+        AttributeSelector.addIntSelector(qs, "c", "sunTypeID", sunTypeID);
+        AttributeSelector.addDoubleSelector(qs, "c", "x", x);
+        AttributeSelector.addDoubleSelector(qs, "c", "xMax", xMax);
+        AttributeSelector.addDoubleSelector(qs, "c", "xMin", xMin);
+        AttributeSelector.addDoubleSelector(qs, "c", "y", y);
+        AttributeSelector.addDoubleSelector(qs, "c", "yMax", yMax);
+        AttributeSelector.addDoubleSelector(qs, "c", "yMin", yMin);
+        AttributeSelector.addDoubleSelector(qs, "c", "z", z);
+        AttributeSelector.addDoubleSelector(qs, "c", "zMax", zMax);
+        AttributeSelector.addDoubleSelector(qs, "c", "zMin", zMin);
+        // Return result
+        TypedQuery<MapSolarSystem> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), MapSolarSystem.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

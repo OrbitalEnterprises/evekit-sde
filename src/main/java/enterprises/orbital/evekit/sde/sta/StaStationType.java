@@ -1,19 +1,17 @@
 package enterprises.orbital.evekit.sde.sta;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import enterprises.orbital.evekit.sde.AttributeParameters;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeParameters;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The persistent class for the stastationtypes database table.
@@ -32,15 +30,15 @@ public class StaStationType {
   private double              dockOrientationX;
   private double              dockOrientationY;
   private double              dockOrientationZ;
-  private Byte                operationID;
-  private Byte                officeSlots;
+  private Integer                operationID;
+  private Boolean                officeSlots;
   private Double              reprocessingEfficiency;
-  private byte                conquerable;
+  private boolean                conquerable;
 
   public StaStationType() {}
 
-  public StaStationType(int stationTypeID, byte conquerable, double dockEntryX, double dockEntryY, double dockEntryZ, double dockOrientationX,
-                        double dockOrientationY, double dockOrientationZ, Byte officeSlots, Byte operationID, Double reprocessingEfficiency) {
+  public StaStationType(int stationTypeID, boolean conquerable, double dockEntryX, double dockEntryY, double dockEntryZ, double dockOrientationX,
+                        double dockOrientationY, double dockOrientationZ, Boolean officeSlots, Integer operationID, Double reprocessingEfficiency) {
     super();
     this.stationTypeID = stationTypeID;
     this.conquerable = conquerable;
@@ -59,7 +57,7 @@ public class StaStationType {
     return this.stationTypeID;
   }
 
-  public byte getConquerable() {
+  public boolean isConquerable() {
     return this.conquerable;
   }
 
@@ -87,11 +85,11 @@ public class StaStationType {
     return this.dockOrientationZ;
   }
 
-  public Byte getOfficeSlots() {
+  public Boolean isOfficeSlots() {
     return this.officeSlots;
   }
 
-  public Byte getOperationID() {
+  public Integer getOperationID() {
     return this.operationID;
   }
 
@@ -114,33 +112,30 @@ public class StaStationType {
                                             final AttributeSelector operationID,
                                             final AttributeSelector reprocessingEfficiency) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<StaStationType>>() {
-        @Override
-        public List<StaStationType> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM StaStationType c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "stationTypeID", stationTypeID);
-          AttributeSelector.addIntSelector(qs, "c", "conquerable", conquerable);
-          AttributeSelector.addDoubleSelector(qs, "c", "dockEntryX", dockEntryX);
-          AttributeSelector.addDoubleSelector(qs, "c", "dockEntryY", dockEntryY);
-          AttributeSelector.addDoubleSelector(qs, "c", "dockEntryZ", dockEntryZ);
-          AttributeSelector.addDoubleSelector(qs, "c", "dockOrientationX", dockOrientationX);
-          AttributeSelector.addDoubleSelector(qs, "c", "dockOrientationY", dockOrientationY);
-          AttributeSelector.addDoubleSelector(qs, "c", "dockOrientationZ", dockOrientationZ);
-          AttributeSelector.addIntSelector(qs, "c", "officeSlots", officeSlots);
-          AttributeSelector.addIntSelector(qs, "c", "operationID", operationID);
-          AttributeSelector.addDoubleSelector(qs, "c", "reprocessingEfficiency", reprocessingEfficiency);
-          // Return result
-          TypedQuery<StaStationType> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), StaStationType.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM StaStationType c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "stationTypeID", stationTypeID);
+        AttributeSelector.addBooleanSelector(qs, "c", "conquerable", conquerable);
+        AttributeSelector.addDoubleSelector(qs, "c", "dockEntryX", dockEntryX);
+        AttributeSelector.addDoubleSelector(qs, "c", "dockEntryY", dockEntryY);
+        AttributeSelector.addDoubleSelector(qs, "c", "dockEntryZ", dockEntryZ);
+        AttributeSelector.addDoubleSelector(qs, "c", "dockOrientationX", dockOrientationX);
+        AttributeSelector.addDoubleSelector(qs, "c", "dockOrientationY", dockOrientationY);
+        AttributeSelector.addDoubleSelector(qs, "c", "dockOrientationZ", dockOrientationZ);
+        AttributeSelector.addBooleanSelector(qs, "c", "officeSlots", officeSlots);
+        AttributeSelector.addIntSelector(qs, "c", "operationID", operationID);
+        AttributeSelector.addDoubleSelector(qs, "c", "reprocessingEfficiency", reprocessingEfficiency);
+        // Return result
+        TypedQuery<StaStationType> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), StaStationType.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

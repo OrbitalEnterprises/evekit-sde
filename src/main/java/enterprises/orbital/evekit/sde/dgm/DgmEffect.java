@@ -39,21 +39,21 @@ public class DgmEffect {
   private String              description;
   private String              guid;
   private Integer             iconID;
-  private byte                isOffensive;
-  private byte                isAssistance;
+  private boolean                isOffensive;
+  private boolean                isAssistance;
   private Integer             durationAttributeID;
   private Integer             trackingSpeedAttributeID;
   private Integer             dischargeAttributeID;
   private Integer             rangeAttributeID;
   private Integer             falloffAttributeID;
-  private byte                disallowAutoRepeat;
-  private byte                published;
+  private boolean                disallowAutoRepeat;
+  private boolean                published;
   private String              displayName;
-  private byte                isWarpSafe;
-  private byte                rangeChance;
-  private byte                electronicChance;
-  private byte                propulsionChance;
-  private Byte                distribution;
+  private boolean                isWarpSafe;
+  private boolean                rangeChance;
+  private boolean                electronicChance;
+  private boolean                propulsionChance;
+  private Boolean                distribution;
   private String              sfxName;
   private Integer             npcUsageChanceAttributeID;
   private Integer             npcActivationChanceAttributeID;
@@ -65,11 +65,11 @@ public class DgmEffect {
 
   public DgmEffect() {}
 
-  public DgmEffect(int effectID, String description, byte disallowAutoRepeat, Integer dischargeAttributeID, String displayName, Byte distribution,
-                   Integer durationAttributeID, short effectCategory, String effectName, byte electronicChance, Integer falloffAttributeID,
-                   Integer fittingUsageChanceAttributeID, String guid, Integer iconID, byte isAssistance, byte isOffensive, byte isWarpSafe,
+  public DgmEffect(int effectID, String description, boolean disallowAutoRepeat, Integer dischargeAttributeID, String displayName, Boolean distribution,
+                   Integer durationAttributeID, short effectCategory, String effectName, boolean electronicChance, Integer falloffAttributeID,
+                   Integer fittingUsageChanceAttributeID, String guid, Integer iconID, boolean isAssistance, boolean isOffensive, boolean isWarpSafe,
                    String modifierInfo, Integer npcActivationChanceAttributeID, Integer npcUsageChanceAttributeID, int postExpression, int preExpression,
-                   byte propulsionChance, byte published, Integer rangeAttributeID, byte rangeChance, String sfxName, Integer trackingSpeedAttributeID) {
+                   boolean propulsionChance, boolean published, Integer rangeAttributeID, boolean rangeChance, String sfxName, Integer trackingSpeedAttributeID) {
     super();
     this.effectID = effectID;
     this.description = description;
@@ -109,7 +109,7 @@ public class DgmEffect {
     return this.description;
   }
 
-  public byte getDisallowAutoRepeat() {
+  public boolean isDisallowAutoRepeat() {
     return this.disallowAutoRepeat;
   }
 
@@ -121,7 +121,7 @@ public class DgmEffect {
     return this.displayName;
   }
 
-  public Byte getDistribution() {
+  public Boolean isDistribution() {
     return this.distribution;
   }
 
@@ -137,7 +137,7 @@ public class DgmEffect {
     return this.effectName;
   }
 
-  public byte getElectronicChance() {
+  public boolean isElectronicChance() {
     return this.electronicChance;
   }
 
@@ -157,15 +157,15 @@ public class DgmEffect {
     return this.iconID;
   }
 
-  public byte getIsAssistance() {
+  public boolean isAssistance() {
     return this.isAssistance;
   }
 
-  public byte getIsOffensive() {
+  public boolean isOffensive() {
     return this.isOffensive;
   }
 
-  public byte getIsWarpSafe() {
+  public boolean isWarpSafe() {
     return this.isWarpSafe;
   }
 
@@ -189,11 +189,11 @@ public class DgmEffect {
     return this.preExpression;
   }
 
-  public byte getPropulsionChance() {
+  public boolean isPropulsionChance() {
     return this.propulsionChance;
   }
 
-  public byte getPublished() {
+  public boolean isPublished() {
     return this.published;
   }
 
@@ -201,7 +201,7 @@ public class DgmEffect {
     return this.rangeAttributeID;
   }
 
-  public byte getRangeChance() {
+  public boolean isRangeChance() {
     return this.rangeChance;
   }
 
@@ -245,50 +245,47 @@ public class DgmEffect {
                                        final AttributeSelector sfxName,
                                        final AttributeSelector trackingSpeedAttributeID) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<DgmEffect>>() {
-        @Override
-        public List<DgmEffect> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM DgmEffect c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addIntSelector(qs, "c", "effectID", effectID);
-          AttributeSelector.addStringSelector(qs, "c", "description", description, p);
-          AttributeSelector.addIntSelector(qs, "c", "disallowAutoRepeat", disallowAutoRepeat);
-          AttributeSelector.addIntSelector(qs, "c", "dischargeAttributeID", dischargeAttributeID);
-          AttributeSelector.addStringSelector(qs, "c", "displayName", displayName, p);
-          AttributeSelector.addIntSelector(qs, "c", "distribution", distribution);
-          AttributeSelector.addIntSelector(qs, "c", "durationAttributeID", durationAttributeID);
-          AttributeSelector.addIntSelector(qs, "c", "effectCategory", effectCategory);
-          AttributeSelector.addStringSelector(qs, "c", "effectName", effectName, p);
-          AttributeSelector.addIntSelector(qs, "c", "electronicChance", electronicChance);
-          AttributeSelector.addIntSelector(qs, "c", "falloffAttributeID", falloffAttributeID);
-          AttributeSelector.addIntSelector(qs, "c", "fittingUsageChanceAttributeID", fittingUsageChanceAttributeID);
-          AttributeSelector.addStringSelector(qs, "c", "guid", guid, p);
-          AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
-          AttributeSelector.addIntSelector(qs, "c", "isAssistance", isAssistance);
-          AttributeSelector.addIntSelector(qs, "c", "isOffensive", isOffensive);
-          AttributeSelector.addIntSelector(qs, "c", "isWarpSafe", isWarpSafe);
-          AttributeSelector.addStringSelector(qs, "c", "modifierInfo", modifierInfo, p);
-          AttributeSelector.addIntSelector(qs, "c", "npcActivationChanceAttributeID", npcActivationChanceAttributeID);
-          AttributeSelector.addIntSelector(qs, "c", "npcUsageChanceAttributeID", npcUsageChanceAttributeID);
-          AttributeSelector.addIntSelector(qs, "c", "postExpression", postExpression);
-          AttributeSelector.addIntSelector(qs, "c", "preExpression", preExpression);
-          AttributeSelector.addIntSelector(qs, "c", "propulsionChance", propulsionChance);
-          AttributeSelector.addIntSelector(qs, "c", "published", published);
-          AttributeSelector.addIntSelector(qs, "c", "rangeAttributeID", rangeAttributeID);
-          AttributeSelector.addIntSelector(qs, "c", "rangeChance", rangeChance);
-          AttributeSelector.addStringSelector(qs, "c", "sfxName", sfxName, p);
-          AttributeSelector.addIntSelector(qs, "c", "trackingSpeedAttributeID", trackingSpeedAttributeID);
-          // Return result
-          TypedQuery<DgmEffect> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), DgmEffect.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM DgmEffect c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addIntSelector(qs, "c", "effectID", effectID);
+        AttributeSelector.addStringSelector(qs, "c", "description", description, p);
+        AttributeSelector.addBooleanSelector(qs, "c", "disallowAutoRepeat", disallowAutoRepeat);
+        AttributeSelector.addIntSelector(qs, "c", "dischargeAttributeID", dischargeAttributeID);
+        AttributeSelector.addStringSelector(qs, "c", "displayName", displayName, p);
+        AttributeSelector.addBooleanSelector(qs, "c", "distribution", distribution);
+        AttributeSelector.addIntSelector(qs, "c", "durationAttributeID", durationAttributeID);
+        AttributeSelector.addIntSelector(qs, "c", "effectCategory", effectCategory);
+        AttributeSelector.addStringSelector(qs, "c", "effectName", effectName, p);
+        AttributeSelector.addBooleanSelector(qs, "c", "electronicChance", electronicChance);
+        AttributeSelector.addIntSelector(qs, "c", "falloffAttributeID", falloffAttributeID);
+        AttributeSelector.addIntSelector(qs, "c", "fittingUsageChanceAttributeID", fittingUsageChanceAttributeID);
+        AttributeSelector.addStringSelector(qs, "c", "guid", guid, p);
+        AttributeSelector.addIntSelector(qs, "c", "iconID", iconID);
+        AttributeSelector.addBooleanSelector(qs, "c", "isAssistance", isAssistance);
+        AttributeSelector.addBooleanSelector(qs, "c", "isOffensive", isOffensive);
+        AttributeSelector.addBooleanSelector(qs, "c", "isWarpSafe", isWarpSafe);
+        AttributeSelector.addStringSelector(qs, "c", "modifierInfo", modifierInfo, p);
+        AttributeSelector.addIntSelector(qs, "c", "npcActivationChanceAttributeID", npcActivationChanceAttributeID);
+        AttributeSelector.addIntSelector(qs, "c", "npcUsageChanceAttributeID", npcUsageChanceAttributeID);
+        AttributeSelector.addIntSelector(qs, "c", "postExpression", postExpression);
+        AttributeSelector.addIntSelector(qs, "c", "preExpression", preExpression);
+        AttributeSelector.addBooleanSelector(qs, "c", "propulsionChance", propulsionChance);
+        AttributeSelector.addBooleanSelector(qs, "c", "published", published);
+        AttributeSelector.addIntSelector(qs, "c", "rangeAttributeID", rangeAttributeID);
+        AttributeSelector.addBooleanSelector(qs, "c", "rangeChance", rangeChance);
+        AttributeSelector.addStringSelector(qs, "c", "sfxName", sfxName, p);
+        AttributeSelector.addIntSelector(qs, "c", "trackingSpeedAttributeID", trackingSpeedAttributeID);
+        // Return result
+        TypedQuery<DgmEffect> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), DgmEffect.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);

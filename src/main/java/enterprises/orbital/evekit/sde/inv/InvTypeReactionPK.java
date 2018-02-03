@@ -1,6 +1,7 @@
 package enterprises.orbital.evekit.sde.inv;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Embeddable;
 
@@ -14,12 +15,12 @@ public class InvTypeReactionPK implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private int               reactionTypeID;
-  private byte              input;
+  private boolean              input;
   private int               typeID;
 
   public InvTypeReactionPK() {}
 
-  public InvTypeReactionPK(int reactionTypeID, byte input, int typeID) {
+  public InvTypeReactionPK(int reactionTypeID, boolean input, int typeID) {
     super();
     this.reactionTypeID = reactionTypeID;
     this.input = input;
@@ -30,7 +31,7 @@ public class InvTypeReactionPK implements Serializable {
     return this.reactionTypeID;
   }
 
-  public byte getInput() {
+  public boolean isInput() {
     return this.input;
   }
 
@@ -39,23 +40,19 @@ public class InvTypeReactionPK implements Serializable {
   }
 
   @Override
-  public boolean equals(
-                        Object other) {
-    if (this == other) { return true; }
-    if (!(other instanceof InvTypeReactionPK)) { return false; }
-    InvTypeReactionPK castOther = (InvTypeReactionPK) other;
-    return (this.reactionTypeID == castOther.reactionTypeID) && (this.input == castOther.input) && (this.typeID == castOther.typeID);
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    InvTypeReactionPK that = (InvTypeReactionPK) o;
+    return reactionTypeID == that.reactionTypeID &&
+        input == that.input &&
+        typeID == that.typeID;
   }
 
   @Override
   public int hashCode() {
-    final int prime = 31;
-    int hash = 17;
-    hash = hash * prime + this.reactionTypeID;
-    hash = hash * prime + (this.input);
-    hash = hash * prime + this.typeID;
 
-    return hash;
+    return Objects.hash(reactionTypeID, input, typeID);
   }
 
   @Override

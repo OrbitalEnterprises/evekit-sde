@@ -1,19 +1,17 @@
 package enterprises.orbital.evekit.sde.sta;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import enterprises.orbital.evekit.sde.AttributeParameters;
+import enterprises.orbital.evekit.sde.AttributeSelector;
+import enterprises.orbital.evekit.sde.SDE;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
-
-import enterprises.orbital.db.ConnectionFactory.RunInTransaction;
-import enterprises.orbital.evekit.sde.AttributeParameters;
-import enterprises.orbital.evekit.sde.AttributeSelector;
-import enterprises.orbital.evekit.sde.SDE;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The persistent class for the stastations database table.
@@ -31,7 +29,7 @@ public class StaStation {
   private double              dockingCostPerVolume;
   private double              maxShipVolumeDockable;
   private int                 officeRentalCost;
-  private byte                operationID;
+  private int                operationID;
   private int                 stationTypeID;
   private int                 corporationID;
   private int                 solarSystemID;
@@ -43,12 +41,12 @@ public class StaStation {
   private double              z;
   private double              reprocessingEfficiency;
   private double              reprocessingStationsTake;
-  private byte                reprocessingHangarFlag;
+  private int                reprocessingHangarFlag;
 
   public StaStation() {}
 
   public StaStation(long stationID, int constellationID, int corporationID, double dockingCostPerVolume, double maxShipVolumeDockable, int officeRentalCost,
-                    byte operationID, int regionID, double reprocessingEfficiency, byte reprocessingHangarFlag, double reprocessingStationsTake,
+                    int operationID, int regionID, double reprocessingEfficiency, int reprocessingHangarFlag, double reprocessingStationsTake,
                     double security, int solarSystemID, String stationName, int stationTypeID, double x, double y, double z) {
     super();
     this.stationID = stationID;
@@ -95,7 +93,7 @@ public class StaStation {
     return this.officeRentalCost;
   }
 
-  public byte getOperationID() {
+  public int getOperationID() {
     return this.operationID;
   }
 
@@ -107,7 +105,7 @@ public class StaStation {
     return this.reprocessingEfficiency;
   }
 
-  public byte getReprocessingHangarFlag() {
+  public int getReprocessingHangarFlag() {
     return this.reprocessingHangarFlag;
   }
 
@@ -165,40 +163,37 @@ public class StaStation {
                                         final AttributeSelector y,
                                         final AttributeSelector z) {
     try {
-      return SDE.getFactory().runTransaction(new RunInTransaction<List<StaStation>>() {
-        @Override
-        public List<StaStation> run() throws Exception {
-          int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
-          int offset = Math.max(0, contid);
-          StringBuilder qs = new StringBuilder();
-          // Constrain attributes
-          qs.append("SELECT c FROM StaStation c WHERE 1 = 1");
-          AttributeParameters p = new AttributeParameters("att");
-          AttributeSelector.addLongSelector(qs, "c", "stationID", stationID);
-          AttributeSelector.addIntSelector(qs, "c", "constellationID", constellationID);
-          AttributeSelector.addIntSelector(qs, "c", "corporationID", corporationID);
-          AttributeSelector.addDoubleSelector(qs, "c", "dockingCostPerVolume", dockingCostPerVolume);
-          AttributeSelector.addDoubleSelector(qs, "c", "maxShipVolumeDockable", maxShipVolumeDockable);
-          AttributeSelector.addIntSelector(qs, "c", "officeRentalCost", officeRentalCost);
-          AttributeSelector.addIntSelector(qs, "c", "operationID", operationID);
-          AttributeSelector.addIntSelector(qs, "c", "regionID", regionID);
-          AttributeSelector.addDoubleSelector(qs, "c", "reprocessingEfficiency", reprocessingEfficiency);
-          AttributeSelector.addIntSelector(qs, "c", "reprocessingHangarFlag", reprocessingHangarFlag);
-          AttributeSelector.addDoubleSelector(qs, "c", "reprocessingStationsTake", reprocessingStationsTake);
-          AttributeSelector.addIntSelector(qs, "c", "security", security);
-          AttributeSelector.addIntSelector(qs, "c", "solarSystemID", solarSystemID);
-          AttributeSelector.addStringSelector(qs, "c", "stationName", stationName, p);
-          AttributeSelector.addIntSelector(qs, "c", "stationTypeID", stationTypeID);
-          AttributeSelector.addDoubleSelector(qs, "c", "x", x);
-          AttributeSelector.addDoubleSelector(qs, "c", "y", y);
-          AttributeSelector.addDoubleSelector(qs, "c", "z", z);
-          // Return result
-          TypedQuery<StaStation> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), StaStation.class);
-          p.fillParams(query);
-          query.setMaxResults(maxcount);
-          query.setFirstResult(offset);
-          return query.getResultList();
-        }
+      return SDE.getFactory().runTransaction(() -> {
+        int maxcount = Math.max(Math.min(maxresults, SDE.DEFAULT_MAX_RESULTS), 1);
+        int offset = Math.max(0, contid);
+        StringBuilder qs = new StringBuilder();
+        // Constrain attributes
+        qs.append("SELECT c FROM StaStation c WHERE 1 = 1");
+        AttributeParameters p = new AttributeParameters("att");
+        AttributeSelector.addLongSelector(qs, "c", "stationID", stationID);
+        AttributeSelector.addIntSelector(qs, "c", "constellationID", constellationID);
+        AttributeSelector.addIntSelector(qs, "c", "corporationID", corporationID);
+        AttributeSelector.addDoubleSelector(qs, "c", "dockingCostPerVolume", dockingCostPerVolume);
+        AttributeSelector.addDoubleSelector(qs, "c", "maxShipVolumeDockable", maxShipVolumeDockable);
+        AttributeSelector.addIntSelector(qs, "c", "officeRentalCost", officeRentalCost);
+        AttributeSelector.addIntSelector(qs, "c", "operationID", operationID);
+        AttributeSelector.addIntSelector(qs, "c", "regionID", regionID);
+        AttributeSelector.addDoubleSelector(qs, "c", "reprocessingEfficiency", reprocessingEfficiency);
+        AttributeSelector.addIntSelector(qs, "c", "reprocessingHangarFlag", reprocessingHangarFlag);
+        AttributeSelector.addDoubleSelector(qs, "c", "reprocessingStationsTake", reprocessingStationsTake);
+        AttributeSelector.addIntSelector(qs, "c", "security", security);
+        AttributeSelector.addIntSelector(qs, "c", "solarSystemID", solarSystemID);
+        AttributeSelector.addStringSelector(qs, "c", "stationName", stationName, p);
+        AttributeSelector.addIntSelector(qs, "c", "stationTypeID", stationTypeID);
+        AttributeSelector.addDoubleSelector(qs, "c", "x", x);
+        AttributeSelector.addDoubleSelector(qs, "c", "y", y);
+        AttributeSelector.addDoubleSelector(qs, "c", "z", z);
+        // Return result
+        TypedQuery<StaStation> query = SDE.getFactory().getEntityManager().createQuery(qs.toString(), StaStation.class);
+        p.fillParams(query);
+        query.setMaxResults(maxcount);
+        query.setFirstResult(offset);
+        return query.getResultList();
       });
     } catch (Exception e) {
       log.log(Level.SEVERE, "query error", e);
