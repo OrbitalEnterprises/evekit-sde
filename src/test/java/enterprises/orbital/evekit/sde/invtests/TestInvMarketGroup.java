@@ -21,7 +21,7 @@ public class TestInvMarketGroup extends TestSetup {
       contid += next.size();
       next = InvMarketGroup.access(contid, maxresults, all, all, all, all, all, all);
     }
-    Assert.assertEquals(2191, contid);
+    Assert.assertEquals(2198, contid);
   }
 
   @Test
