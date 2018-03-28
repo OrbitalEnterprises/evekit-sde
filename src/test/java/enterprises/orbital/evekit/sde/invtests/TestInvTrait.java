@@ -21,7 +21,7 @@ public class TestInvTrait extends TestSetup {
       contid += next.size();
       next = InvTrait.access(contid, maxresults, all, all, all, all, all, all);
     }
-    Assert.assertEquals(2608, contid);
+    Assert.assertEquals(2637, contid);
   }
 
   @Test
@@ -33,9 +33,9 @@ public class TestInvTrait extends TestSetup {
     Assert.assertNotNull(random);
     Assert.assertEquals(560, random.getTraitID());
     Assert.assertEquals(12003, random.getTypeID());
-    Assert.assertEquals(-1, random.getSkillID());
-    Assert.assertEquals(50, random.getBonus(), 0.001);
-    Assert.assertEquals("reduction in <a href=showinfo:3454>Microwarpdrive</a> signature radius penalty", random.getBonusText());
+    Assert.assertEquals(3335, random.getSkillID());
+    Assert.assertEquals(5, random.getBonus(), 0.001);
+    Assert.assertEquals("bonus to <a href=showinfo:3306>Medium Energy Turret</a> rate of fire", random.getBonusText());
     Assert.assertEquals(105, random.getUnitID().intValue());
     Assert.assertNotNull(random.toString());
   }
