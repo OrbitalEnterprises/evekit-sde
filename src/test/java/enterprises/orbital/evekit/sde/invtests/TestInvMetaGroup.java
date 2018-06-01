@@ -21,7 +21,7 @@ public class TestInvMetaGroup extends TestSetup {
       contid += next.size();
       next = InvMetaGroup.access(contid, maxresults, all, all, all, all);
     }
-    Assert.assertEquals(14, contid);
+    Assert.assertEquals(15, contid);
   }
 
   @Test

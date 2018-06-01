@@ -21,7 +21,7 @@ public class TestStaStation extends TestSetup {
       contid += next.size();
       next = StaStation.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all);
     }
-    Assert.assertEquals(5189, contid);
+    Assert.assertEquals(5118, contid);
   }
 
   @Test

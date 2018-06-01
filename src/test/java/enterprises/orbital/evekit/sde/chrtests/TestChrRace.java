@@ -18,7 +18,7 @@ public class TestChrRace extends TestSetup {
     AttributeSelector all = new AttributeSelector("{any:true}");
     List<ChrRace> races = ChrRace.access(contid, maxresults, all, all, all, all, all);
     Assert.assertNotNull(races);
-    Assert.assertEquals(8, races.size());
+    Assert.assertEquals(10, races.size());
   }
 
   @Test

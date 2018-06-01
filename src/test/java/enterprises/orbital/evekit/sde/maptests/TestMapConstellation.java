@@ -20,7 +20,7 @@ public class TestMapConstellation extends TestSetup {
       contid += next.size();
       next = MapConstellation.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all);
     }
-    Assert.assertEquals(1120, contid);
+    Assert.assertEquals(1145, contid);
   }
 
   @Test

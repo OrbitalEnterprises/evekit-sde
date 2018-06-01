@@ -43,14 +43,14 @@ public class ChrBloodline {
   private int               charisma;
   private int               memory;
   private int               intelligence;
-  private int                iconID;
+  private Integer                iconID;
   private String             shortDescription;
   private String             shortFemaleDescription;
   private String             shortMaleDescription;
 
   public ChrBloodline() {}
 
-  public ChrBloodline(int bloodlineID, String bloodlineName, int charisma, int corporationID, String description, String femaleDescription, int iconID,
+  public ChrBloodline(int bloodlineID, String bloodlineName, int charisma, int corporationID, String description, String femaleDescription, Integer iconID,
                       int intelligence, String maleDescription, int memory, int perception, int raceID, int shipTypeID, String shortDescription,
                       String shortFemaleDescription, String shortMaleDescription, int willpower) {
     super();
@@ -97,7 +97,7 @@ public class ChrBloodline {
     return this.femaleDescription;
   }
 
-  public int getIconID() {
+  public Integer getIconID() {
     return this.iconID;
   }
 

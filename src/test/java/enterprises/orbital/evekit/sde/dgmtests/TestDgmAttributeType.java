@@ -20,7 +20,7 @@ public class TestDgmAttributeType extends TestSetup {
       contid += next.size();
       next = DgmAttributeType.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all);
     }
-    Assert.assertEquals(2409, contid);
+    Assert.assertEquals(2439, contid);
   }
 
   @Test

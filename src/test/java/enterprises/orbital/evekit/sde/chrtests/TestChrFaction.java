@@ -18,7 +18,7 @@ public class TestChrFaction extends TestSetup {
     AttributeSelector all = new AttributeSelector("{any:true}");
     List<ChrFaction> factions = ChrFaction.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all);
     Assert.assertNotNull(factions);
-    Assert.assertEquals(21, factions.size());
+    Assert.assertEquals(24, factions.size());
   }
 
   @Test

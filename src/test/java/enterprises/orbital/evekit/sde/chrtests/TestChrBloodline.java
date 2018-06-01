@@ -18,7 +18,7 @@ public class TestChrBloodline extends TestSetup {
     AttributeSelector all = new AttributeSelector("{any:true}");
     List<ChrBloodline> factions = ChrBloodline.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all);
     Assert.assertNotNull(factions);
-    Assert.assertEquals(15, factions.size());
+    Assert.assertEquals(18, factions.size());
   }
 
   @Test
@@ -48,7 +48,7 @@ public class TestChrBloodline extends TestSetup {
     Assert.assertEquals(6, random.getCharisma());
     Assert.assertEquals(4, random.getMemory());
     Assert.assertEquals(4, random.getIntelligence());
-    Assert.assertEquals(1635, random.getIconID());
+    Assert.assertEquals(1635, random.getIconID().intValue());
     Assert.assertEquals("The Brutor are a martial people who live regimented, disciplined lives.", random.getShortDescription());
     Assert.assertEquals("Male Brutors are vigilant and determined, and possess great situational awareness.", random.getShortMaleDescription());
     Assert.assertEquals("Tenacious and domineering, the Brutor female is accustomed to getting what she wants.", random.getShortFemaleDescription());

@@ -22,7 +22,7 @@ public class TestMapSolarSystem extends TestSetup {
       next = MapSolarSystem.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all,
                                    all, all, all, all, all);
     }
-    Assert.assertEquals(8035, contid);
+    Assert.assertEquals(8235, contid);
   }
 
   @Test
@@ -57,7 +57,7 @@ public class TestMapSolarSystem extends TestSetup {
     Assert.assertEquals(0.1097049725986509, random.getSecurity(), 0.0001);
     Assert.assertEquals(500007, (int) random.getFactionID());
     Assert.assertEquals(2620460967184.0, random.getRadius(), 0.0001);
-    Assert.assertEquals(45037, random.getSunTypeID());
+    Assert.assertEquals(45037, random.getSunTypeID().intValue());
     Assert.assertEquals("B3", random.getSecurityClass());
     Assert.assertNotNull(random.toString());
   }

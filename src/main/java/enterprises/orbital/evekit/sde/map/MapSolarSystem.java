@@ -48,14 +48,14 @@ public class MapSolarSystem {
   private double              security;
   private Integer             factionID;
   private double              radius;
-  private int                 sunTypeID;
+  private Integer                 sunTypeID;
   private String              securityClass;
 
   public MapSolarSystem() {}
 
   public MapSolarSystem(int solarSystemID, boolean border, Boolean constellation, int constellationID, boolean corridor, Integer factionID, boolean fringe, boolean hub,
                         boolean international, double luminosity, double radius, boolean regional, int regionID, double security, String securityClass,
-                        String solarSystemName, int sunTypeID, double x, double xMax, double xMin, double y, double yMax, double yMin, double z, double zMax,
+                        String solarSystemName, Integer sunTypeID, double x, double xMax, double xMin, double y, double yMax, double yMin, double z, double zMax,
                         double zMin) {
     super();
     this.solarSystemID = solarSystemID;
@@ -150,7 +150,7 @@ public class MapSolarSystem {
     return this.solarSystemName;
   }
 
-  public int getSunTypeID() {
+  public Integer getSunTypeID() {
     return this.sunTypeID;
   }
 

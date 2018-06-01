@@ -20,7 +20,7 @@ public class TestMapDenormalize extends TestSetup {
       contid += next.size();
       next = MapDenormalize.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all);
     }
-    Assert.assertEquals(503051, contid);
+    Assert.assertEquals(503281, contid);
   }
 
   @Test
