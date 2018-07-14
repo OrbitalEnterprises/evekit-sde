@@ -21,7 +21,7 @@ public class TestInvName extends TestSetup {
       contid += next.size();
       next = InvName.access(contid, maxresults, all, all);
     }
-    Assert.assertEquals(520194, contid);
+    Assert.assertEquals(520246, contid);
   }
 
   @Test

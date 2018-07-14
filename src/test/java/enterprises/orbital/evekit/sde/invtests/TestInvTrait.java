@@ -21,7 +21,7 @@ public class TestInvTrait extends TestSetup {
       contid += next.size();
       next = InvTrait.access(contid, maxresults, all, all, all, all, all, all);
     }
-    Assert.assertEquals(2683, contid);
+    Assert.assertEquals(2685, contid);
   }
 
   @Test
