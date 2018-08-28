@@ -20,7 +20,7 @@ public class TestMapRegion extends TestSetup {
       contid += next.size();
       next = MapRegion.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all);
     }
-    Assert.assertEquals(105, contid);
+    Assert.assertEquals(106, contid);
   }
 
   @Test

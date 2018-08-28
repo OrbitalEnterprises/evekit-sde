@@ -20,7 +20,7 @@ public class TestIndActivitySkill extends TestSetup {
       contid += next.size();
       next = IndActivitySkill.access(contid, maxresults, all, all, all, all);
     }
-    Assert.assertEquals(20746, contid);
+    Assert.assertEquals(20748, contid);
   }
 
   @Test

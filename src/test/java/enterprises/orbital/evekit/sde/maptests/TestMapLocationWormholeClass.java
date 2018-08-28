@@ -20,7 +20,7 @@ public class TestMapLocationWormholeClass extends TestSetup {
       contid += next.size();
       next = MapLocationWormholeClass.access(contid, maxresults, all, all);
     }
-    Assert.assertEquals(804, contid);
+    Assert.assertEquals(805, contid);
   }
 
   @Test

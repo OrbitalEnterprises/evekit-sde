@@ -20,7 +20,7 @@ public class TestMapLocationScene extends TestSetup {
       contid += next.size();
       next = MapLocationScene.access(contid, maxresults, all, all);
     }
-    Assert.assertEquals(105, contid);
+    Assert.assertEquals(106, contid);
   }
 
   @Test

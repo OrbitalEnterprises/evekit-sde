@@ -22,7 +22,7 @@ public class TestMapSolarSystem extends TestSetup {
       next = MapSolarSystem.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all,
                                    all, all, all, all, all);
     }
-    Assert.assertEquals(8235, contid);
+    Assert.assertEquals(8285, contid);
   }
 
   @Test
