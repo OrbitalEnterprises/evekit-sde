@@ -21,7 +21,7 @@ public class TestInvGroup extends TestSetup {
       contid += next.size();
       next = InvGroup.access(contid, maxresults, all, all, all, all, all, all, all, all, all);
     }
-    Assert.assertEquals(1370, contid);
+    Assert.assertEquals(1373, contid);
   }
 
   @Test

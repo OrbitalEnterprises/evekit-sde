@@ -20,7 +20,7 @@ public class TestIndActivityProduct extends TestSetup {
       contid += next.size();
       next = IndActivityProduct.access(contid, maxresults, all, all, all, all);
     }
-    Assert.assertEquals(5529, contid);
+    Assert.assertEquals(5530, contid);
   }
 
   @Test

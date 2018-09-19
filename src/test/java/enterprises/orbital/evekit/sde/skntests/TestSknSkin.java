@@ -21,7 +21,7 @@ public class TestSknSkin extends TestSetup {
       contid += next.size();
       next = SknSkin.access(contid, maxresults, all, all, all);
     }
-    Assert.assertEquals(3574, contid);
+    Assert.assertEquals(3612, contid);
   }
 
   @Test
