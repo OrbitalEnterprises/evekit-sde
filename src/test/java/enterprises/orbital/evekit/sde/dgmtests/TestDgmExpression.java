@@ -20,7 +20,7 @@ public class TestDgmExpression extends TestSetup {
       contid += next.size();
       next = DgmExpression.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all);
     }
-    Assert.assertEquals(18017, contid);
+    Assert.assertEquals(18040, contid);
   }
 
   @Test
