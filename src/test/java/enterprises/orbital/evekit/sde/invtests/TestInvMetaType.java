@@ -21,7 +21,7 @@ public class TestInvMetaType extends TestSetup {
       contid += next.size();
       next = InvMetaType.access(contid, maxresults, all, all, all);
     }
-    Assert.assertEquals(4590, contid);
+    Assert.assertEquals(4591, contid);
   }
 
   @Test
