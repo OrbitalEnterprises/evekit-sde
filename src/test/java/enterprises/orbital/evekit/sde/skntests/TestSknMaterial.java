@@ -21,7 +21,7 @@ public class TestSknMaterial extends TestSetup {
       contid += next.size();
       next = SknMaterial.access(contid, maxresults, all, all, all);
     }
-    Assert.assertEquals(267, contid);
+    Assert.assertEquals(280, contid);
   }
 
   @Test

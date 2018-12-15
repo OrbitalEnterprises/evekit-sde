@@ -20,7 +20,7 @@ public class TestCrpNPCCorporationTrade extends TestSetup {
       contid += next.size();
       next = CrpNpcCorporationTrade.access(contid, maxresults, all, all);
     }
-    Assert.assertEquals(13363, contid);
+    Assert.assertEquals(13351, contid);
   }
 
   @Test
