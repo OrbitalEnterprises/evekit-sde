@@ -20,7 +20,7 @@ public class TestIndActivityMaterial extends TestSetup {
       contid += next.size();
       next = IndActivityMaterial.access(contid, maxresults, all, all, all, all);
     }
-    Assert.assertEquals(32014, contid);
+    Assert.assertEquals(32046, contid);
   }
 
   @Test

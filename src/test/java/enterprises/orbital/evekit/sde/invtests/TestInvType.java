@@ -21,7 +21,7 @@ public class TestInvType extends TestSetup {
       contid += next.size();
       next = InvType.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all);
     }
-    Assert.assertEquals(35711, contid);
+    Assert.assertEquals(35779, contid);
   }
 
   @Test
