@@ -17,7 +17,7 @@ public class TestCrpNPCDivision extends TestSetup {
     AttributeSelector all = new AttributeSelector("{any:true}");
     List<CrpNpcDivision> divisions = CrpNpcDivision.access(contid, maxresults, all, all, all, all);
     Assert.assertNotNull(divisions);
-    Assert.assertEquals(29, divisions.size());
+    Assert.assertEquals(24, divisions.size());
   }
 
   @Test

@@ -20,7 +20,7 @@ public class TestIndActivityProbability extends TestSetup {
       contid += next.size();
       next = IndActivityProbability.access(contid, maxresults, all, all, all, all);
     }
-    Assert.assertEquals(1285, contid);
+    Assert.assertEquals(1288, contid);
   }
 
   @Test

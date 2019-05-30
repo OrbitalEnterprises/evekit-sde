@@ -21,7 +21,7 @@ public class TestStaService extends TestSetup {
       contid += next.size();
       next = StaService.access(contid, maxresults, all, all, all);
     }
-    Assert.assertEquals(27, contid);
+    Assert.assertEquals(26, contid);
   }
 
   @Test
