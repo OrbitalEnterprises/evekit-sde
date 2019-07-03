@@ -21,7 +21,7 @@ public class TestSknShip extends TestSetup {
       contid += next.size();
       next = SknShip.access(contid, maxresults, all, all);
     }
-    Assert.assertEquals(3929, contid);
+    Assert.assertEquals(3966, contid);
   }
 
   @Test

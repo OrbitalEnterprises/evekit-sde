@@ -22,7 +22,7 @@ public class TestCrpNPCCorporation extends TestSetup {
       next = CrpNpcCorporation.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all,
                                       all, all, all, all, all, all, all, all);
     }
-    Assert.assertEquals(255, contid);
+    Assert.assertEquals(256, contid);
   }
 
   @Test
