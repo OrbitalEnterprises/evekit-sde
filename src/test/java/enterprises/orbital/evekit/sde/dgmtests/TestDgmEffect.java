@@ -37,7 +37,7 @@ public class TestDgmEffect extends TestSetup {
     Assert.assertEquals("medPower", random.getEffectName());
     Assert.assertEquals(0, random.getEffectCategory());
     Assert.assertEquals(131, random.getPreExpression());
-    Assert.assertEquals(131, random.getPostExpression());
+    Assert.assertEquals(new Integer(131), random.getPostExpression());
     Assert.assertEquals("Requires a medium power slot.", random.getDescription());
     Assert.assertEquals("", random.getGuid());
     Assert.assertEquals(new Integer(294), random.getIconID());
