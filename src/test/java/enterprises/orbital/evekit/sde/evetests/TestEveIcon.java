@@ -20,7 +20,7 @@ public class TestEveIcon extends TestSetup {
       contid += next.size();
       next = EveIcon.access(contid, maxresults, all, all, all);
     }
-    Assert.assertEquals(2689, contid);
+    Assert.assertEquals(2690, contid);
   }
 
   @Test

@@ -22,7 +22,7 @@ public class TestDgmEffect extends TestSetup {
       next = DgmEffect.access(contid, maxresults, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all, all,
                               all, all, all, all, all, all);
     }
-    Assert.assertEquals(4157, contid);
+    Assert.assertEquals(2745, contid);
   }
 
   @Test
@@ -36,7 +36,7 @@ public class TestDgmEffect extends TestSetup {
     Assert.assertEquals(13, random.getEffectID());
     Assert.assertEquals("medPower", random.getEffectName());
     Assert.assertEquals(0, random.getEffectCategory());
-    Assert.assertEquals(131, random.getPreExpression());
+    Assert.assertEquals(new Integer(131), random.getPreExpression());
     Assert.assertEquals(new Integer(131), random.getPostExpression());
     Assert.assertEquals("Requires a medium power slot.", random.getDescription());
     Assert.assertEquals("", random.getGuid());
@@ -56,7 +56,7 @@ public class TestDgmEffect extends TestSetup {
     Assert.assertFalse(random.isElectronicChance());
     Assert.assertFalse(random.isPropulsionChance());
     Assert.assertNull(random.isDistribution());
-    Assert.assertEquals(null, random.getSfxName());
+    Assert.assertNull(random.getSfxName());
     Assert.assertNull(random.getNpcUsageChanceAttributeID());
     Assert.assertNull(random.getNpcActivationChanceAttributeID());
     Assert.assertNull(random.getFittingUsageChanceAttributeID());

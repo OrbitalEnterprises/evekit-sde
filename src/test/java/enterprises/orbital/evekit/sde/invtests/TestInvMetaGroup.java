@@ -21,7 +21,7 @@ public class TestInvMetaGroup extends TestSetup {
       contid += next.size();
       next = InvMetaGroup.access(contid, maxresults, all, all, all, all);
     }
-    Assert.assertEquals(17, contid);
+    Assert.assertEquals(20, contid);
   }
 
   @Test
@@ -34,7 +34,7 @@ public class TestInvMetaGroup extends TestSetup {
     Assert.assertEquals(6, random.getMetaGroupID());
     Assert.assertEquals("Deadspace", random.getMetaGroupName());
     Assert.assertEquals("Modules found in deadspace.", random.getDescription());
-    Assert.assertNull(random.getIconID());
+    Assert.assertEquals(new Integer(24148), random.getIconID());
     Assert.assertNotNull(random.toString());
   }
 }

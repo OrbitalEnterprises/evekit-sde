@@ -31,7 +31,7 @@ public class DgmEffect {
   private int                 effectID;
   private String              effectName;
   private short               effectCategory;
-  private int                 preExpression;
+  private Integer                 preExpression;
   private Integer                 postExpression;
   @Lob
   @Column(
@@ -68,7 +68,7 @@ public class DgmEffect {
   public DgmEffect(int effectID, String description, boolean disallowAutoRepeat, Integer dischargeAttributeID, String displayName, Boolean distribution,
                    Integer durationAttributeID, short effectCategory, String effectName, boolean electronicChance, Integer falloffAttributeID,
                    Integer fittingUsageChanceAttributeID, String guid, Integer iconID, boolean isAssistance, boolean isOffensive, boolean isWarpSafe,
-                   String modifierInfo, Integer npcActivationChanceAttributeID, Integer npcUsageChanceAttributeID, Integer postExpression, int preExpression,
+                   String modifierInfo, Integer npcActivationChanceAttributeID, Integer npcUsageChanceAttributeID, Integer postExpression, Integer preExpression,
                    boolean propulsionChance, boolean published, Integer rangeAttributeID, boolean rangeChance, String sfxName, Integer trackingSpeedAttributeID) {
     super();
     this.effectID = effectID;
@@ -185,7 +185,7 @@ public class DgmEffect {
     return this.postExpression;
   }
 
-  public int getPreExpression() {
+  public Integer getPreExpression() {
     return this.preExpression;
   }
 
